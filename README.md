@@ -2,19 +2,18 @@
 
 # Group Members:
 Name: ESPINO PITTI Jose Alberto UID:3035946813
-Name: OKPAPI Favour Emoshioriamhe UID:
-
+Name: OKPAPI Favour Emoshioriamhe UID:???
 # Plot:
-(Name) is an experienced ghostbuster and monster hunter. After working for decades helping townspeople get rid of their annoying spectral invasors, (Name) has decided to change jobs – and open a cat café! However, (Name) lost his savings by joining a pyramid scheme. Help (Name) earn enough money to retire and fill his café with feline residents by hunting ghosts and monsters in town!
+(Name) is an experienced ghostbuster and monster hunter. After working for decades helping townspeople get rid of their annoying spectral invasors, (Name) has decided to change jobs – and open a cat café! However, property prices in Hong Kong aren't precisely cheap... Help (Name) earn enough money to retire and fill his café with feline residents by hunting ghosts around the city!
 
 # Features 
 -The main menu has two sections, ‘find a job’ allows you to choose a mission from the newspaper. Each mission sends you to a dungeon where you fight monsters and ghosts to earn money. Upon successful completion of the job, you will receive payment. The ‘café’ section allows you to visit your café, purchase new furniture or cats, and track your progress. 
 Dungeons: 
 → They are created with 2D arrays.
 → Enemies are placed randomly in it each round
-→ Some random helpful objects, such as holy water and potions, might appear in the maps randomly every round.
+→ Some random helpful objects, such as paper persons (纸人) and potions, might appear in the maps randomly every round.
 → The player’s goal is to solve the task given to them. This task can be either defeating the boss, finding a particular object (that might be dropped by defeating a random enemy), eliminating all of the enemies, etc. 
-→ Enemies can be of different types (ghosts, vampires, ) and have different names that were the ones they had when living. These two features are determined at random. The ghosts’ power will be capped depending on the level to adjust difficulty. 
+→ Enemies can be of different types (water/drowned ghosts，headless ghosts, 女鬼，殭屍。。。) and have different names that were the ones they had when living. These two features are determined at random. The ghosts’ power will be capped depending on the level to adjust difficulty. 
 → The player can navigate the map with wasd. Every time the player performs an action, the game will update the array and print out the updated map. 
 Battle:
 → Players have the option to attack, defend (which makes the ghost’s attack be less harmful), run (which might not work, depending on player and ghost levels), and use objects (which might restore health, make the battle more easy, etc). 
@@ -47,6 +46,13 @@ There will be another struc for the general game that will store information lik
 -amount of enemies defeated (int), 
 -player name (string), and
 -cat café name (string).
+
+Lastly, there will be strucs for each level/task in the game storing information like:
+- has the level been cleared already? (bool),
+- what kind of ghosts can appear in this level (char),
+- what kind of items can appear in this level (char),
+- the level range for enemies than can spawn (int for lower bound, int for upper bound).
+
 
 3. Dynamic memory management
 Arrays and pointers used in map generation for every task
