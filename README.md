@@ -2,7 +2,7 @@
 
 # Group Members:
 Name: ESPINO PITTI Jose Alberto UID:3035946813
-Name: OKPAPI Favour Emoshioriamhe UID:???
+Name: OKPAPI Favour Emoshioriamhe UID:30305919963
 # Plot:
 (Name) is an experienced ghostbuster and monster hunter. After working for decades helping townspeople get rid of their annoying spectral invasors, (Name) has decided to change jobs – and open a cat café! However, property prices in Hong Kong aren't precisely cheap... Help (Name) earn enough money to retire and fill his café with feline residents by hunting ghosts around the city!
 
@@ -33,6 +33,7 @@ The amount of enemies in each task, whether or not attacks land, whether or not 
 When levelling up, stat growth is also semi-random. Stats will always increase, but the amount of points it increases can vary, a random number between 1 and 5.
 
 2. Data structures for storing game status
+-Dungeon maps will be stored in 2d arrays.
 -Player and Enemy information will be stored in structs. These structs will include things like:
 -name (string),
 -HP (int),
@@ -60,12 +61,13 @@ Arrays also contain all the aforementioned data for users, enemies, and the game
 
 
 4. File input/output
-The user can store all the variables in external files to save the game, and then load their information the next time they open the game. 
+The user can store all the variables in external files to save the game, and then load their information the next time they open the game.
+Enemy names and types and are read in from external files as the game proceeds.
 
 5. Program codes in multiple files
-Structs, functions (like leveling up and attack), dialogue, and all saved information will be stored in files separate from main.cpp
+Structs, functions (like leveling up and attack), dialogue, and all saved information will be stored in files separate from main.cpp.
+Separate .cpp files for functions of the game e.g. printing dungeon map.
 
  
-
-Misc.
--Can also display an ascii version of ghost images for each ghost every time you have a fight. 
+ Misc.
+-Can also display an ascii version of ghost images for each ghost every time you have a fight. Ascii versions will be stored in separate txt files. 
