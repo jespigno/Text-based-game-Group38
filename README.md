@@ -1,8 +1,10 @@
-# Text-based-game-1340
+### Text-based-game-1340 - Super Ghost Hunter - 超級幽靈獵人
 
 # Group Members:
 Name: ESPINO PITTI Jose Alberto UID:3035946813
+
 Name: OKPAPI Favour Emoshioriamhe UID:3035919963
+
 # Plot:
 (Name) is an experienced ghostbuster and monster hunter. After working for decades helping townspeople get rid of their annoying spectral invasors, (Name) has decided to change jobs – and open a cat café! However, property prices in Hong Kong aren't precisely cheap... Help (Name) earn enough money to retire and fill his café with feline residents by hunting ghosts around the city!
 
