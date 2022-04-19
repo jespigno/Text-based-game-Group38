@@ -5,6 +5,7 @@ using namespace std;
 #include "TimeIntervals.h"
 
 int main(){
+<<<<<<< Updated upstream
   struct CharacterInformation{
     int level;
     int maxhealth;
@@ -24,6 +25,29 @@ int main(){
     bool level4complete;
     bool level5complete;
   };
+=======
+    struct PlayerStats {
+        int level;
+        int maxhealth = 10;
+        int mycurrenthealth = 10;
+        int mydefense = 3;
+        int myattack = 3;
+        int myspeed = 3;
+        int mymoney = 0;
+        float experiencepoints = 0.0;
+    };
+    struct PlayerInfo {
+        string myname = "Joe";
+        int catnumber = 0;
+        int amountoffurniture = 0;
+        bool boughtcatcafe = false;
+        bool level1complete = false;
+        bool level2complete = false;
+        bool level3complete = false;
+        bool level4complete = false;
+        bool level5complete = false;
+    };
+>>>>>>> Stashed changes
 
   CharacterInformation level = 1, maxhealth = 10, mycurrenthealth = 10, mydefense = 3, myattack = 3, myspeed = 3, mymoney = 0, experiencepoints = 0.0;
   CharacterInformation myname = "Joe", catnumber = 0, boughtcafe = false, level1complete = false, level2complete = false, level3complete = false, level4complete = false, level5complete = false;
