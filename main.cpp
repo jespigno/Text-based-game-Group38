@@ -3,6 +3,7 @@
 #include <string>
 using namespace std;
 #include "TimeIntervals.h"
+#include "AttackFunctions.h"
 
 
 void mainmenu(Player x);
@@ -155,7 +156,8 @@ void mainmenu(Player x){
       //Quest(); CODE THIS
     }else if (mycurrentchoice == "C"){
       //VisitCafe(); CODETHIS
-      cout<<"this loop works!";
+      cout<<"this loop works!"<<endl;
+      printstats(x);
     }else{
       cout << "That's not an option :( try again)"<<endl;
     }
