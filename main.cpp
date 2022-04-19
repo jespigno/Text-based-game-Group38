@@ -131,7 +131,6 @@ int main(){
     cout<< "Load game (L) or New game (N)?"<<endl;
     cin >> saveornot;
     if (saveornot == 'L'){
-      loadgame(CharacterInformation); //need to code loadgame() function
       cout<< "Welcome back, "<< CharacterInformation.myname << endl;
       break;
     }else if (saveornot == 'N'){
