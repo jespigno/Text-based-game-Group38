@@ -142,6 +142,7 @@ int main(){
       cout << "That's not an option :( try again)"<<endl;
     }
   }
+  mainMenu(defaultval);//options: cat cafe, battle, display stats
 
 
 
