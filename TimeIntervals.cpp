@@ -1,10 +1,17 @@
 #include <chrono>
 #include <thread>
+#include <string>
 using namespace std::this_thread;
 using namespace std::chrono;
 #include <iostream>
+#include <fstream>
 using namespace std;
 #include "TimeIntervals.h"
+
+
+
+
+
 
 
 // twosecsleep function
@@ -51,4 +58,21 @@ void ClearScreen(){
   for (int i = 0; i < 5; i++){
     cout<< "\n\n\n\n\n\n";
   }
+}
+
+//Function takes a struct of type Player as an input, outputs nothing as it is void
+//This function will alter the values of the inputed struct and replace them with the ones found in a text file
+//This is useful for game loading purposes
+void loadvalues(Player &x){
+  ifstream loadfromfile;
+  loadfromfile.open("Savefile.txt");
+  if ( loadfromfile.fail() ){
+		cout << "No save file found, sorry!"
+			<< endl;
+ 		exit(1);
+ 	}
+  loadfromfile >> x.stats.level >> x.stats.maxhealth >> x.stats.mycurrenthealth >> x.stats.mydefense >> x.stats.myattack >> x.stats.myspeed >> x.stats.mymoney >> x.stats.experiencepoints;
+  loadfromfile >> x.info.myname >> x.info.catnumber >> x.info.amountoffurniture >> x.info.boughtcatcafe >> x.info.level1complete >> x.info.level2complete >> x.info.level3complete >> x.info.level4complete >> x.info.level5complete;
+  loadfromfile>> x.info.firsttime;
+  loadfromfile.close();
 }
