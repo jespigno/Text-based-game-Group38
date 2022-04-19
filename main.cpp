@@ -6,23 +6,23 @@ using namespace std;
 
 int main(){
   struct CharacterInformation{
-    int level = 1;
-    int maxhealth = 10;
-    int mycurrenthealth = 10;
-    int mydefense = 3;
-    int myattack = 3;
-    int myspeed = 3;
-    int mymoney = 0;
-    float experiencepoints = 0.0;
-    string myname = "Joe";
-    int catnumber = 0;
-    int amountoffurniture = 0;
-    bool boughtcatcafe = false;
-    bool level1complete = false;
-    bool level2complete = false;
-    bool level3complete = false;
-    bool level4complete = false;
-    bool level5complete = false;
+    int level;
+    int maxhealth;
+    int mycurrenthealth;
+    int mydefense;
+    int myattack;
+    int myspeed;
+    int mymoney;
+    float experiencepoints;
+    string myname;
+    int catnumber;
+    int amountoffurniture;
+    bool boughtcatcafe;
+    bool level1complete;
+    bool level2complete;
+    bool level3complete;
+    bool level4complete;
+    bool level5complete;
   };
 
   CharacterInformation level = 1, maxhealth = 10, mycurrenthealth = 10, mydefense = 3, myattack = 3, myspeed = 3, mymoney = 0, experiencepoints = 0.0;
@@ -123,8 +123,11 @@ int main(){
     cin >> saveornot;
     if (saveornot == 'L'){
       loadgame(CharacterInformation); //need to code loadgame() function
+      cout<< "Welcome back, "<< CharacterInformation.myname << endl;
       break;
     }else if (saveornot == 'N'){
+      cout << "What's your name?" <<endl;
+      cin >> CharacterInformation.myname;
       break;
     }else{
       cout << "That's not an option :( try again)"<<endl;
