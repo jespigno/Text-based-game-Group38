@@ -5,52 +5,37 @@ using namespace std;
 #include "TimeIntervals.h"
 
 int main(){
-<<<<<<< Updated upstream
-  struct CharacterInformation{
-    int level;
-    int maxhealth;
-    int mycurrenthealth;
-    int mydefense;
-    int myattack;
-    int myspeed;
-    int mymoney;
-    float experiencepoints;
-    string myname;
-    int catnumber;
-    int amountoffurniture;
-    bool boughtcatcafe;
-    bool level1complete;
-    bool level2complete;
-    bool level3complete;
-    bool level4complete;
-    bool level5complete;
-  };
-=======
+
     struct PlayerStats {
         int level;
-        int maxhealth = 10;
-        int mycurrenthealth = 10;
-        int mydefense = 3;
-        int myattack = 3;
-        int myspeed = 3;
-        int mymoney = 0;
-        float experiencepoints = 0.0;
+        int maxhealth;
+        int mycurrenthealth;
+        int mydefense;
+        int myattack;
+        int myspeed;
+        int mymoney;
+        float experiencepoints;
     };
     struct PlayerInfo {
-        string myname = "Joe";
-        int catnumber = 0;
-        int amountoffurniture = 0;
-        bool boughtcatcafe = false;
-        bool level1complete = false;
-        bool level2complete = false;
-        bool level3complete = false;
-        bool level4complete = false;
-        bool level5complete = false;
+        string myname;
+        int catnumber;
+        int amountoffurniture;
+        bool boughtcatcafe;
+        bool level1complete;
+        bool level2complete;
+        bool level3complete;
+        bool level4complete;
+        bool level5complete;
     };
->>>>>>> Stashed changes
+    struct Player {
+        PlayerStats stats;
+        PlayerInfo info;
+    };
 
-  CharacterInformation level = 1, maxhealth = 10, mycurrenthealth = 10, mydefense = 3, myattack = 3, myspeed = 3, mymoney = 0, experiencepoints = 0.0;
-  CharacterInformation myname = "Joe", catnumber = 0, boughtcafe = false, level1complete = false, level2complete = false, level3complete = false, level4complete = false, level5complete = false;
+    Player default = { 1, 10, 10, 3 ,3, 3, 0, 0.0, "Joe", 0, 0,false, false, false, false, false, false };
+
+
+  
 
   char saveornot;
   cout<<R"(
@@ -142,7 +127,7 @@ int main(){
     :   : :   : :  :   ::    :      :     : :: ::    :   : :
 
   )"<<endl;
-  while (saveornot != 'L' | saveornot != 'N'){
+  while (saveornot != 'L' || saveornot != 'N'){
     cout<< "Load game (L) or New game (N)?"<<endl;
     cin >> saveornot;
     if (saveornot == 'L'){
