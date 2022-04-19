@@ -22,6 +22,15 @@ void onesecsleep(){
   sleep_for(nanoseconds(1000000000));
 }
 
+
+// halfasecsleep function
+// has no input parameters and is void. It provides half a second pause.
+//It is useful when displaying sprites to the user.
+void halfasecsleep(){
+  sleep_for(nanoseconds(1000000000/2));
+}
+
+
 // fivesecsleep function
 // has no input parameters and is void. It provides a five second pause.
 //It is useful when displaying sprites to the user.
@@ -36,6 +45,8 @@ void tensecsleep(){
   sleep_for(nanoseconds(10000000000));
 }
 
+//ClearScreen Function
+//Has no input and is void. Prints out many \n to make the screen empty and improve readability.
 void ClearScreen(){
   for (int i = 0; i < 5; i++){
     cout<< "\n\n\n\n\n\n";

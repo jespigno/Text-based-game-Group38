@@ -4,35 +4,35 @@
 using namespace std;
 #include "TimeIntervals.h"
 
+struct PlayerStats {
+    int level;
+    int maxhealth;
+    int mycurrenthealth;
+    int mydefense;
+    int myattack;
+    int myspeed;
+    int mymoney;
+    float experiencepoints;
+};
+struct PlayerInfo {
+    string myname;
+    int catnumber;
+    int amountoffurniture;
+    bool boughtcatcafe;
+    bool level1complete;
+    bool level2complete;
+    bool level3complete;
+    bool level4complete;
+    bool level5complete;
+};
+struct Player {
+    PlayerStats stats;
+    PlayerInfo info;
+};
+
+void mainmenu(Player x);
 
 int main(){
-
-    struct PlayerStats {
-        int level;
-        int maxhealth;
-        int mycurrenthealth;
-        int mydefense;
-        int myattack;
-        int myspeed;
-        int mymoney;
-        float experiencepoints;
-    };
-    struct PlayerInfo {
-        string myname;
-        int catnumber;
-        int amountoffurniture;
-        bool boughtcatcafe;
-        bool level1complete;
-        bool level2complete;
-        bool level3complete;
-        bool level4complete;
-        bool level5complete;
-    };
-    struct Player {
-        PlayerStats stats;
-        PlayerInfo info;
-    };
-
     Player defaultval = { 1, 10, 10, 3 ,3, 3, 0, 0.0, "Joe", 0, 0,false, false, false, false, false, false };
 
 
@@ -56,7 +56,7 @@ int main(){
     @@@@@@@@%*/%@@@@@%(/*********************/&@@@@@@@@@%/,/%@%*,,*(&@@@@@@@&(*,*#&@
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&@@@@@@@@@@@@@@@@@@@@
   )";
-  onesecsleep();
+  halfasecsleep();
   cout<<R"(
     @@@@@@@@@@@@@@@@@@@@@@@%(#&@@@@@@@@@@@@@@@@@@@&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@
     @@@@@@@@@@@@@@@@%//&@@@#*/%@@&(*(@@@@@@@@@@@@@%%%%%%%%%%%#/*(%%%%%%%%%%&@@@@@@@@
@@ -73,7 +73,7 @@ int main(){
     @@@@@@@@@&*,,,,,,,,,,,,,,,,,,,,,,,,,,,,#@@@(**************,,**************/&@@@@
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#(%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   )";
-  onesecsleep();
+  halfasecsleep();
   cout<<R"(
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     @@@@@@@@&&@@@@@&%@@@@&%(#&@@@%#(%@@@@#(#&@@@@@@@@@@@@@@@@@@%(#&@@@@@@@@@@@@@@@@@
@@ -92,7 +92,7 @@ int main(){
     @@@@@@@&(/*/(&@@@@#*,,/#&@&(,,,*#&@@@/*,,#&@%*(&@@@@@@@@@@@@@@@@@@@@@@@@@&#(@@@@
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   )";
-  twosecsleep();
+  onesecsleep();
   cout<<R"(
     @@@@@@   @@@  @@@  @@@@@@@   @@@@@@@@  @@@@@@@
     @@@@@@@   @@@  @@@  @@@@@@@@  @@@@@@@@  @@@@@@@@
@@ -130,11 +130,11 @@ int main(){
   )"<<endl;
   twosecsleep();
   ClearScreen();
-  while (saveornot != "L" || saveornot != "N"){
+  while (saveornot != "L" && saveornot != "N"){
     cout<< "Load game (L) or New game (N)?"<<endl;
     getline(cin, saveornot);
     if (saveornot == "L"){
-        loadvalues(defaultval);
+        //loadvalues(defaultval);
       cout<< "Welcome back, "<< defaultval.info.myname << endl;
       break;
     }else if (saveornot == "N"){
@@ -146,9 +146,47 @@ int main(){
       cout << "That's not an option :( try again)"<<endl;
     }
   }
-  mainMenu(defaultval);//options: cat cafe, battle, display stats
+  onesecsleep();
+  mainmenu(defaultval);//options: cat cafe, battle, display stats
 
 
 
   return 0;
+}
+
+void mainmenu(Player x){
+  string mycurrentchoice;
+  cout<< R"(
+                                                   .-') _            .-')                  ('-.   .-')   .-') _   ,------.
+                                              ( OO ) )         .(  OO)               _(  OO) ( OO ).(  OO) ) '  .--.  '
+  ,----.    .-'),-----.        .-'),-----.,--./ ,--,'         (_)---\_)  ,--. ,--.  (,------(_)---\_/     '._|  |  |  |
+ '  .-./-')( OO'  .-.  '      ( OO'  .-.  |   \ |  |\         '  .-.  '  |  | |  |   |  .---/    _ ||'--...__'--'  |  |
+ |  |_( O- /   |  | |  |      /   |  | |  |    \|  | )       ,|  | |  |  |  | | .-') |  |   \  :` `.'--.  .--'   __.  |
+ |  | .--, \_) |  |\|  |      \_) |  |\|  |  .     |/       (_|  | |  |  |  |_|( OO (|  '--. '..`''.)  |  |     |   .'
+(|  | '. (_/ \ |  | |  |        \ |  | |  |  |\    |          |  | |  |  |  | | `-' /|  .--'.-._)   \  |  |     |___|
+ |  '--'  |   `'  '-'  '         `'  '-'  |  | \   |          '  '-'  '-('  '-'(_.-' |  `---\       /  |  |     .---.
+  `------'      `-----'            `-----'`--'  `--'           `-----'--' `-----'    `------'`-----'   `--'     '---'
+                                    Press                        Q
+        (`-.           .-')           .-') _                     ('-.                ('-.  ,------.
+    _(OO  )_        ( OO ).        (  OO) )                   ( OO ).-.          _(  OO)'  .--.  '
+,--(_/   ,. \,-.-')(_)---\_) ,-.-')/     '._          .-----. / . --. /  ,------(,------|  |  |  |
+\   \   /(__/|  |OO/    _ |  |  |OO|'--...__)        '  .--./ | \-.  \('-| _.---'|  .---'--'  |  |
+ \   \ /   / |  |  \  :` `.  |  |  '--.  .--'        |  |('-.-'-'  |  (OO|(_\    |  |       __.  |
+  \   '   /, |  |(_/'..`''.) |  |(_/  |  |          /_) |OO  \| |_.'  /  |  '--.(|  '--.   |   .'
+   \     /__,|  |_..-._)   \,|  |_.'  |  |          ||  |`-'| |  .-.  \_)|  .--' |  .--'   |___|
+    \   /  (_|  |  \       (_|  |     |  |         (_'  '--'\ |  | |  | \|  |_)  |  `---.  .---.
+     `-'     `--'   `-----'  `--'     `--'            `-----' `--' `--'  `--'    `------'  '---'
+                                    Press                         C
+  )"<< endl;
+  while (mycurrentchoice != "Q" && mycurrentchoice != "C"){
+    getline(cin, mycurrentchoice);
+    if (mycurrentchoice == "Q"){
+      //Quest(); CODE THIS
+    }else if (mycurrentchoice == "C"){
+      //VisitCafe(); CODETHIS
+      cout<<"this loop works!";
+    }else{
+      cout << "That's not an option :( try again)"<<endl;
+    }
+  }
 }
