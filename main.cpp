@@ -35,7 +35,7 @@ int main(){
     Player defaultval = { 1, 10, 10, 3 ,3, 3, 0, 0.0, "Joe", 0, 0,false, false, false, false, false, false };
 
 
-  
+
 
   char saveornot;
   cout<<R"(
@@ -127,11 +127,13 @@ int main(){
     :   : :   : :  :   ::    :      :     : :: ::    :   : :
 
   )"<<endl;
+  twosecsleep();
+  ClearScreen();
   while (saveornot != 'L' || saveornot != 'N'){
     cout<< "Load game (L) or New game (N)?"<<endl;
     cin >> saveornot;
     if (saveornot == 'L'){
-        loadvalues(defaultval);
+        //loadvalues(defaultval);
       cout<< "Welcome back, "<< defaultval.info.myname << endl;
       break;
     }else if (saveornot == 'N'){
@@ -142,7 +144,7 @@ int main(){
       cout << "That's not an option :( try again)"<<endl;
     }
   }
-  mainMenu(defaultval);//options: cat cafe, battle, display stats
+  //mainMenu(defaultval);//options: cat cafe, battle, display stats
 
 
 

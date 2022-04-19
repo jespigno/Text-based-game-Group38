@@ -35,3 +35,9 @@ void fivesecsleep(){
 void tensecsleep(){
   sleep_for(nanoseconds(10000000000));
 }
+
+void ClearScreen(){
+  for (int i = 0; i < 5; i++){
+    cout<< "\n\n\n\n\n\n";
+  }
+}

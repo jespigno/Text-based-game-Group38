@@ -7,5 +7,6 @@ void twosecsleep();
 void onesecsleep();
 void fivesecsleep();
 void tensecsleep();
+void ClearScreen();
 
 #endif
