@@ -32,7 +32,7 @@ int main(){
         PlayerInfo info;
     };
 
-    Player default = { 1, 10, 10, 3 ,3, 3, 0, 0.0, "Joe", 0, 0,false, false, false, false, false, false };
+    Player defaultval = { 1, 10, 10, 3 ,3, 3, 0, 0.0, "Joe", 0, 0,false, false, false, false, false, false };
 
 
   
@@ -131,11 +131,12 @@ int main(){
     cout<< "Load game (L) or New game (N)?"<<endl;
     cin >> saveornot;
     if (saveornot == 'L'){
-      cout<< "Welcome back, "<< CharacterInformation.myname << endl;
+        loadvalues(defaultval);
+      cout<< "Welcome back, "<< defaultval.info.myname << endl;
       break;
     }else if (saveornot == 'N'){
       cout << "What's your name?" <<endl;
-      cin >> CharacterInformation.myname;
+      cin >> defaultval.info.myname;
       break;
     }else{
       cout << "That's not an option :( try again)"<<endl;
