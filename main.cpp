@@ -96,7 +96,15 @@ int main(){
 
   )"<<endl;
   while (saveornot != 'L' | saveornot != 'N'){
-    cout<< "Load game (L) or New game (N)"
+    cout<< "Load game (L) or New game (N)?";
+    cin >> saveornot;
+    if (saveornot == 'L'){
+      loadgame();
+    }else if (saveornot == 'N'){
+      break;
+    }else{
+      cout << "That's not an option :( try again)"
+    }
   }
 
 
