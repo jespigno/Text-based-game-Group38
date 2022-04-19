@@ -4,6 +4,7 @@
 using namespace std;
 #include "TimeIntervals.h"
 
+
 int main(){
 
     struct PlayerStats {
@@ -37,7 +38,7 @@ int main(){
 
 
 
-  char saveornot;
+  string saveornot;
   cout<<R"(
     @@@@@@@@@@@@@@@@&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     @@@@@@@@@@@@@@@#**&@@@@@%(((((((((((((((%@@@@@@@@#*,#&@@%################&@@@@@@
@@ -129,22 +130,23 @@ int main(){
   )"<<endl;
   twosecsleep();
   ClearScreen();
-  while (saveornot != 'L' || saveornot != 'N'){
+  while (saveornot != "L" || saveornot != "N"){
     cout<< "Load game (L) or New game (N)?"<<endl;
-    cin >> saveornot;
-    if (saveornot == 'L'){
-        //loadvalues(defaultval);
+    getline(cin, saveornot);
+    if (saveornot == "L"){
+        loadvalues(defaultval);
       cout<< "Welcome back, "<< defaultval.info.myname << endl;
       break;
-    }else if (saveornot == 'N'){
+    }else if (saveornot == "N"){
       cout << "What's your name?" <<endl;
-      cin >> defaultval.info.myname;
+      getline(cin, defaultval.info.myname);
+      cout<< "Welcome back, "<< defaultval.info.myname << endl;
       break;
     }else{
       cout << "That's not an option :( try again)"<<endl;
     }
   }
-  //mainMenu(defaultval);//options: cat cafe, battle, display stats
+  mainMenu(defaultval);//options: cat cafe, battle, display stats
 
 
 
