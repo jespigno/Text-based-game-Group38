@@ -13,7 +13,7 @@ using namespace std;
 //takes in a struct of type Player where it can read the player's stats.
 //no output, however it prints out relevant status features.
 void printstats(Player x){
-  char tempkey;
+  string tempkey;
   cout<< "Ghosthunter Licence\nGhosthunter name:" << x.info.myname<<endl;
   cout << "Current Health: "<< x.stats.mycurrenthealth << "/" << x.stats.maxhealth << endl;
   cout << "Strength: " << x.stats.myattack<<endl;
@@ -21,7 +21,7 @@ void printstats(Player x){
   cout << "Speed: "  << x.stats.myspeed<<endl;
   cout << "Money in bank account: " << x.stats.mymoney<<endl;
   cout << "Press x to continue";
-  cin >> tempkey;
+  getline(cin, tempkey);
   ClearScreen();
 }
 
@@ -154,30 +154,66 @@ bool usermoves(Player &p, GhostData &g){
   int whatshouldIdo = rand()% 100;
 
   if (playerchoice == "a"){
-    cout << "I am attacking Edit Edit";
-
+    string thisturnsattack;
+    cout << "Choose an attack!"<<endl<<"(1) Ling Fu - Talisman"<<endl<<"(2) "<<p.stats.attackone<<endl<<"(3) "<<p.stats.attacktwo<<endl<<"(4) "<<p.stats.attackthree<<endl;
+    getline(cin,thisturnsattack);
+    int damage = 0;
+    if (thisturnsattack == "1"){// 靈符
+      cout<< p.info.myname << "uses the Ling Fu on " << g.name<<endl;
+      damage = (g.defense - p.stats.myattack) + whatshouldIdo % 4;
+      g.currenthealth -= damage;
+    }else if ((thisturnsattack == "2") && (p.stats.attackone != "xxxxxxxxxxxxxxx")){//神聖之火, holy fire; underlated bt rlly cool 放火燒之，嘖嘖之聲，血湧骨鳴
+      cout<< p.info.myname << "uses Sun Sing Zi Fo on " << g.name<<endl;
+    }else if ((thisturnsattack == "3") && (p.stats.attacktwo != "xxxxxxxxxxxxxxx")){
+      cout << "invalid";
+    }else if ((thisturnsattack == "4") && (p.stats.attackthree != "xxxxxxxxxxxxxxx")){
+      cout<< p.info.myname << "uses the Peach Wood Sword on " << g.name<<endl; //桃木劍
+    }else{
+      cout << "Invalid move!"<< g.name << " will take advantage of this slip-up..."<<endl;
+    }
   }else if (playerchoice == "d"){
-    cout << "I am defending";
+    cout << p.info.myname<< " is defending for next turn"<<endl;
+    g.momentarychange = p.stats.mydefense;
 
   }else if (playerchoice == "f"){
+
     if ((p.stats.myspeed)>(g.speed)){
-      cout << "You were able to flee"; //add more chance to this
-      return false;
+      if (whatshouldIdo >= 25){
+        cout << p.info.myname << " was able to flee"<<endl;
+        return false;
+      }
+      else{
+        cout << "The monster is too fast. Impossible to run!"<<endl;
+      }
     }else{
-      cout << "The monster is too fast. Impossible to run!";
+      if (whatshouldIdo >= 90){
+        cout << p.info.myname << " was able to flee"<<endl;
+        return false;
+      }
+      else{
+        cout << "The monster is too fast. Impossible to run!"<<endl;
+      }
     }
   } else if (playerchoice == "t"){
     if (p.stats.myspeed % 10 > whatshouldIdo % 10){
-      cout<<"Healing Successful!";
-
+      cout<<"Healing Successful!"<<endl;
+      if ((p.stats.mycurrenthealth + (whatshouldIdo % 10) + 1) <= p.stats.maxhealth){
+        p.stats.mycurrenthealth += ((whatshouldIdo % 10) + 1);
+      }else{
+        p.stats.mycurrenthealth = p.stats.maxhealth;
+      }
     }
     else{
-      cout <<"Void prayer. Healing was unsuccessful.";
+      cout <<"Void prayer. Healing was unsuccessful."<<endl;
 
     }
   }else {
-    cout << "Wrong move! Now the "<< g.name << " will attack!";
+    cout << "Wrong move! Now the "<< g.name << " will attack!"<<endl;
   }
+  cout<< p.info.myname <<"\'s current health is " << p.stats.mycurrenthealth << "/" << p.stats.maxhealth << endl;
+  float charreport;
+  charreport = ((static_cast<float>(g.currenthealth))/g.maxhealth) * 100;
+  cout<< g.name << " still has " << charreport << "% of its total health";
   return true;
 }
 
@@ -219,9 +255,11 @@ char battlephase(Player &x, char initial){
     ghost.attackone = "Rotten Fangs";
     ghost.attacktwo = "Scratch";
     ghost.name = "Zombie";
+    ghost.momentarychange = 0;
   }
   while (x.stats.mycurrenthealth > 0 && ghost.currenthealth > 0){
     bool checkme; //can maybe make x dynamic variable
+    onesecsleep();
     if (x.stats.myspeed >= ghost.speed){
       if (primeraqueataco == true){
          cout<< R"(

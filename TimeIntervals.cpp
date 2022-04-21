@@ -72,6 +72,7 @@ void loadvalues(Player &x){
  		exit(1);
  	}
   loadfromfile >> x.stats.level >> x.stats.maxhealth >> x.stats.mycurrenthealth >> x.stats.mydefense >> x.stats.myattack >> x.stats.myspeed >> x.stats.mymoney >> x.stats.experiencepoints;
+  loadfromfile >> x.stats.attackone >> x.stats.attacktwo >> x.stats.attackthree;
   loadfromfile >> x.info.myname >> x.info.catnumber >> x.info.amountoffurniture >> x.info.boughtcatcafe >> x.info.level1complete >> x.info.level2complete >> x.info.level3complete >> x.info.level4complete >> x.info.level5complete;
   x.info.firsttime = 0;
   loadfromfile.close();

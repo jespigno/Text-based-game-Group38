@@ -14,6 +14,7 @@ struct GhostData{
   std::string attackone;
   std::string attacktwo;
   std::string name;
+  int momentarychange;
 };
 
 void printstats(Player);

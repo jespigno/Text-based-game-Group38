@@ -11,6 +11,9 @@ struct PlayerStats {
     int myspeed;
     int mymoney;
     float experiencepoints;
+    std::string attackone;
+    std::string attacktwo;
+    std::string attackthree;
 };
 struct PlayerInfo {
     std::string myname;

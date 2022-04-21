@@ -9,7 +9,7 @@ using namespace std;
 void mainmenu(Player x);
 
 int main(){
-    Player defaultval = { 1, 10, 10, 3 ,3, 3, 0, 0.0, "Joe", 0, 0,false, false, false, false, false, false, true};
+    Player defaultval = { 1, 10, 10, 3 ,3, 3, 0, 0.0 ,"xxxxxxxxxxxxxxx","xxxxxxxxxxxxxxx","xxxxxxxxxxxxxxx","Joe", 0, 0,false, false, false, false, false, false, true};
     string saveornot;
     while (saveornot != "L" && saveornot != "N"){
       cout<< "Load game (L) or New game (N)?"<<endl;
