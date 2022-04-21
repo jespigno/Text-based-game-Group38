@@ -158,16 +158,24 @@ bool usermoves(Player &p, GhostData &g){
     cout << "Choose an attack!"<<endl<<"(1) Ling Fu - Talisman"<<endl<<"(2) "<<p.stats.attackone<<endl<<"(3) "<<p.stats.attacktwo<<endl<<"(4) "<<p.stats.attackthree<<endl;
     getline(cin,thisturnsattack);
     int damage = 0;
-    if (thisturnsattack == "1"){// 靈符
+    if (thisturnsattack == "1"){
       cout<< p.info.myname << "uses the Ling Fu on " << g.name<<endl;
       damage = (g.defense - p.stats.myattack) + whatshouldIdo % 4;
       g.currenthealth -= damage;
-    }else if ((thisturnsattack == "2") && (p.stats.attackone != "xxxxxxxxxxxxxxx")){//神聖之火, holy fire; underlated bt rlly cool 放火燒之，嘖嘖之聲，血湧骨鳴
+    }else if ((thisturnsattack == "2") && (p.stats.attackone != "xxxxxxxxxxxxxxx")){
       cout<< p.info.myname << "uses Sun Sing Zi Fo on " << g.name<<endl;
+      damage = (g.defense - p.stats.myattack) + whatshouldIdo % 5;
+      if ((g.name == "Zombie") || (g.name == "Hanged Ghost")){
+        damage += 5;
+      }
+      g.currenthealth -= damage;
     }else if ((thisturnsattack == "3") && (p.stats.attacktwo != "xxxxxxxxxxxxxxx")){
-      cout << "invalid";
+      cout<< p.info.myname << " uses Calm Bell on " << g.name<<endl<<"The Calm Bell binds the "<< g.name<< "\'s power. It might not be able to move. "<< endl;
+      g.inrepentance = true;
+      g.repentingturns = 0;
+
     }else if ((thisturnsattack == "4") && (p.stats.attackthree != "xxxxxxxxxxxxxxx")){
-      cout<< p.info.myname << "uses the Peach Wood Sword on " << g.name<<endl; //桃木劍
+      cout<< p.info.myname << "uses Peach Tree Sword on " << g.name<<endl;
     }else{
       cout << "Invalid move!"<< g.name << " will take advantage of this slip-up..."<<endl;
     }
@@ -210,10 +218,13 @@ bool usermoves(Player &p, GhostData &g){
   }else {
     cout << "Wrong move! Now the "<< g.name << " will attack!"<<endl;
   }
+  onesecsleep();
   cout<< p.info.myname <<"\'s current health is " << p.stats.mycurrenthealth << "/" << p.stats.maxhealth << endl;
   float charreport;
   charreport = ((static_cast<float>(g.currenthealth))/g.maxhealth) * 100;
-  cout<< g.name << " still has " << charreport << "% of its total health";
+  onesecsleep();
+  cout<< g.name << " still has " << charreport << "% of its total health" <<endl;
+  onesecsleep();
   return true;
 }
 
@@ -223,14 +234,36 @@ bool usermoves(Player &p, GhostData &g){
 void enemymoves (Player &p, GhostData &g){
   srand(time(NULL));
   int whatshouldIdo = rand()% 100;
+  if (g.inrepentance == true){
+    if (g.repentingturns == 3){
+      g.repentingturns = -1;
+      g.inrepentance = false;
+    }
+    cout << "The "<<g.name << " is feeling repentance from the calm bell."<<endl;
+    cout << ".";
+    onesecsleep();
+    cout << ".";
+    onesecsleep();
+    cout << "."<<endl;
+    halfasecsleep();
+    if (rand ()% 100 >= 20){
+      cout << "Enough of that, I will attack!"<<endl;
+      g.repentingturns +=1;
+    }
+    else {
+      cout << "The enemy is paralysed!"<< endl;
+      g.repentingturns +=1;
+      return;
+    }
+  }
   //different monsters have different behaviours.
   if (g.name == "Zombie"){
     if (whatshouldIdo > 25){
       //ghostwilldefend(g,p);
-      cout << "Monster attack";
+      cout << "Monster attack" << endl;
     }else{
       //ghostwillattack(g,p);
-      cout << "Monster defend";
+      cout << "Monster defend" << endl;
     }
   }
 }
@@ -241,13 +274,14 @@ void enemymoves (Player &p, GhostData &g){
 //takes in a struct that contains player info. Relevant for calculating battle issues
 //output is a character. If W, the user won the battle. If l, the user lost the battle, if F, the player fled from the battle.
 char battlephase(Player &x, char initial){
+  int repentingturns = 0;
   GhostData ghost;
   bool primeraqueataco = true;
   srand(time(NULL));
   if (initial == 'J'){
     //zombie information
     banner('J');
-    ghost.maxhealth = 10;
+    ghost.maxhealth = 15;
     ghost.currenthealth = ghost.maxhealth;
     ghost.attack = 3 + (rand() % 5);
     ghost.defense = 8 - (rand() % 5);
@@ -256,6 +290,8 @@ char battlephase(Player &x, char initial){
     ghost.attacktwo = "Scratch";
     ghost.name = "Zombie";
     ghost.momentarychange = 0;
+    ghost.inrepentance = false;
+    ghost.repentingturns =0;
   }
   while (x.stats.mycurrenthealth > 0 && ghost.currenthealth > 0){
     bool checkme; //can maybe make x dynamic variable
