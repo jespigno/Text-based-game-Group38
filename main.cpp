@@ -117,6 +117,60 @@ int main(){
       )"<<endl;
       twosecsleep();
       ClearScreen();
+      //art by jgs & ejm97 https://www.asciiart.eu/buildings-and-places/cities
+      cout<< R"(
+                                           .''.
+       .''.      .        *''*    :_\/_:     .
+      :_\/_:   _\(/_  .:.*_\/_*   : /\ :  .'.:.'.
+  .''.: /\ :    /)\   ':'* /\ *  : '..'.  -=:o:=-
+ :_\/_:'.:::.  | ' *''*    * '.\'/.'_\(/_'.':'.'
+ : /\ : :::::  =  *_\/_*     -= o =- /)\    '  *
+  '..'  ':::' === * /\ *     .'/.\'.  ' ._____
+      *        |   *..*         :       |.   |' .---"|
+        *      |     _           .--'|  ||   | _|    |
+        *      |  .-'|       __  |   |  |    ||      |
+     .-----.   |  |' |  ||  |  | |   |  |    ||      |
+ ___'       ' /"\ |  '-."".    '-'   '-.'    '`      |____
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                       ~-~-~-~-~-~-~-~-~-~   /|
+          )      ~-~-~-~-~-~-~-~  /|~       /_|\
+        _-H-__  -~-~-~-~-~-~     /_|\    -~======-~
+~-\XXXXXXXXXX/~     ~-~-~-~     /__|_\ ~-~-~-~
+~-~-~-~-~-~    ~-~~-~-~-~-~    ========  ~-~-~-~
+)";
+
+      onesecsleep();
+      cout << "Ah, another year in big old Hong Kong..."<<endl;
+      twosecsleep();
+      cout << "When will I finally do something I like?"<<endl;
+      onesecsleep();
+      cout << "Something normal, none of this \"spooky\" business...";
+      onesecsleep();
+      cout << endl << "and the more cats I get to live with, the better..." << endl;
+      cout << ".";
+      twosecsleep();
+      twosecsleep();
+      cout << ".";
+      halfasecsleep();
+      cout << "." << endl;
+      onesecsleep();
+      cout <<endl;
+      cout << R"(
+        ///-\\\
+        |^   ^|
+        |O   O|
+        |  ~ *That's it*!!
+         \ O /
+          | |
+      )";
+      cout << "I will open a cat cafe!!"<<endl;
+      twosecsleep();
+      cout << "but rent is so expensive in this city... This will be my last round of ghost hunting."<<endl;
+      twosecsleep();
+      twosecsleep();
+      cout<< "As soon as I get all the money I need, I'm out! " <<endl;
+      twosecsleep();
+      ClearScreen();
     }
   onesecsleep();
   mainmenu(defaultval);//options: cat cafe, battle, display stats
