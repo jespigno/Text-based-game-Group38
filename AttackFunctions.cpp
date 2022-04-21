@@ -20,7 +20,7 @@ void printstats(Player x){
   cout << "Defense: " << x.stats.mydefense<<endl;
   cout << "Speed: "  << x.stats.myspeed<<endl;
   cout << "Money in bank account: " << x.stats.mymoney<<endl;
-  cout << "Press any key to continue";
+  cout << "Press x to continue";
   cin >> tempkey;
   ClearScreen();
 }
@@ -76,6 +76,9 @@ void banner(char o){
       .,(#%#(*.             .,(########################################(*.
         .,*,                  ...........................................
             *#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*
+          )";
+          halfasecsleep();
+          cout << R"(
        *#%%%##(((((((((((((((((((((((((((((((((((((((((((((##%%%%*
        *#%%(*,                                             .*(%%%*
        *#%%(*.                                             .,(%%%*
@@ -151,7 +154,7 @@ bool usermoves(Player &p, GhostData &g){
   int whatshouldIdo = rand()% 100;
 
   if (playerchoice == "a"){
-    cout << "I am attacking";
+    cout << "I am attacking Edit Edit";
 
   }else if (playerchoice == "d"){
     cout << "I am defending";
