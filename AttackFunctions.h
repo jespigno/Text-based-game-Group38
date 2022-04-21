@@ -3,22 +3,28 @@
 #define AttackFunctions
 
 struct Player;
-void printstats(Player);
 
-
-
-
-
-//structs for possible enemies
+//struct for possible enemies
 struct GhostData{
   int currenthealth;
   int maxhealth;
   int attack;
   int defense;
   int speed;
-  string attackone;
-  string attacktwo;
-  
+  std::string attackone;
+  std::string attacktwo;
+  std::string name;
 };
+
+void printstats(Player);
+void banner(char o);
+bool usermoves(Player &, GhostData &);
+void enemymoves(Player &, GhostData &);
+
+char battlephase(Player &, char x);
+
+
+
+
 
 #endif

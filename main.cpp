@@ -157,7 +157,8 @@ void mainmenu(Player x){
     }else if (mycurrentchoice == "C"){
       //VisitCafe(); CODETHIS
       cout<<"this loop works!"<<endl;
-      printstats(x);
+      printstats(x); //testing purposes
+      battlephase(x, 'J'); //testing purposes
     }else{
       cout << "That's not an option :( try again)"<<endl;
     }
