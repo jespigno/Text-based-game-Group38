@@ -9,6 +9,93 @@ using namespace std;
 
 
 
+
+void catcafe(Player &x){
+  string tempkey;
+  cout << "press any key to enter your Café";
+  getline(cin, tempkey);
+  while (true){
+  cout << R"(
+     ___ ___   ___ ____  __ __
+|   |   | /  _|    \|  |  |
+| _   _ |/  [_|  _  |  |  |
+|  \_/  |    _|  |  |  |  |
+|   |   |   [_|  |  |  :  |
+|   |   |     |  |  |     |
+|___|___|_____|__|__|\__,_|
+  _____  ___   ___         __  ____ ______  ____ _      ___   ____ __ __   ___ _____
+ / ___/ /  _] /  _]       /  ]/    |      |/    | |    /   \ /    |  |  | /  _/     |
+(   \_ /  [_ /  [_       /  /|  o  |      |  o  | |   |     |   __|  |  |/  [_|  Y  |
+ \__  |    _|    _]     /  / |     |_|  |_|     | |___|  O  |  |  |  |  |    _|__|  |
+ /  \ |   [_|   [_     /   \_|  _  | |  | |  _  |     |     |  |_ |  :  |   [_   |__|
+ \    |     |     |    \     |  |  | |  | |  |  |     |     |     |     |     |   __
+  \___|_____|_____|     \____|__|__| |__| |__|__|_____|\___/|___,_|\__,_|_____|  |__|   Press (c)
+ __ __ ____ _________ ______      __ __  ___  __ __ ____          __  ____ _____  ___ _____
+|  |  |    / ___|    |      |    |  |  |/   \|  |  |    \        /  ]/    |     |/  _/     |
+|  |  ||  (   \_ |  ||      |    |  |  |     |  |  |  D  )      /  /|  o  |   __/  [_|  Y  |
+|  |  ||  |\__  ||  ||_|  |_|    |  ~  |  O  |  |  |    /      /  / |     |  |_|    _|__|  |
+|  :  ||  |/  \ ||  |  |  |      |___, |     |  :  |    \     /   \_|  _  |   _|   [_   |__|
+ \   / |  |\    ||  |  |  |      |     |     |     |  .  \    \     |  |  |  | |     |   __
+  \_/ |____|\___|____| |__|      |____/ \___/ \__,_|__|\_|     \____|__|__|__| |_____|  |__|     Press (v)
+ ____  _      ____ __ __      __    __ ____ ______ __ __      __ __  ___  __ __ ____          __  ____ ______  __________
+|    \| |    /    |  |  |    |  |__|  |    |      |  |  |    |  |  |/   \|  |  |    \        /  ]/    |      |/ ___/     |
+|  o  | |   |  o  |  |  |    |  |  |  ||  ||      |  |  |    |  |  |     |  |  |  D  )      /  /|  o  |      (   \_|  Y  |
+|   _/| |___|     |  ~  |    |  |  |  ||  ||_|  |_|  _  |    |  ~  |  O  |  |  |    /      /  / |     |_|  |_|\__  |__|  |
+|  |  |     |  _  |___, |    |  `  '  ||  |  |  | |  |  |    |___, |     |  :  |    \     /   \_|  _  | |  |  /  \ |  |__|
+|  |  |     |  |  |     |     \      / |  |  |  | |  |  |    |     |     |     |  .  \    \     |  |  | |  |  \    |   __
+|__|  |_____|__|__|____/       \_/\_/ |____| |__| |__|__|    |____/ \___/ \__,_|__|\_|     \____|__|__| |__|   \___|  |__|   Press (p)
+  ____  ___       ____   ____    __ __  _ _____
+ /    |/   \     |    \ /    |  /  |  |/ /     |
+|   __|     |    |  o  |  o  | /  /|  ' /|  Y  |
+|  |  |  O  |    |     |     |/  / |    \|__|  |
+|  |_ |     |    |  O  |  _  /   \_|     \  |__|
+|     |     |    |     |  |  \     |  .  |   __
+|___,_|\___/     |_____|__|__|\____|__|\_|  |__|
+                                                     Press (b)
+
+  )";
+  getline(cin, tempkey);
+  if (tempkey == "c"){
+    ClearScreen();
+    cout << "Your current money is " << x.stats.mymoney << endl;
+    cout << R"(
+      1 ........
+      2 ........
+      3 ........
+      4 ........
+      5 ........
+      6 ........
+      7 ........
+
+      Do you wish to purchase anything? Press p.
+      Wish to go back? Press b.
+    )";
+    while (true){
+    getline (cin,tempkey);
+    if (tempkey == "p"){
+      //purchase
+      cout << "purchase!";
+    }else if (tempkey == "b"){
+      return;
+    } else{
+      cout << "This key does nothing... Please try again" << endl;
+    }
+      }
+    }else if (tempkey == "v"){
+    ClearScreen();
+    //print cafe
+  }else if (tempkey == "p"){
+    ClearScreen();
+    //print cats
+  }else if (tempkey == "b"){
+    return;
+  }else {
+    cout << "This key does nothing... Please try again " << endl;
+    getline (cin, tempkey);
+  }
+}
+}
+
 //printstats Function
 //takes in a struct of type Player where it can read the player's stats.
 //no output, however it prints out relevant status features.

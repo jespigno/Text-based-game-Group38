@@ -4,6 +4,7 @@
 
 struct Player;
 
+
 //struct for possible enemies
 struct GhostData{
   int currenthealth;
@@ -20,6 +21,7 @@ struct GhostData{
   bool imdefending;
 };
 
+void catcafe(Player &);
 void printstats(Player);
 void MonsterAttack (GhostData &, Player &,int &hexed);
 void MonsterDefend(GhostData &, Player &, int &hexed);

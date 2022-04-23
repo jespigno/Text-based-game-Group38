@@ -208,8 +208,6 @@ void mainmenu(Player x){
     getline(cin, mycurrentchoice);
     if (mycurrentchoice == "Q"){
       //Quest(); CODE THIS
-    }else if (mycurrentchoice == "C"){
-      //VisitCafe(); CODETHIS
       cout<<"this loop works!"<<endl;
       printstats(x); //testing purposes
       battlephase(x, 'J'); //testing purposes
@@ -218,6 +216,10 @@ void mainmenu(Player x){
       cout << "prepare for round 2 ";
       twosecsleep();
       battlephase(x, 'L');
+    }else if (mycurrentchoice == "C"){
+      //VisitCafe(); CODETHIS
+      catcafe(x);
+      mainmenu(x);
     }else{
       cout << "That's not an option :( try again)"<<endl;
     }
