@@ -213,6 +213,11 @@ void mainmenu(Player x){
       cout<<"this loop works!"<<endl;
       printstats(x); //testing purposes
       battlephase(x, 'J'); //testing purposes
+      x.stats.mycurrenthealth = x.stats.maxhealth;
+      twosecsleep();
+      cout << "prepare for round 2 ";
+      twosecsleep();
+      battlephase(x, 'L');
     }else{
       cout << "That's not an option :( try again)"<<endl;
     }

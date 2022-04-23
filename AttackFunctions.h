@@ -17,12 +17,15 @@ struct GhostData{
   int momentarychange;
   bool inrepentance;
   int repentingturns;
+  bool imdefending;
 };
 
 void printstats(Player);
+void MonsterAttack (GhostData &, Player &,int &hexed);
+void MonsterDefend(GhostData &, Player &, int &hexed);
 void banner(char o);
 bool usermoves(Player &, GhostData &);
-void enemymoves(Player &, GhostData &);
+void enemymoves(Player &, GhostData &, int &hex);
 
 char battlephase(Player &, char x);
 
