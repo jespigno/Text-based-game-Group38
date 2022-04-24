@@ -59,13 +59,14 @@ void catcafe(Player &x){
     ClearScreen();
     cout << "Your current money is " << x.stats.mymoney << endl;
     cout << R"(
-      1 ........
-      2 ........
-      3 ........
-      4 ........
-      5 ........
-      6 ........
-      7 ........
+      1 ........ Cat #1                  50 dollars
+      2 ........ Cat #2                 200 dollars
+      3 ........ Cat #3                 500 dollars
+      4 ........ Cat #4                1200 dollars
+      5 ........ Large supply of food  2000 dollars
+      6 ........ New Furnishing        3000 dollars
+      7 ........ Cat #5                5000 dollars
+      8 ........ Store in Central     10000 dollars
 
       Do you wish to purchase anything? Press p.
       Wish to go back? Press b.
@@ -73,10 +74,172 @@ void catcafe(Player &x){
     while (true){
     getline (cin,tempkey);
     if (tempkey == "p"){
-      //purchase
-      cout << "purchase!";
+      cout << "Which product do you wish to purchase?" << endl << "Press b to go back" << endl;
+      getline(cin,tempkey);
+      if (tempkey == "1") {
+        if (x.info.catnumber == 0){
+          if (x.stats.mymoney >= 50){
+            x.stats.mymoney -= 50;
+            x.info.catnumber +=1;
+            cout << "You have bought Cat #1!"<< endl;
+            onesecsleep();
+            cout << endl << "His name is Pineapple." << endl;
+            cout << "Your current money is: "<< x.stats.mymoney<< endl;
+            twosecsleep();
+            break; //or return
+          }else{
+            cout << "Not enough money! Sorry..."<< endl;
+            twosecsleep();
+          }
+        }else {
+          cout << "You already have this cat -- or you should purchase other cats first!" << endl;
+          twosecsleep();
+        }
+      }else if (tempkey == "2") {
+        if (x.info.catnumber == 1){
+          if (x.stats.mymoney >= 200){
+            x.stats.mymoney -= 200;
+            x.info.catnumber +=1;
+            cout << "You have bought Cat #2!"<< endl;
+            onesecsleep();
+            cout << endl << "Her name is Chocolate Cookie." << endl;
+            cout << "Your current money is: "<< x.stats.mymoney<< endl;
+            twosecsleep();
+            break; //or return
+          }else{
+            cout << "Not enough money! Sorry..."<< endl;
+            twosecsleep();
+          }
+        }else {
+          cout << "You already have this cat -- or you should purchase other cats first!" << endl;
+          twosecsleep();
+        }
+      }else if (tempkey == "3") {
+        if (x.info.catnumber == 2){
+          if (x.stats.mymoney >= 500){
+            x.stats.mymoney -= 500;
+            x.info.catnumber +=1;
+            cout << "You have bought Cat #3!"<< endl;
+            onesecsleep();
+            cout << endl << "His name is Egg Tart." << endl;
+            cout << "Your current money is: "<< x.stats.mymoney<< endl;
+            twosecsleep();
+            break; //or return
+          }else{
+            cout << "Not enough money! Sorry..."<< endl;
+            twosecsleep();
+          }
+        }else {
+          cout << "You already have this cat -- or you should purchase other cats first!" << endl;
+          twosecsleep();
+        }
+      }else if (tempkey == "4") {
+        if (x.info.catnumber == 3){
+          if (x.stats.mymoney >= 1200){
+            x.stats.mymoney -= 1200;
+            x.info.catnumber +=1;
+            cout << "You have bought Cat #4!"<< endl;
+            onesecsleep();
+            cout << endl << "Her name is Lemon Tea." << endl;
+            cout << "Your current money is: "<< x.stats.mymoney<< endl;
+            twosecsleep();
+            break; //or return
+          }else{
+            cout << "Not enough money! Sorry..."<< endl;
+            twosecsleep();
+          }
+        }else {
+          cout << "You already have this cat -- or you should purchase other cats first!" << endl;
+          twosecsleep();
+        }
+      }else if (tempkey == "5") {
+        if (x.info.catnumber == 4){
+          if (x.stats.mymoney >= 2000){
+            x.stats.mymoney -= 2000;
+            x.info.catnumber +=1;
+            cout << "You have bought a large supply of food"<< endl;
+            onesecsleep();
+            cout << endl << "With all this food, you won't have to worry about feeding cats or any clients for many years!" << endl;
+            twosecsleep();
+            cout << "Your current money is: "<< x.stats.mymoney<< endl;
+            twosecsleep();
+            break; //or return
+          }else{
+            cout << "Not enough money! Sorry..."<< endl;
+            twosecsleep();
+          }
+        }else {
+          cout << "You already bought this, or you should buy more cats before!" << endl;
+          twosecsleep();
+        }
+      }else if (tempkey == "6") {
+        if (x.info.amountoffurniture == 1){
+          if (x.stats.mymoney >= 3000){
+            x.stats.mymoney -= 3000;
+            x.info.amountoffurniture +=1;
+            cout << "You have ordered full new furnishing for your cafe"<< endl;
+            onesecsleep();
+            cout << endl << "It looks really fancy!" << endl;
+            onesecsleep();
+            cout << "Your current money is: "<< x.stats.mymoney<< endl;
+            twosecsleep();
+            break; //or return
+          }else{
+            cout << "Not enough money! Sorry..."<< endl;
+            twosecsleep();
+          }
+        }else{
+          cout << "You have already bought this, or you should buy a cafe before!"<< endl;
+          twosecsleep();
+        }
+      }else if (tempkey == "7") {
+          if (x.info.catnumber == 5){
+            if (x.stats.mymoney >= 5000){
+              x.stats.mymoney -= 5000;
+              x.info.catnumber +=1;
+              cout << "You have bought a really expensive cat"<< endl;
+              onesecsleep();
+              cout << endl << "Her name is Strawberry" << endl;
+              twosecsleep();
+              cout << "Your current money is: "<< x.stats.mymoney<< endl;
+              twosecsleep();
+              break; //or return
+            }else{
+              cout << "Not enough money! Sorry..."<< endl;
+              twosecsleep();
+            }
+          }else {
+            cout << "You already bought this, or you should buy more cats before!" << endl;
+            twosecsleep();
+          }
+        }else if (tempkey == "8") {
+        if (x.info.amountoffurniture == 2){
+          if (x.stats.mymoney >= 10000){
+            x.stats.mymoney -= 10000;
+            x.info.amountoffurniture +=1;
+            cout << "Woah, you have bought a store in Central!"<< endl;
+            onesecsleep();
+            cout << endl << "The queue waiting to go inside your cafe is already quite long" << endl;
+            onesecsleep();
+            cout << "Your current money is: "<< x.stats.mymoney<< endl;
+            twosecsleep();
+            break; //or return
+          }else{
+            cout << "Not enough money! Sorry..."<< endl;
+            twosecsleep();
+          }
+        }else{
+          cout << "You have already bought this, or you should buy other products before!"<< endl;
+          twosecsleep();
+        }
+      }else if (tempkey == "b"){
+        break; //or return
+      }else{
+        cout << "this is not a valid key. Please try again" << endl;
+      }
+
     }else if (tempkey == "b"){
-      return;
+      break; //or return?
     } else{
       cout << "This key does nothing... Please try again" << endl;
     }
