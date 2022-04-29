@@ -4,6 +4,7 @@ struct Point {
 };
 
 struct Map {
+	int level;
 	bool complete;
 	int map[30][45];
 	Point entry;
@@ -119,6 +120,7 @@ int map3[30][45] = {
 
 
 };
+
 void printMap(int map[][45]) {
 	for (int i = 0; i < 30; i++) {
 		cout << "                    ";
@@ -140,27 +142,41 @@ void printMap(int map[][45]) {
 //move user icon on the map
 //only allows player to move in free space i.e. no walls
 //input: map, player's current coordinates and move they're making
-void makeMove(int map[][45], int &x, int &y, char move) {
+void makeMove(Map m, Player &p, char move) {
 	//valid input
+	int x = p.stats.position.x;
+	int y = p.stats.position.y;
 	if (move == 'w' or move == 'a' or move == 's' or move == 'd') {
-		if (move == 'w' and map[x - 1][y] == 0) {
-			map[x - 1][y] = 2;
-			map[x][y] = 0;
+		if (move == 'w' and m.map[x - 1][y] < 1) {
+			if (m.map[x - 1][y] == -1) {
+				takeLoot(m.level, p.info.mymoney);
+			}
+			m.map[x - 1][y] = 2;
+			m.map[x][y] = 0;
 			x = x - 1; //update coordinates
 		}
-		else if (move == 'a' and map[x][y - 1] == 0) {
-			map[x][y - 1] = 2;
-			map[x][y] = 0;
+		else if (move == 'a' and m.map[x][y - 1] < 1) {
+			if (m.map[x][y - 1] == -1) {
+				takeLoot(m.level, p.info.mymoney);
+			}
+			m.map[x][y - 1] = 2;
+			m.map[x][y] = 0;
 			y = y - 1;
 		}
-		else if (move == 's' and map[x][y + 1] == 0) {
-			map[x][y + 1] = 2;
-			map[x][y] = 0;
+		else if (move == 's' and m.map[x][y + 1] < 1) {
+			if (m.map[x][y+1] == -1) {
+				takeLoot(m.level, p.info.mymoney);
+			}
+			m.map[x][y + 1] = 2;
+			m.map[x][y] = 0;
 			y = y + 1;
 		}
-		else if (move == 'd' and map[x + 1][y] == 0) {
-			map[x + 1][y] = 2;
-			map[x][y] = 0;
+		else if (move == 'd' and map[x + 1][y] < 1) {
+			if (m.map[x - 1][y] == -1) {
+				takeLoot(m.level, p.info.mymoney);
+			}
+			m.map[x + 1][y] = 2;
+			m.map[x][y] = 0;
 			x = x + 1;
 		}
 		else {
@@ -171,5 +187,48 @@ void makeMove(int map[][45], int &x, int &y, char move) {
 		cout < "That's not a valid move. Try again." << endl;
 	}
 	//include conditions for encountering an enemy, a loot or if at exit, check if theyve fulfilled the winning condition
-
+	//check if player is within sensing distance of an enemy
+	if (m.map[x - 1][y - 1] == 3) {
+		//enemy senses player. insert battle functions here
+	}
+	else if (m.map[x - 1][y] == 3) {
+		//enemy senses player. insert battle functions here
+	}
+	else if (m.map[x - 1][y + 1] == 3) {
+		//enemy senses player. insert battle functions here
+	}
+	else if (m.map[x][y - 1] == 3) {
+		//enemy senses player. insert battle functions here
+	}
+	else if (m.map[x][y + 1] == 3) {
+		//enemy senses player. insert battle functions here
+	}
+	else if (m.map[x + 1][y - 1] == 3) {
+		//enemy senses player. insert battle functions here
+	}
+	else if (m.map[x + 1][y] == 3) {
+		//enemy senses player. insert battle functions here
+	}
+	else if (m.map[x + 1][y + 1] == 3) {
+		//enemy senses player. insert battle functions here
+	}
 }
+
+void takeLoot(int level, int& money) {
+	//player finds treasure	
+	int loot;
+	//increase player money by a random number whose range will depend on what level this is
+	if (m.level == 1) {
+		loot = 20 + rand() % 30;
+	}
+	else if (m.level == 2) {
+		loot = 30 + rand() % 70;
+	}
+	else if (m.level == 3) {
+		loot = 50 + rand() % 100;
+	}
+	cout << "You picked up a treasure worth " << loot << "dollars!";
+	money += loot;	
+}
+
+
