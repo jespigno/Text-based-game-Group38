@@ -1,4 +1,23 @@
+struct Point {
+	int x;
+	int y;
+};
 
+struct Map {
+	bool complete;
+	int map[30][45];
+	Point entry;
+	Point exit;
+	vector<Point> possible_loot;
+	vector<Point> possible_enemy;
+	vector<Point> loot_point;
+	vector<Point> enemy_point;
+	char winning_condition;
+
+	bool check_win();
+	void spawn_enemies();
+	void spawn_loot()
+};
 
 int map1[30][45] = {
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -151,6 +170,6 @@ void makeMove(int map[][45], int &x, int &y, char move) {
 	else {
 		cout < "That's not a valid move. Try again." << endl;
 	}
-	
+	//include conditions for encountering an enemy, a loot or if at exit, check if theyve fulfilled the winning condition
 
 }
