@@ -14,6 +14,7 @@ struct PlayerStats {
     std::string attackone;
     std::string attacktwo;
     std::string attackthree;
+    Point position;
 };
 struct PlayerInfo {
     std::string myname;
