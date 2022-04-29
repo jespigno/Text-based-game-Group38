@@ -237,6 +237,7 @@ void catcafe(Player& x) {
                             if (x.stats.mymoney >= 10000) {
                                 x.stats.mymoney -= 10000;
                                 x.info.amountoffurniture += 1;
+                                x.info.boughtcatcafe = true;
                                 cout << "Woah, you have bought a store in Central!" << endl;
                                 onesecsleep();
                                 cout << endl << "The queue waiting to go inside your cafe is already quite long" << endl;

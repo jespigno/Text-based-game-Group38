@@ -17,7 +17,7 @@ struct PlayerStats {
 };
 struct PlayerInfo {
     std::string myname;
-    int catnumber;
+    bool catnumber[6];
     int amountoffurniture;
     bool boughtcatcafe;
     bool level1complete;
