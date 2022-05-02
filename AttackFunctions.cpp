@@ -297,8 +297,8 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
   halfasecsleep();
   onesecsleep();
   int damage = 0;
-  srand(time(NULL));
-  int whatshouldIdo = rand()% 100;
+  srand(time(NULL)+137);
+  int whatshouldIdo = (rand())% 100;
   string currentattack;
   if (hexed > 0){
     pleya.stats.mycurrenthealth -= (ghast.defense % 3 + 1);
@@ -335,12 +335,31 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
     halfasecsleep();
     cout << pleya.info.myname << " has been hexed!"<<endl;
     onesecsleep();
-  }else if (currentattack == "Pneuma Crave"){
+  }else if (currentattack == "Soul Eater"){
     cout << "I need to consume human souls........"<<endl;
     onesecsleep();
     cout << "souls...."<<endl;
     onesecsleep();
     damage += (ghast.defense - pleya.stats.myattack);
+    if (damage >= 0){
+      ghast.currenthealth += damage;
+      cout << "The " << ghast.name << " has absorbed " << damage << " health points from " << pleya.info.myname << endl;
+      if (ghast.currenthealth == (ghast.maxhealth * 2)){
+        cout << "Huh?"<<endl;
+        onesecsleep();
+        cout << ".";
+        onesecsleep();
+        cout << ".";
+        onesecsleep();
+        cout << "."<<endl;
+        halfasecsleep();
+        cout << "The " << ghast.name << "consumed too much soul energy. Its body cannot withstand it anymore."<<endl;
+        twosecsleep();
+        cout << ghast.name << " has been defeated."<< endl;
+        ghast.currenthealth = 0;
+      }
+      twosecsleep();
+    }
   }
   if (ghast.momentarychange != 0){
     damage -= ghast.momentarychange;
@@ -756,7 +775,7 @@ bool usermoves(Player &p, GhostData &g){
 void enemymoves (Player &p, GhostData &g, int &hex){
   ClearScreen();
   cout << R"(
-       ('-.      .-') _  ('-. _   .-')                        _ (`-. ('-. .-.  ('-.     .-')     ('-.
+   ('-.      .-') _  ('-. _   .-')                        _ (`-. ('-. .-.  ('-.     .-')     ('-.
  _(  OO)    ( OO ) _(  OO( '.( OO )_                     ( (OO  ( OO )  / ( OO ).-.( OO ). _(  OO)
 (,------,--./ ,--,(,------,--.   ,--.),--.   ,--.       _.`     ,--. ,--. / . --. (_)---\_(,------.
  |  .---|   \ |  |\|  .---|   `.'   |  \  `.'  /       (__...--'|  | |  | | \-.  \/    _ | |  .---'
@@ -793,13 +812,13 @@ void enemymoves (Player &p, GhostData &g, int &hex){
   }
   //different monsters have different behaviours.
   if (g.name == "Zombie"){
-    if (whatshouldIdo > 25){
+    if (whatshouldIdo < 25){
       MonsterDefend (g, p, hex);
     }else{
       MonsterAttack (g, p, hex);
   }
   }else if (g.name == "Vengeful Spirit"){
-    if (whatshouldIdo > 90){
+    if (whatshouldIdo > 50){
       MonsterDefend (g, p, hex);
     }else{
       MonsterAttack (g, p, hex);
@@ -841,7 +860,7 @@ char battlephase(Player &x, char initial){
     ghost.attack = 1 + (rand() % 10);
     ghost.defense = 8 + (rand() % 3);
     ghost.speed = 7;
-    ghost.attackone = "Undying Hex";
+    ghost.attackone = "Undying Hex"; //
     ghost.attacktwo = "Scratch";
     ghost.name = "Vengeful Spirit";
     ghost.momentarychange = 0;
@@ -855,7 +874,7 @@ char battlephase(Player &x, char initial){
     if (x.stats.myspeed >= ghost.speed){
       if (primeraqueataco == true){
          cout<< R"(
-               ('-. .-.                         .-')     ('-.           ('-.        .-') _          ('-.             .-') _                         .-') _,---.
+          ('-. .-.                         .-')     ('-.           ('-.        .-') _          ('-.             .-') _                         .-') _,---.
           ( OO )  /                        ( OO ). _(  OO)         ( OO ).-.   ( OO ) )        ( OO ).-.        (  OO) )                       ( OO ) |   |
    .-----.,--. ,--..-'),-----. .-'),-----.(_)---\_(,------.        / . --. ,--./ ,--,'         / . --. /  .-----/     '._,-.-') .-'),-----.,--./ ,--,'|   |
   '  .--./|  | |  ( OO'  .-.  ( OO'  .-.  /    _ | |  .---'        | \-.  \|   \ |  |\         | \-.  \  '  .--.|'--...__|  |OO( OO'  .-.  |   \ |  |\|   |
@@ -878,7 +897,7 @@ char battlephase(Player &x, char initial){
       enemymoves(x,ghost, isplayerhexed);
         if (primeraqueataco == true){
          cout<<R"(
-               ('-. .-.                         .-')     ('-.           ('-.        .-') _          ('-.             .-') _                         .-') _,---.
+          ('-. .-.                         .-')     ('-.           ('-.        .-') _          ('-.             .-') _                         .-') _,---.
           ( OO )  /                        ( OO ). _(  OO)         ( OO ).-.   ( OO ) )        ( OO ).-.        (  OO) )                       ( OO ) |   |
    .-----.,--. ,--..-'),-----. .-'),-----.(_)---\_(,------.        / . --. ,--./ ,--,'         / . --. /  .-----/     '._,-.-') .-'),-----.,--./ ,--,'|   |
   '  .--./|  | |  ( OO'  .-.  ( OO'  .-.  /    _ | |  .---'        | \-.  \|   \ |  |\         | \-.  \  '  .--.|'--...__|  |OO( OO'  .-.  |   \ |  |\|   |
