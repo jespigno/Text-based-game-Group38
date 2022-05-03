@@ -430,13 +430,13 @@ bool usermoves(Player &p, GhostData &g){
     if (thisturnsattack == "1"){
       cout<< p.info.myname << " uses the Ling Fu on " << g.name<<endl;
       if (g.name == "Hungry Ghost" || g.name == "Possessed Medium"){
-        damage = (((((2*p.info.level/5)+2) * (p.stats.myattack/g.defense))/50)+2) * 1.5;
+        damage = (((((2*p.stats.level/5)+2) * (p.stats.myattack/g.defense))/50)+2) * 1.5;
       }else{
-        damage = (((((2*p.info.level/5)+2) * (p.stats.myattack/g.defense))/50)+2) * 1;
+        damage = (((((2*p.stats.level/5)+2) * (p.stats.myattack/g.defense))/50)+2) * 1;
       }
     }else if ((thisturnsattack == "2") && (p.stats.attackone != "xxxxxxxxxxxxxxx")){
       cout<< p.info.myname << " uses Sun Sing Zi Fo on " << g.name<<endl;
-      damage = (((((2*p.info.level/5)+2) * (p.stats.myattack/g.defense))/40)+2) * 1;
+      damage = (((((2*p.stats.level/5)+2) * (p.stats.myattack/g.defense))/40)+2) * 1;
       if ((g.name == "Zombie") || (g.name == "Vengeful Spirit")){
         damage *= 1.5;
       }
@@ -450,7 +450,7 @@ bool usermoves(Player &p, GhostData &g){
 
     }else if ((thisturnsattack == "4") && (p.stats.attackthree != "xxxxxxxxxxxxxxx")){
       cout<< p.info.myname << "uses Peach Tree Sword on " << g.name<<endl;
-      damage = (((((2*p.info.level/5)+2) * (p.stats.myattack/g.defense))/25)+2) * 1;
+      damage = (((((2*p.stats.level/5)+2) * (p.stats.myattack/g.defense))/25)+2) * 1;
     }else{
       cout << "Invalid move!"<< g.name << " will take advantage of this slip-up..."<<endl;
     }
