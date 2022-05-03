@@ -323,13 +323,13 @@ void takeLoot(int level, int& money) {
 	//player finds treasure
 	int loot;
 	//increase player money by a random number whose range will depend on what level this is
-	if (m.level == 1) {
+	if (level == 1) {
 		loot = 20 + rand() % 30;
 	}
-	else if (m.level == 2) {
+	else if (level == 2) {
 		loot = 30 + rand() % 70;
 	}
-	else if (m.level == 3) {
+	else if (level == 3) {
 		loot = 50 + rand() % 100;
 	}
 	cout << "You picked up a treasure worth " << loot << "dollars!";

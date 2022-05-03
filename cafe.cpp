@@ -350,7 +350,7 @@ void visitCafe(Player x) {
         twosecsleep();
         //check first if they don;t own any cats
         if (x.info.catnumber[1] == false and x.info.catnumber[2] == false and x.info.catnumber[3] == false
-            and x.info.catnumber[4] == false and x.info.catnumber[4] == false) {
+            and x.info.catnumber[4] == false and x.info.catnumber[5] == false) {
             cout << "Your cafe is empty and lonely :C. Get some friends to keep you company!";
             twosecsleep();
         }
