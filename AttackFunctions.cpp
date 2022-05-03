@@ -10,6 +10,9 @@ using namespace std;
 
 
 
+//Quest menu functions
+//Lets user pick a Quest
+
 //printstats Function
 //takes in a struct of type Player where it can read the player's stats.
 //no output, however it prints out relevant status features.
@@ -42,6 +45,9 @@ void printstats(Player x){
   ClearScreen();
 }
 
+//level up function
+//input is user array, which will be modified randomly to grant user level up perks
+//void, so produces no output.
 void LevelUp(Player &z){
   z.stats.level +=1;
   cout<<R"(
@@ -92,6 +98,11 @@ void LevelUp(Player &z){
   if (z.stats.level >= 10 && z.stats.attacktwo == "xxxxxxxxxxxxxxx"){
     z.stats.attacktwo = "CalmBell";
     cout << z.info.myname<<" has unlocked the Calm Bell! It may make ghosts not attack in repentance."<<endl;
+    twosecsleep();
+  }
+  if (z.stats.level >= 15 && z.stats.attackthree == "xxxxxxxxxxxxxxx"){
+    z.stats.attacktwo = "PeachTreeSword";
+    cout << z.info.myname<<" has unlocked the Peach Tree Sword! Its magic wood makes it effective against all kinds of enemies."<<endl;
     twosecsleep();
   }
   return;
