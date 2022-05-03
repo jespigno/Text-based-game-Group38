@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 using namespace std;
 #include "TimeIntervals.h"
 #include "AttackFunctions.h"
@@ -21,7 +22,7 @@ bool Map::check_win() {
 				}
 			}
 		}
-		return true
+		return true;
 	}
 	//level 2 objective is to collect all treasures
 	else if (level == 2) {
@@ -32,7 +33,7 @@ bool Map::check_win() {
 				}
 			}
 		}
-		return true
+		return true;
 	}
 	//level 3 objective is to collect a specific treasure
 	else if (level == 3) {
@@ -46,7 +47,7 @@ bool Map::check_win() {
 //randomly selects points from the possible enemy positions to add to the actual enemy positons
 void Map::spawn_enemies() {
 	while (loot.size() < num_loot) {
-		int n = Rand() % (possible_enemy.size() - 1);
+		int n = rand() % (possible_enemy.size() - 1);
 		for (int i = 0; i < enemy.size(); i++) {//checks that point has not already been selected
 			if (enemy[i] == possible_enemy[n]) {
 				continue;
@@ -59,7 +60,7 @@ void Map::spawn_enemies() {
 //randomly selects points from the possible loot positions to add to the actual loot positons
 void Map::spawn_loot() {
 	while (loot.size() < num_loot) {
-		int n = Rand() % (possible_loot.size() - 1);
+		int n = rand() % (possible_loot.size() - 1);
 		for (int i = 0; i < loot.size(); i++) {
 			if (loot[i] == possible_loot[n]) {////checks that point has not already been selected
 				continue;
@@ -240,7 +241,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 	if (move == 'w' or move == 'a' or move == 's' or move == 'd') {
 		if (move == 'w' and m.map[x - 1][y] < 1) {
 			if (m.map[x - 1][y] == -1) {
-				takeLoot(m.level, p.info.mymoney);
+				takeLoot(m.level, p.stats.mymoney);
 			}
 			m.map[x - 1][y] = 2;
 			m.map[x][y] = 0;
@@ -249,30 +250,30 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 		}
 		else if (move == 'a' and m.map[x][y - 1] < 1) {
 			if (m.map[x][y - 1] == -1) {
-				takeLoot(m.level, p.info.mymoney);
+				takeLoot(m.level, p.stats.mymoney);
 			}
 			m.map[x][y - 1] = 2;
 			m.map[x][y] = 0;
 			y = y - 1;
-			m.print_map();			
+			m.print_map();
 		}
 		else if (move == 's' and m.map[x][y + 1] < 1) {
 			if (m.map[x][y+1] == -1) {
-				takeLoot(m.level, p.info.mymoney);
+				takeLoot(m.level, p.stats.mymoney);
 			}
 			m.map[x][y + 1] = 2;
 			m.map[x][y] = 0;
 			y = y + 1;
-			m.print_map();		
+			m.print_map();
 		}
 		else if (move == 'd' and map[x + 1][y] < 1) {
 			if (m.map[x - 1][y] == -1) {
-				takeLoot(m.level, p.info.mymoney);
+				takeLoot(m.level, p.stats.mymoney);
 			}
 			m.map[x + 1][y] = 2;
 			m.map[x][y] = 0;
 			x = x + 1;
-			m.print_map();		
+			m.print_map();
 		}
 		else {
 			cout << "There is an obstacle. Try another direction";
@@ -319,7 +320,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 }
 
 void takeLoot(int level, int& money) {
-	//player finds treasure	
+	//player finds treasure
 	int loot;
 	//increase player money by a random number whose range will depend on what level this is
 	if (m.level == 1) {
@@ -332,8 +333,5 @@ void takeLoot(int level, int& money) {
 		loot = 50 + rand() % 100;
 	}
 	cout << "You picked up a treasure worth " << loot << "dollars!";
-	money += loot;	
+	money += loot;
 }
-
-
-

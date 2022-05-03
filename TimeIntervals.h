@@ -44,10 +44,10 @@ struct Map {
     Point exit;
     int num_enemies;
     int num_loot;
-    vector<Point> possible_loot;
-    vector<Point> possible_enemy;
-    vector<Point> loot;
-    vector<Point> enemy;
+    std::vector<Point> possible_loot;
+    std::vector<Point> possible_enemy;
+    std::vector<Point> loot;
+    std::vector<Point> enemy;
 
     bool check_win();
     void spawn_enemies();

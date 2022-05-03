@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 using namespace std;
 #include "TimeIntervals.h"
 #include "AttackFunctions.h"
