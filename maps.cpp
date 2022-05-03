@@ -1,3 +1,13 @@
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+#include "TimeIntervals.h"
+#include "AttackFunctions.h"
+
+
 struct Point {
 	int x;
 	int y;
@@ -215,7 +225,7 @@ void makeMove(Map m, Player &p, char move) {
 }
 
 void takeLoot(int level, int& money) {
-	//player finds treasure	
+	//player finds treasure
 	int loot;
 	//increase player money by a random number whose range will depend on what level this is
 	if (m.level == 1) {
@@ -228,7 +238,5 @@ void takeLoot(int level, int& money) {
 		loot = 50 + rand() % 100;
 	}
 	cout << "You picked up a treasure worth " << loot << "dollars!";
-	money += loot;	
+	money += loot;
 }
-
-
