@@ -88,9 +88,9 @@ void saveValues(Player x) {
         cout << "Save unsuccessful. Please try again." << endl;
         exit(1);
     }
-    loadtofile >> x.stats.level >> x.stats.maxhealth >> x.stats.mycurrenthealth >> x.stats.mydefense >> x.stats.myattack >> x.stats.myspeed >> x.stats.mymoney >> x.stats.experiencepoints;
-    loadtofile >> x.stats.attackone >> x.stats.attacktwo >> x.stats.attackthree;
-    loadtofile >> x.info.myname >> x.info.catnumber[0] >> x.info.catnumber[1] >> x.info.catnumber[2] >> x.info.catnumber[3] >> x.info.catnumber[4]
-        >> x.info.catnumber[5] >> x.info.amountoffurniture >> x.info.boughtcatcafe >> x.info.level1complete >> x.info.level2complete >> x.info.level3complete >> x.info.level4complete >> x.info.level5complete;
+    loadtofile << x.stats.level << x.stats.maxhealth << x.stats.mycurrenthealth << x.stats.mydefense << x.stats.myattack << x.stats.myspeed << x.stats.mymoney << x.stats.experiencepoints;
+    loadtofile << x.stats.attackone << x.stats.attacktwo << x.stats.attackthree;
+    loadtofile << x.info.myname << x.info.catnumber[0] << x.info.catnumber[1] << x.info.catnumber[2] << x.info.catnumber[3] << x.info.catnumber[4];
+    loadtofile << x.info.catnumber[5] << x.info.amountoffurniture << x.info.boughtcatcafe << x.info.level1complete << x.info.level2complete << x.info.level3complete << x.info.level4complete << x.info.level5complete;
     loadtofile.close();
 }
