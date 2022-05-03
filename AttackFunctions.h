@@ -22,9 +22,9 @@ struct GhostData{
 };
 
 void catcafeMenu(Player &);
-void showCatalogue(Player x);
-void purchase(Player& x);
-void visitCafe(Player x);
+void showCatalogue(Player &);
+void purchase(Player&);
+void visitCafe(Player&);
 void printstats(Player);
 void MonsterAttack (GhostData &, Player &,int &hexed);
 void MonsterDefend(GhostData &, Player &, int &hexed);
