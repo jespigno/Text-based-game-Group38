@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 using namespace std;
 #include "TimeIntervals.h"
 #include "AttackFunctions.h"
@@ -251,7 +252,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 			m.map[x][y - 1] = 2;
 			m.map[x][y] = 0;
 			y = y - 1;
-			m.print_map();			
+			m.print_map();
 		}
 		else if (move == 's' and m.map[x][y + 1] < 1) {
 			if (m.map[x][y+1] == -1) {
@@ -260,7 +261,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 			m.map[x][y + 1] = 2;
 			m.map[x][y] = 0;
 			y = y + 1;
-			m.print_map();		
+			m.print_map();
 		}
 		else if (move == 'd' and map[x + 1][y] < 1) {
 			if (m.map[x - 1][y] == -1) {
@@ -269,7 +270,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 			m.map[x + 1][y] = 2;
 			m.map[x][y] = 0;
 			x = x + 1;
-			m.print_map();		
+			m.print_map();
 		}
 		else {
 			cout << "There is an obstacle. Try another direction";
@@ -316,7 +317,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 }
 
 void takeLoot(int level, int& money) {
-	//player finds treasure	
+	//player finds treasure
 	int loot;
 	//increase player money by a random number whose range will depend on what level this is
 	if (m.level == 1) {
@@ -329,8 +330,5 @@ void takeLoot(int level, int& money) {
 		loot = 50 + rand() % 100;
 	}
 	cout << "You picked up a treasure worth " << loot << "dollars!";
-	money += loot;	
+	money += loot;
 }
-
-
-
