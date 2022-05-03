@@ -42,9 +42,96 @@ void printstats(Player x){
   ClearScreen();
 }
 
+void LevelUp(Player &z){
+  z.stats.level +=1;
+  cout<<R"(
+           ('-.       (`-.     ('-.                              _ (`-.,---.
+          _(  OO)    _(OO  )_ _(  OO)                            ( (OO  |   |
+ ,--.    (,------,--(_/   ,. (,------,--.            ,--. ,--.  _.`     |   |
+ |  |.-') |  .---\   \   /(__/|  .---|  |.-')        |  | |  | (__...--'|   |
+ |  | OO )|  |    \   \ /   / |  |   |  | OO )       |  | | .-')|  /  | |   |
+ |  |`-' (|  '--.  \   '   /,(|  '--.|  |`-' |       |  |_|( OO |  |_.' |  .'
+(|  '---.'|  .--'   \     /__)|  .--(|  '---.'       |  | | `-' |  .___.`--'
+ |      | |  `---.   \   /    |  `---|      |       ('  '-'(_.-'|  |    .--.
+ `------' `------'    `-'     `------`------'         `-----'   `--'    '--'
+  )";
+  srand(time(NULL)*123);
+  int whatshouldIdo = rand()% 100;
+  if (whatshouldIdo >= 50){
+    z.stats.myattack +=1;
+    cout << z.info.myname<<"\'s attack has increased by one point!"<<endl;
+    twosecsleep();
+  }
+  srand(time(NULL)*876);
+  int whatshouldIdo = rand()% 100;
+  if (whatshouldIdo >= 50){
+    z.stats.mydefense +=1;
+    cout << z.info.myname<<"\'s defense has increased by one point!"<<endl;
+    twosecsleep();
+  }
+  srand(time(NULL)*405);
+  int whatshouldIdo = rand()% 100;
+  if (whatshouldIdo >= 50){
+    z.stats.myspeed +=1;
+    cout << z.info.myname<<"\'s speed has increased by one point!"<<endl;
+    twosecsleep();
+  }
+  srand(time(NULL)*9182);
+  int whatshouldIdo = rand()% 100;
+  if (whatshouldIdo >= 50){
+    z.stats.maxhealth +=5;
+    cout << z.info.myname<<"\'s maximum health points have increased by five points!"<<endl;
+    twosecsleep();
+  }
+  z.stats.mycurrenthealth = z.stats.maxhealth;
+  if (z.stats.level >= 5 && z.stats.attackone == "xxxxxxxxxxxxxxx"){
+    z.stats.attackone = "SunSingZiFo-HolyFire";
+    cout << z.info.myname<<" has unlocked the Holy Fire! It will burn down undead corpses to ashes"<<endl;
+    twosecsleep();
+  }
+  if (z.stats.level >= 10 && z.stats.attacktwo == "xxxxxxxxxxxxxxx"){
+    z.stats.attacktwo = "CalmBell";
+    cout << z.info.myname<<" has unlocked the Calm Bell! It may make ghosts not attack in repentance."<<endl;
+    twosecsleep();
+  }
+  return;
+}
+//ExperienceGain function
+//It calculates the amount of experience points gained by the user after the battle
+//Modifies the player struct with any changes
+//Triggers level up if conditions are met
+void ExperienceGain(Player &x, GhostData g){
+  float experienceneeded = (x.stats.level)*(x.stats.level)*(x.stats.level);
+  int bonus;
+  if (g.name == "Zombie"){
+    bonus = 2.5 * x.stats.level;
+  } else if (g.name == "Vengeful Spirit"){
+    bonus = x.stats.level + 5;
+  }
+  float experiencegained = (bonus * 10)/5;
+  x.stats.experiencepoints += experiencegained;
+  if (x.stats.experiencepoints >= experienceneeded){
+    x.stats.experiencepoints -= experienceneeded;
+    LevelUp(x);
+  }
+  cout << "You have just gained "<<experiencegained << " experience points!"endl;
+  onesecsleep();
+  cout << "Current level is: "<< x.stats.level<<endl;
+  onesecsleep();
+  cout << "Current experience points are: "<<x.stats.experiencepoints<<endl;
+  onesecsleep();
+  cout << "Points until next level: "<< ((x.stats.level)*(x.stats.level)*(x.stats.level)) - x.stats.experiencepoints <<endl;
+  return;
+}
 
 void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
   cout << ghast.name << " will attack!" << endl;
+  int secretnumber;
+  if (ghast.name == "Zombie"){
+    secretnumber = ghast.attack + ghast.defense;
+  }else if (ghast.name == "Vengeful Spirit"){
+    secretnumber = ghast.defense * 2;
+  }
   halfasecsleep();
   onesecsleep();
   int damage = 0;
@@ -64,7 +151,7 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
   }
   if (currentattack == "Rotten Fangs"){
     cout << ghast.name << " bites with Rotten Fangs!" << endl;
-    damage = (ghast.attack - pleya.stats.mydefense) + whatshouldIdo%3;
+    damage = ((((((2*secretnumber)/5)+2) * (ghast.attack/pleya.stats.mydefense))/ 50)+ 2) * 1;
 
   }else if (currentattack == "Scratch"){
     cout << ghast.name << " uses long nails to scratch!" << endl;
@@ -73,9 +160,9 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
     for (int i = scratchnumber; i <= amountofscratch; i++){
       onesecsleep();
       cout << ghast.name << " scratches "<< (i+ 1) << " time."<< endl;
-      damage += ghast.attack % 4 + 1;
+      damage += ((((((2*secretnumber)/5)+2) * (ghast.attack/pleya.stats.mydefense))/ 60)+ 2) ;
     }
-    damage -= pleya.stats.mydefense;
+    damage -= pleya.stats.mydefense/5;
   }else if (currentattack == "Undying Hex"){
     hexed = 4;
     onesecsleep();
@@ -91,9 +178,9 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
     onesecsleep();
     cout << "souls...."<<endl;
     onesecsleep();
-    damage += (ghast.defense - pleya.stats.myattack);
+    damage += ((((((2*secretnumber)/5)+2) * (ghast.defense/pleya.stats.myattack))/ 50)+ 2);
     if (damage >= 0){
-      ghast.currenthealth += damage;
+      ghast.currenthealth += damage - secretnumber;
       cout << "The " << ghast.name << " has absorbed " << damage << " health points from " << pleya.info.myname << endl;
       if (ghast.currenthealth == (ghast.maxhealth * 2)){
         cout << "Huh?"<<endl;
@@ -427,13 +514,13 @@ bool usermoves(Player &p, GhostData &g){
     string thisturnsattack;
     cout << "Choose an attack!"<<endl<<"(1) Ling Fu - Talisman"<<endl<<"(2) "<<p.stats.attackone<<endl<<"(3) "<<p.stats.attacktwo<<endl<<"(4) "<<p.stats.attackthree<<endl;
     getline(cin,thisturnsattack);
-    int damage = 0;
+    double damage = 0;
     if (thisturnsattack == "1"){
       cout<< p.info.myname << " uses the Ling Fu on " << g.name<<endl;
       if (g.name == "Hungry Ghost" || g.name == "Possessed Medium"){
         damage = (((((2*p.stats.level/5)+2) * (p.stats.myattack/g.defense))/50)+2) * 1.5;
       }else{
-        damage = (((((2*p.stats.level/5)+2) * (p.stats.myattack/g.defense))/50)+2) * 1;
+        damage = ((((((2*p.stats.level)/5)+2) * (p.stats.myattack/g.defense))/ 50)+ 2) * 1;
       }
     }else if ((thisturnsattack == "2") && (p.stats.attackone != "xxxxxxxxxxxxxxx")){
       cout<< p.info.myname << " uses Sun Sing Zi Fo on " << g.name<<endl;
@@ -455,8 +542,9 @@ bool usermoves(Player &p, GhostData &g){
     }else{
       cout << "Invalid move!"<< g.name << " will take advantage of this slip-up..."<<endl;
     }
-    if (g.imdefending = true){
+    if (g.imdefending == true){
       damage -= (g.defense - (whatshouldIdo % 3));
+      g.imdefending = false;
     }
     if (damage < 0 ){
       damage = 0 ;
@@ -681,6 +769,7 @@ char battlephase(Player &x, char initial){
   else{
     //user won!
     //Gain experience experience
+    ExperienceGain(x,ghost);
     //if yes, level up.
     return 'W';
   }

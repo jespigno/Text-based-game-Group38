@@ -7,8 +7,8 @@ struct Player;
 
 //struct for possible enemies
 struct GhostData{
-  int currenthealth;
-  int maxhealth;
+  float currenthealth;
+  float maxhealth;
   int attack;
   int defense;
   int speed;

@@ -4,8 +4,8 @@
 
 struct PlayerStats {
     int level;
-    int maxhealth;
-    int mycurrenthealth;
+    float maxhealth;
+    float mycurrenthealth;
     int mydefense;
     int myattack;
     int myspeed;
