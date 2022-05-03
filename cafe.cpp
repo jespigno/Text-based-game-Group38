@@ -73,7 +73,7 @@ void catcafeMenu(Player& x) {
 }
 
 void showCatalogue(Player x) {
-    char tempkey;
+    string tempkey;
     while (true) {
         cout << "Your current money is " << x.stats.mymoney << endl;
         cout << R"(
@@ -105,7 +105,7 @@ void showCatalogue(Player x) {
 }
 
 void purchase(Player& x) {
-    char tempkey;
+    string tempkey;
     cout << "Which product do you wish to purchase?" << endl << "Press b to go back" << endl;
     getline(cin, tempkey);
     if (tempkey == "1") {
@@ -134,7 +134,7 @@ void purchase(Player& x) {
         }
     }
     else if (tempkey == "2") {
-        if (x.info.[2] == false) {
+        if (x.info.catnumber[2] == false) {
             if (x.stats.mymoney >= 200) {
                 x.stats.mymoney -= 200;
                 x.info.catnumber[2] = true;

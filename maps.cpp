@@ -22,7 +22,7 @@ bool Map::check_win() {
 				}
 			}
 		}
-		return true
+		return true;
 	}
 	//level 2 objective is to collect all treasures
 	else if (level == 2) {
@@ -33,7 +33,7 @@ bool Map::check_win() {
 				}
 			}
 		}
-		return true
+		return true;
 	}
 	//level 3 objective is to collect a specific treasure
 	else if (level == 3) {
@@ -60,7 +60,7 @@ void Map::spawn_enemies() {
 //randomly selects points from the possible loot positions to add to the actual loot positons
 void Map::spawn_loot() {
 	while (loot.size() < num_loot) {
-		int n = Rand() % (possible_loot.size() - 1);
+		int n = rand() % (possible_loot.size() - 1);
 		for (int i = 0; i < loot.size(); i++) {
 			if (loot[i] == possible_loot[n]) {////checks that point has not already been selected
 				continue;
