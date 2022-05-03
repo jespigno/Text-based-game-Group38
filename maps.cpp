@@ -1,36 +1,125 @@
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <ctime>
-using namespace std;
-#include "TimeIntervals.h"
-#include "AttackFunctions.h"
-
-
 struct Point {
 	int x;
 	int y;
 };
 
+Point position;
+
 struct Map {
 	int level;
-	bool complete;
 	int map[30][45];
 	Point entry;
 	Point exit;
+	int num_enemies;
+	int num_loot;
 	vector<Point> possible_loot;
 	vector<Point> possible_enemy;
-	vector<Point> loot_point;
-	vector<Point> enemy_point;
-	char winning_condition;
+	vector<Point> loot;
+	vector<Point> enemy;
 
 	bool check_win();
 	void spawn_enemies();
-	void spawn_loot()
+	void spawn_loot();
+	void create_map();
+	void print_map();
 };
 
-int map1[30][45] = {
+//checks if player has met the winning condition of their specific level
+bool Map::check_win() {
+	//level 1 objective is to defeat all the monsters
+	if (level = 1) {
+		for (int i = 0; i < 30; i++) {
+			for (int j = 0; j < 45; j++) {
+				if (map[i][j] == 3) {
+					return false;
+				}
+			}
+		}
+		return true
+	}
+	//level 2 objective is to collect all treasures
+	else if (level == 2) {
+		for (int i = 0; i < 30; i++) {
+			for (int j = 0; j < 45; j++) {
+				if (map[i][j] == -1) {
+					return false;
+				}
+			}
+		}
+		return true
+	}
+	//level 3 objective is to collect a specific treasure
+	else if (level == 3) {
+		if (map[15][21] == 0) {
+			return true;
+		}
+		return false;
+	}
+}
+
+//randomly selects points from the possible enemy positions to add to the actual enemy positons
+void Map::spawn_enemies() {
+	while (loot.size() < num_loot) {
+		int n = Rand() % (possible_enemy.size() - 1);
+		for (int i = 0; i < enemy.size(); i++) {//checks that point has not already been selected
+			if (enemy[i] == possible_enemy[n]) {
+				continue;
+			}
+		}
+		enemy.push_back(possible_enemy[n]);
+	}
+}
+
+//randomly selects points from the possible loot positions to add to the actual loot positons
+void Map::spawn_loot() {
+	while (loot.size() < num_loot) {
+		int n = Rand() % (possible_loot.size() - 1);
+		for (int i = 0; i < loot.size(); i++) {
+			if (loot[i] == possible_loot[n]) {////checks that point has not already been selected
+				continue;
+			}
+		}
+		loot.push_back(possible_loot[n]);
+	}
+}
+
+//adds enemies, loot and the player to the map
+void Map::create_map(Point &position) {
+	position = entry;
+	map[entry.x][entry.y] == 2; //places player at start position
+	for (int i = 0; i < loot.size(); i++) {
+		map[loot[i].x][loot[i].y] == -1;
+	}
+	for (int i = 0; i < enemy.size(); i++) {
+		map[enemy[i].x][enemy[i].y] == 3;
+	}
+}
+
+//prints current map with players's position, loot and enemies
+void Map::print_map() {
+	for (int i = 0; i < 30; i++) {
+		cout << "                    ";
+		for (int j = 0; j < 45; j++) {
+			if (map[i][j] == 1) {
+				cout << '+' << ' ';
+			}
+			else if (map[i][j] == 2) {
+				cout << '$' << ' ';//whatever icon we have picked to represent the user
+			}
+			else if (map[i][j] == 3) {
+				cout << '@' << ' ';//enemies
+			}
+			else if (map[i][j] == -1) {
+				cout << '~' << ' ';//treasure
+			}
+		}
+		cout << endl;
+	}
+}
+
+Map map1, map2, map3;
+map1.level = 1;
+map1.map = {
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 	{1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1},
@@ -62,8 +151,15 @@ int map1[30][45] = {
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+map1.entry = { 18, 0 };
+map1.exit = { 6,4 };
+map1.possible_loot = {};
+map1.possible_enemy = {};
+map1.loot = {};
+map1.enemy = {};
 
-int map2[30][45] = {
+map2.level = 2;
+map2.map = {
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 		{0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1},
 		{1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1},
@@ -95,8 +191,15 @@ int map2[30][45] = {
 		{1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+map2.entry = { 22,2 };
+map2.exit = { 1,0};
+map2.possible_loot = {};
+map2.possible_enemy = {};
+map2.loot = {};
+map2.enemy = {};
 
-int map3[30][45] = {
+map3.level = 3;
+map3.map = {
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 		{1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,1},
 		{1,0,1,1,1,0,1,0,1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,0,0,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,0,1},
@@ -127,35 +230,24 @@ int map3[30][45] = {
 		{1,0,1,0,1,0,1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,1,0,1,0,1,0,1},
 		{1,0,0,1,1,0,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,1,0,1},
 		{1,1,0,0,1,0,1,1,1,0,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,0,1}
-
-
 };
+map3.entry = { 15,0 };
+map3.exit = { 29,44 };
+map3.possible_loot = {};
+map3.possible_enemy = {};
+map3.loot = {};
+map3.enemy = {};
 
-void printMap(int map[][45]) {
-	for (int i = 0; i < 30; i++) {
-		cout << "                    ";
-		for (int j = 0; j < 45; j++) {
-			if (map[i][j] == 1) {
-				cout << '+' << ' ';
-			}
-			else if (map[i][j] == 2) {
-				cout << '$' << ' ';//whatever icon we have picked to represent the user
-			}
-			else {
-				cout << ' ' << ' ';
-			}
-		}
-		cout << endl;
-	}
-}
+
+
 
 //move user icon on the map
 //only allows player to move in free space i.e. no walls
 //input: map, player's current coordinates and move they're making
-void makeMove(Map m, Player &p, char move) {
+void makeMove(Map m, Player &p, Point &position, char move) {
 	//valid input
-	int x = p.stats.position.x;
-	int y = p.stats.position.y;
+	int x = position.x;
+	int y = position.y;
 	if (move == 'w' or move == 'a' or move == 's' or move == 'd') {
 		if (move == 'w' and m.map[x - 1][y] < 1) {
 			if (m.map[x - 1][y] == -1) {
@@ -164,6 +256,7 @@ void makeMove(Map m, Player &p, char move) {
 			m.map[x - 1][y] = 2;
 			m.map[x][y] = 0;
 			x = x - 1; //update coordinates
+			m.print_map();
 		}
 		else if (move == 'a' and m.map[x][y - 1] < 1) {
 			if (m.map[x][y - 1] == -1) {
@@ -172,6 +265,7 @@ void makeMove(Map m, Player &p, char move) {
 			m.map[x][y - 1] = 2;
 			m.map[x][y] = 0;
 			y = y - 1;
+			m.print_map();			
 		}
 		else if (move == 's' and m.map[x][y + 1] < 1) {
 			if (m.map[x][y+1] == -1) {
@@ -180,6 +274,7 @@ void makeMove(Map m, Player &p, char move) {
 			m.map[x][y + 1] = 2;
 			m.map[x][y] = 0;
 			y = y + 1;
+			m.print_map();		
 		}
 		else if (move == 'd' and map[x + 1][y] < 1) {
 			if (m.map[x - 1][y] == -1) {
@@ -188,6 +283,7 @@ void makeMove(Map m, Player &p, char move) {
 			m.map[x + 1][y] = 2;
 			m.map[x][y] = 0;
 			x = x + 1;
+			m.print_map();		
 		}
 		else {
 			cout << "There is an obstacle. Try another direction";
@@ -196,7 +292,7 @@ void makeMove(Map m, Player &p, char move) {
 	else {
 		cout < "That's not a valid move. Try again." << endl;
 	}
-	//include conditions for encountering an enemy, a loot or if at exit, check if theyve fulfilled the winning condition
+
 	//check if player is within sensing distance of an enemy
 	if (m.map[x - 1][y - 1] == 3) {
 		//enemy senses player. insert battle functions here
@@ -222,10 +318,19 @@ void makeMove(Map m, Player &p, char move) {
 	else if (m.map[x + 1][y + 1] == 3) {
 		//enemy senses player. insert battle functions here
 	}
+	//checks if player has reached the exit point
+	//if they have, checks if they've won
+	if (position == m.exit) {
+		if (m.check_win() == true) {
+			//end level
+			//display win message
+			//maybe display stats as well?
+		}
+	}
 }
 
 void takeLoot(int level, int& money) {
-	//player finds treasure
+	//player finds treasure	
 	int loot;
 	//increase player money by a random number whose range will depend on what level this is
 	if (m.level == 1) {
@@ -238,5 +343,8 @@ void takeLoot(int level, int& money) {
 		loot = 50 + rand() % 100;
 	}
 	cout << "You picked up a treasure worth " << loot << "dollars!";
-	money += loot;
+	money += loot;	
 }
+
+
+
