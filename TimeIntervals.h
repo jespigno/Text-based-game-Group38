@@ -32,6 +32,29 @@ struct Player {
     PlayerInfo info;
 };
 
+struct Point {
+    int x;
+    int y;
+};
+
+struct Map {
+    int level;
+    int map[30][45];
+    Point entry;
+    Point exit;
+    int num_enemies;
+    int num_loot;
+    vector<Point> possible_loot;
+    vector<Point> possible_enemy;
+    vector<Point> loot;
+    vector<Point> enemy;
+
+    bool check_win();
+    void spawn_enemies();
+    void spawn_loot();
+    void create_map(Point &);
+    void print_map();
+};
 
 //function prototypes
 void twosecsleep();
@@ -41,5 +64,5 @@ void fivesecsleep();
 void tensecsleep();
 void ClearScreen();
 void loadvalues(Player &);
-void saveValues(Player x);
+void saveValues(Player);
 #endif

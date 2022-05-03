@@ -1,28 +1,14 @@
-struct Point {
-	int x;
-	int y;
-};
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+#include "TimeIntervals.h"
+#include "AttackFunctions.h"
 
 Point position;
 
-struct Map {
-	int level;
-	int map[30][45];
-	Point entry;
-	Point exit;
-	int num_enemies;
-	int num_loot;
-	vector<Point> possible_loot;
-	vector<Point> possible_enemy;
-	vector<Point> loot;
-	vector<Point> enemy;
-
-	bool check_win();
-	void spawn_enemies();
-	void spawn_loot();
-	void create_map();
-	void print_map();
-};
 
 //checks if player has met the winning condition of their specific level
 bool Map::check_win() {
