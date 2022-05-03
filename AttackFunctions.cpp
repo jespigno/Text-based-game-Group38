@@ -582,6 +582,9 @@ void enemymoves (Player &p, GhostData &g, int &hex){
 }
 
 
+//HERE
+//HERE
+//HERE
 
 //battlephase Function
 //takes in a struct that contains player info. Relevant for calculating battle issues
@@ -595,6 +598,7 @@ char battlephase(Player &x, char initial){
   if (initial == 'J'){
     //zombie information
     banner('J');
+    //dynamic array here maybe?
     ghost.maxhealth = 15;
     ghost.currenthealth = ghost.maxhealth;
     ghost.attack = 3 + (rand() % 5);
