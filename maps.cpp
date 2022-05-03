@@ -139,10 +139,13 @@ map1.map = {
 };
 map1.entry = { 18, 0 };
 map1.exit = { 6,4 };
-map1.possible_loot = {};
-map1.possible_enemy = {};
-map1.loot = {};
-map1.enemy = {};
+map1.possible_loot = { {2,35},{3,40}, {4, 9}, {4, 29}, {5,18}, {7,11}, {10,8},
+	{10,32}, {13, 37}, {15, 12}, {15, 38}, {17, 28}, {18,41}, {19,18},
+	{19,40}, {22,36}, {23,13}, {25, 25}, {25, 32}, { 26, 41 } };
+map1.possible_enemy = { {2,39}, {3,12}, {3,42} }
+  {18,7}, {6,7}, {10,19}, {25, 30}, {5, 36}, {2,39} };
+map1.loot = { {11, 24}, {27,3} };//some positions already predetermined
+map1.enemy = { {20,21}, {24, 42}, {3, 42} };
 
 map2.level = 2;
 map2.map = {

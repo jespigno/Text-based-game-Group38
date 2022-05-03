@@ -55,6 +55,8 @@ struct Map {
     void create_map(Point &);
     void print_map();
 };
+void makeMove(Map, Player&, Point&, char);
+void takeLoot(int, int&);
 
 //function prototypes
 void twosecsleep();
