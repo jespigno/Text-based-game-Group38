@@ -422,7 +422,6 @@ bool usermoves(Player &p, GhostData &g){
   getline(cin,playerchoice);
   srand(time(NULL));
   int whatshouldIdo = rand()% 100;
-
   if (playerchoice == "a"){
     string thisturnsattack;
     cout << "Choose an attack!"<<endl<<"(1) Ling Fu - Talisman"<<endl<<"(2) "<<p.stats.attackone<<endl<<"(3) "<<p.stats.attacktwo<<endl<<"(4) "<<p.stats.attackthree<<endl;
@@ -430,15 +429,19 @@ bool usermoves(Player &p, GhostData &g){
     int damage = 0;
     if (thisturnsattack == "1"){
       cout<< p.info.myname << " uses the Ling Fu on " << g.name<<endl;
-      damage = (p.stats.myattack - g.defense) + whatshouldIdo % 5;
+      if (g.name == "Hungry Ghost" || g.name == "Possessed Medium"){
+        damage = (((((2*p.info.mylevel/5)+2) * (p.stats.myattack/g.defense))/50)+2) * 1.5;
+      }else{
+        damage = (((((2*p.info.mylevel/5)+2) * (p.stats.myattack/g.defense))/50)+2) * 1;
+      }
     }else if ((thisturnsattack == "2") && (p.stats.attackone != "xxxxxxxxxxxxxxx")){
       cout<< p.info.myname << " uses Sun Sing Zi Fo on " << g.name<<endl;
-      damage = (p.stats.myattack - g.defense) + whatshouldIdo % 7;
-      if ((g.name == "Zombie") || (g.name == "Hanged Ghost")){
-        damage += 5;
+      damage = (((((2*p.info.mylevel/5)+2) * (p.stats.myattack/g.defense))/40)+2) * 1;
+      if ((g.name == "Zombie") || (g.name == "Vengeful Spirit")){
+        damage *= 1.5;
       }
-      if ((g.name == "Vengeful Spirit")){
-        damage -=5;
+      if ((g.name == "Water Ghost") || (g.name == "Possessed Medium")){
+        damage *= 0.75;
       }
     }else if ((thisturnsattack == "3") && (p.stats.attacktwo != "xxxxxxxxxxxxxxx")){
       cout<< p.info.myname << " uses Calm Bell on " << g.name<<endl<<"The Calm Bell binds the "<< g.name<< "\'s power. It might not be able to move. "<< endl;
@@ -447,6 +450,7 @@ bool usermoves(Player &p, GhostData &g){
 
     }else if ((thisturnsattack == "4") && (p.stats.attackthree != "xxxxxxxxxxxxxxx")){
       cout<< p.info.myname << "uses Peach Tree Sword on " << g.name<<endl;
+      damage = (((((2*p.info.mylevel/5)+2) * (p.stats.myattack/g.defense))/25)+2) * 1;
     }else{
       cout << "Invalid move!"<< g.name << " will take advantage of this slip-up..."<<endl;
     }
