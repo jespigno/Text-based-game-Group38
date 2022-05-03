@@ -47,7 +47,7 @@ bool Map::check_win() {
 //randomly selects points from the possible enemy positions to add to the actual enemy positons
 void Map::spawn_enemies() {
 	while (loot.size() < num_loot) {
-		int n = Rand() % (possible_enemy.size() - 1);
+		int n = rand() % (possible_enemy.size() - 1);
 		for (int i = 0; i < enemy.size(); i++) {//checks that point has not already been selected
 			if (enemy[i] == possible_enemy[n]) {
 				continue;
@@ -238,7 +238,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 	if (move == 'w' or move == 'a' or move == 's' or move == 'd') {
 		if (move == 'w' and m.map[x - 1][y] < 1) {
 			if (m.map[x - 1][y] == -1) {
-				takeLoot(m.level, p.info.mymoney);
+				takeLoot(m.level, p.stats.mymoney);
 			}
 			m.map[x - 1][y] = 2;
 			m.map[x][y] = 0;
@@ -247,7 +247,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 		}
 		else if (move == 'a' and m.map[x][y - 1] < 1) {
 			if (m.map[x][y - 1] == -1) {
-				takeLoot(m.level, p.info.mymoney);
+				takeLoot(m.level, p.stats.mymoney);
 			}
 			m.map[x][y - 1] = 2;
 			m.map[x][y] = 0;
@@ -256,7 +256,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 		}
 		else if (move == 's' and m.map[x][y + 1] < 1) {
 			if (m.map[x][y+1] == -1) {
-				takeLoot(m.level, p.info.mymoney);
+				takeLoot(m.level, p.stats.mymoney);
 			}
 			m.map[x][y + 1] = 2;
 			m.map[x][y] = 0;
@@ -265,7 +265,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 		}
 		else if (move == 'd' and map[x + 1][y] < 1) {
 			if (m.map[x - 1][y] == -1) {
-				takeLoot(m.level, p.info.mymoney);
+				takeLoot(m.level, p.stats.mymoney);
 			}
 			m.map[x + 1][y] = 2;
 			m.map[x][y] = 0;
