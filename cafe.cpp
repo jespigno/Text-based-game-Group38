@@ -8,14 +8,13 @@ using namespace std;
 #include "AttackFunctions.h"
 
 
-
-void catcafe(Player& x) {
+void catcafeMenu(Player& x) {
     string tempkey;
     cout << "press any key to enter your Cafe";
     getline(cin, tempkey);
     while (true) {
         cout << R"(
-     ___ ___   ___ ____  __ __
+ ___ ___   ___ ____  __ __
 |   |   | /  _|    \|  |  |
 | _   _ |/  [_|  _  |  |  |
 |  \_/  |    _|  |  |  |  |
@@ -54,272 +53,325 @@ void catcafe(Player& x) {
 
   )";
         getline(cin, tempkey);
+        ClearScreen();
         if (tempkey == "c") {
-            ClearScreen();
-            cout << "Your current money is " << x.stats.mymoney << endl;
-            cout << R"(
-      1 ........ Cat #1                  50 dollars
-      2 ........ Cat #2                 200 dollars
-      3 ........ Cat #3                 500 dollars
-      4 ........ Cat #4                1200 dollars
-      5 ........ Large supply of food  2000 dollars
-      6 ........ New Furnishing        3000 dollars
-      7 ........ Cat #5                5000 dollars
-      8 ........ Store in Central     10000 dollars
+            showCatalogue(x);
+        }
+        else if (tempkey == "v") {
+            visitCafe(x);
+        }
+        else if (tempkey == "b") {
+            //go back to main menu
+            return;
+        }
+        else {
+            cout << "This key does nothing... Please try again " << endl;
+            getline(cin, tempkey);
+        }
+    }
+}
 
-      Do you wish to purchase anything? Press p.
-      Wish to go back? Press b.
-    )";
-            while (true) {
-                getline(cin, tempkey);
-                if (tempkey == "p") {
-                    cout << "Which product do you wish to purchase?" << endl << "Press b to go back" << endl;
-                    getline(cin, tempkey);
-                    if (tempkey == "1") {
-                        if (x.info.catnumber[1] == false) {
-                            if (x.stats.mymoney >= 50) {
-                                x.stats.mymoney -= 50;
-                                x.info.catnumber[1] = true;
-                                cout << "You have bought Cat #1!" << endl;
-                                onesecsleep();
-                                cout << endl << "His name is Pineapple. Visit your cafe to see him!" << endl;
-                                cout << "Your current money is: " << x.stats.mymoney << endl;
-                                twosecsleep();
-                                break; //or return
-                            }
-                            else {
-                                cout << "Not enough money! Sorry..." << endl;
-                                twosecsleep();
-                            }
-                        }
-                        else {
-                            cout << "You already have this cat -- or you should purchase other cats first!" << endl;
-                            twosecsleep();
-                        }
-                    }
-                    else if (tempkey == "2") {
-                        if (x.info.[2] == false) {
-                            if (x.stats.mymoney >= 200) {
-                                x.stats.mymoney -= 200;
-                                x.info.catnumber[2] = true;
-                                cout << "You have bought Cat #2!" << endl;
-                                onesecsleep();
-                                cout << endl << "Her name is Chocolate Cookie. Visit your cafe to see her!" << endl;
-                                cout << "Your current money is: " << x.stats.mymoney << endl;
-                                twosecsleep();
-                                break; //or return
-                            }
-                            else {
-                                cout << "Not enough money! Sorry..." << endl;
-                                twosecsleep();
-                            }
-                        }
-                        else {
-                            cout << "You already have this cat -- or you should purchase other cats first!" << endl;
-                            twosecsleep();
-                        }
-                    }
-                    else if (tempkey == "3") {
-                        if (x.info.catnumber[3] == false) {
-                            if (x.stats.mymoney >= 500) {
-                                x.stats.mymoney -= 500;
-                                x.info.catnumber[3] = true;
-                                cout << "You have bought Cat #3!" << endl;
-                                onesecsleep();
-                                cout << endl << "His name is Egg Tart. Visit your cafe to see him!" << endl;
-                                cout << "Your current money is: " << x.stats.mymoney << endl;
-                                twosecsleep();
-                                break; //or return
-                            }
-                            else {
-                                cout << "Not enough money! Sorry..." << endl;
-                                twosecsleep();
-                            }
-                        }
-                        else {
-                            cout << "You already have this cat -- or you should purchase other cats first!" << endl;
-                            twosecsleep();
-                        }
-                    }
-                    else if (tempkey == "4") {
-                        if (x.info.catnumber[4] == false) {
-                            if (x.stats.mymoney >= 1200) {
-                                x.stats.mymoney -= 1200;
-                                x.info.catnumber[4] = true;
-                                cout << "You have bought Cat #4!" << endl;
-                                onesecsleep();
-                                cout << endl << "Her name is Lemon Tea. Visit your cafe to see her!" << endl;
-                                cout << "Your current money is: " << x.stats.mymoney << endl;
-                                twosecsleep();
-                                break; //or return
-                            }
-                            else {
-                                cout << "Not enough money! Sorry..." << endl;
-                                twosecsleep();
-                            }
-                        }
-                        else {
-                            cout << "You already have this cat -- or you should purchase other cats first!" << endl;
-                            twosecsleep();
-                        }
-                    }
-                    else if (tempkey == "5") {
-                        if (x.info.catnumber[0] == false) {
-                            if (x.stats.mymoney >= 2000) {
-                                x.stats.mymoney -= 2000;
-                                x.info.catnumber[0] == true;
-                                cout << "You have bought a large supply of food. Visit your cafe to see it!" << endl;
-                                onesecsleep();
-                                cout << endl << "With all this food, you won't have to worry about feeding cats or any clients for many years!" << endl;
-                                twosecsleep();
-                                cout << "Your current money is: " << x.stats.mymoney << endl;
-                                twosecsleep();
-                                break; //or return
-                            }
-                            else {
-                                cout << "Not enough money! Sorry..." << endl;
-                                twosecsleep();
-                            }
-                        }
-                        else {
-                            cout << "You already bought this, or you should buy more cats before!" << endl;
-                            twosecsleep();
-                        }
-                    }
-                    else if (tempkey == "6") {
-                        if (x.info.amountoffurniture == 1) {
-                            if (x.stats.mymoney >= 3000) {
-                                x.stats.mymoney -= 3000;
-                                x.info.amountoffurniture += 1;
-                                cout << "You have ordered full new furnishing for your cafe" << endl;
-                                onesecsleep();
-                                cout << endl << "It looks really fancy!" << endl;
-                                onesecsleep();
-                                cout << "Your current money is: " << x.stats.mymoney << endl;
-                                twosecsleep();
-                                break; //or return
-                            }
-                            else {
-                                cout << "Not enough money! Sorry..." << endl;
-                                twosecsleep();
-                            }
-                        }
-                        else {
-                            cout << "You have already bought this, or you should buy a cafe before!" << endl;
-                            twosecsleep();
-                        }
-                    }
-                    else if (tempkey == "7") {
-                        if (x.info.catnumber[5] == false) {
-                            if (x.stats.mymoney >= 5000) {
-                                x.stats.mymoney -= 5000;
-                                x.info.catnumber[5] = true;
-                                cout << "You have bought a really expensive cat" << endl;
-                                onesecsleep();
-                                cout << endl << "Her name is Strawberry. Visit your cafe to see her!" << endl;
-                                twosecsleep();
-                                cout << "Your current money is: " << x.stats.mymoney << endl;
-                                twosecsleep();
-                                break; //or return
-                            }
-                            else {
-                                cout << "Not enough money! Sorry..." << endl;
-                                twosecsleep();
-                            }
-                        }
-                        else {
-                            cout << "You already bought this, or you should buy more cats before!" << endl;
-                            twosecsleep();
-                        }
-                    }
-                    else if (tempkey == "8") {
-                        if (x.info.amountoffurniture == 2) {
-                            if (x.stats.mymoney >= 10000) {
-                                x.stats.mymoney -= 10000;
-                                x.info.amountoffurniture += 1;
-                                x.info.boughtcatcafe = true;
-                                cout << "Woah, you have bought a store in Central!" << endl;
-                                onesecsleep();
-                                cout << endl << "The queue waiting to go inside your cafe is already quite long" << endl;
-                                onesecsleep();
-                                cout << "Your current money is: " << x.stats.mymoney << endl;
-                                twosecsleep();
-                                break; //or return
-                            }
-                            else {
-                                cout << "Not enough money! Sorry..." << endl;
-                                twosecsleep();
-                            }
-                        }
-                        else {
-                            cout << "You have already bought this, or you should buy other products before!" << endl;
-                            twosecsleep();
-                        }
-                    }
-                    else if (tempkey == "b") {
-                        break; //or return
-                    }
-                    else {
-                        cout << "this is not a valid key. Please try again" << endl;
-                    }
+void showCatalogue(Player x) {
+    char tempkey;
+    while (true) {
+        cout << "Your current money is " << x.stats.mymoney << endl;
+        cout << R"(
+          1 ........ Cat #1                  50 dollars
+          2 ........ Cat #2                 200 dollars
+          3 ........ Cat #3                 500 dollars
+          4 ........ Cat #4                1200 dollars
+          5 ........ Large supply of food  2000 dollars
+          6 ........ New Furnishing        3000 dollars
+          7 ........ Cat #5                5000 dollars
+          8 ........ Store in Central     10000 dollars
 
-                }
-                else if (tempkey == "b") {
-                    break; //or return?
-                }
-                else if (tempkey == "v") {
-                    //must own a cat cafe to display cats
-                    if (x.info.boughtcatcafe == true) {
-                        cout << R"(
-                                                                                   #
-                                                        *@@@@@@@.
-                                                     %@@@@@@@@@@@@@*
-                       (((((((((((                @@@@@@@@@@@@@@@@@@@@%
-                       @@@@@@@@@@@            ,@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                       @@@@@@@@@@@         #@@@@@@@@@@@@@%     @@@@@@@@@@@@@@*
-                       @@@@@@@@@@@      @@@@@@@@@@@@@@,           #@@@@@@@@@@@@@%
-                       @@@@@@@@@@@  .@@@@@@@@@@@@@@                  ,@@@@@@@@@@@@@@
-                       @@@@@@@@@@@@@@@@@@@@@@@@&                         @@@@@@@@@@@@@@,
-                       @@@@@@@@@@@@@@@@@@@@@/                               %@@@@@@@@@@@@@(
-                       @@@@@@@@@@@@@@@@@@.                                     *@@@@@@@@@@@@@&
-                       @@@@@@@@@@@@@@&                                             @@@@@@@@@@@@@@.
-                    @@@@@@@@@@@@@@(                                                   @@@@@@@@@@@@@@/
-                 @@@@@@@@@@@@@@.                                                         /@@@@@@@@@@@@@&
-             *@@@@@@@@@@@@@@                                                                .@@@@@@@@@@@@@@.
-          #@@@@@@@@@@@@@#                                                                       &@@@@@@@@@@@@@/
-       @@@@@@@@@@@@@@,                                                                             (@@@@@@@@@@@@@%
-   ,@@@@@@@@@@@@@@                                                                                    ,@@@@@@@@@@@@@@
+          Do you wish to purchase anything? Press p.
+          Wish to go back? Press b.
+        )";
+
+        getline(cin, tempkey);
+        if (tempkey == "p") {
+            purchase(x);
+        }
+        else if (tempkey == "b") {
+            return;
+        }
+        else {
+            cout << "That key does nothing. Please try again!";
+            getline(cin, tempkey);
+        }
+    }
+}
+
+void purchase(Player& x) {
+    char tempkey;
+    cout << "Which product do you wish to purchase?" << endl << "Press b to go back" << endl;
+    getline(cin, tempkey);
+    if (tempkey == "1") {
+        if (x.info.catnumber[1] == false) {
+            if (x.stats.mymoney >= 50) {
+                x.stats.mymoney -= 50;
+                x.info.catnumber[1] = true;
+                cout << "You have bought Cat #1!" << endl;
+                twosecsleep();
+                cout << endl << "His name is Pineapple. Visit your cafe to see him!" << endl;
+                twosecsleep();
+                cout << "Your current money is: " << x.stats.mymoney << endl;
+                twosecsleep();
+                return;
+            }
+            else {
+                cout << "Not enough money! Sorry..." << endl;
+                twosecsleep();
+                return;
+            }
+        }
+        else {
+            cout << "You already have this cat. Get a new friend instead!" << endl;
+            twosecsleep();
+            return;
+        }
+    }
+    else if (tempkey == "2") {
+        if (x.info.[2] == false) {
+            if (x.stats.mymoney >= 200) {
+                x.stats.mymoney -= 200;
+                x.info.catnumber[2] = true;
+                cout << "You have bought Cat #2!" << endl;
+                twosecsleep();
+                cout << endl << "Her name is Chocolate Cookie. Visit your cafe to see her!" << endl;
+                twosecsleep();
+                cout << "Your current money is: " << x.stats.mymoney << endl;
+                twosecsleep();
+                return;
+            }
+            else {
+                cout << "Not enough money! Sorry..." << endl;
+                twosecsleep();
+                return;
+            }
+        }
+        else {
+            cout << "You already have this cat. Get a new friend instead!" << endl;
+            twosecsleep();
+            return;
+        }
+    }
+    else if (tempkey == "3") {
+        if (x.info.catnumber[3] == false) {
+            if (x.stats.mymoney >= 500) {
+                x.stats.mymoney -= 500;
+                x.info.catnumber[3] = true;
+                cout << "You have bought Cat #3!" << endl;
+                twosecsleep();
+                cout << endl << "His name is Egg Tart. Visit your cafe to see him!" << endl;
+                twosecsleep();
+                cout << "Your current money is: " << x.stats.mymoney << endl;
+                twosecsleep();
+                return;
+            }
+            else {
+                cout << "Not enough money! Sorry..." << endl;
+                twosecsleep();
+                return;
+            }
+        }
+        else {
+            cout << "You already have this cat. Get a new friend instead!" << endl;
+            twosecsleep();
+            return;
+        }
+    }
+    else if (tempkey == "4") {
+        if (x.info.catnumber[4] == false) {
+            if (x.stats.mymoney >= 1200) {
+                x.stats.mymoney -= 1200;
+                x.info.catnumber[4] = true;
+                cout << "You have bought Cat #4!" << endl;
+                twosecsleep();
+                cout << endl << "Her name is Lemon Tea. Visit your cafe to see her!" << endl;
+                twosecsleep();
+                cout << "Your current money is: " << x.stats.mymoney << endl;
+                twosecsleep();
+                return;
+            }
+            else {
+                cout << "Not enough money! Sorry..." << endl;
+                twosecsleep();
+                return;
+            }
+        }
+        else {
+            cout << "You already have this cat. Get a new friend instead!" << endl;
+            twosecsleep();
+            return;
+        }
+    }
+    else if (tempkey == "5") {
+        if (x.info.catnumber[0] == false) {
+            if (x.stats.mymoney >= 2000) {
+                x.stats.mymoney -= 2000;
+                x.info.catnumber[0] == true;
+                cout << "You have bought a large supply of food. Visit your cafe to see it!" << endl;
+                twosecsleep();
+                cout << endl << "With all this food, you won't have to worry about feeding cats or any clients for many years!" << endl;
+                twosecsleep();
+                cout << "Your current money is: " << x.stats.mymoney << endl;
+                twosecsleep();
+                return;
+            }
+            else {
+                cout << "Not enough money! Sorry..." << endl;
+                twosecsleep();
+                return;
+            }
+        }
+        else {
+            cout << "You already bought this. Get a new friend instead!" << endl;
+            twosecsleep();
+            return;
+        }
+    }
+    else if (tempkey == "6") {
+        if (x.info.amountoffurniture == 1) {
+            if (x.stats.mymoney >= 3000) {
+                x.stats.mymoney -= 3000;
+                x.info.amountoffurniture += 1;
+                cout << "You have ordered full new furnishing for your cafe" << endl;
+                twosecsleep();
+                cout << endl << "It looks really fancy!" << endl;
+                twosecsleep();
+                cout << "Your current money is: " << x.stats.mymoney << endl;
+                twosecsleep();
+                return;
+            }
+            else {
+                cout << "Not enough money! Sorry..." << endl;
+                twosecsleep();
+                return;
+            }
+        }
+        else {
+            cout << "You have already bought this, or you should buy a cafe before!" << endl;
+            twosecsleep();
+            return;
+        }
+    }
+    else if (tempkey == "7") {
+        if (x.info.catnumber[5] == false) {
+            if (x.stats.mymoney >= 5000) {
+                x.stats.mymoney -= 5000;
+                x.info.catnumber[5] = true;
+                cout << "You have bought a really expensive cat" << endl;
+                twosecsleep();
+                cout << endl << "Her name is Strawberry. Visit your cafe to see her!" << endl;
+                twosecsleep();
+                cout << "Your current money is: " << x.stats.mymoney << endl;
+                twosecsleep();
+                return;
+            }
+            else {
+                cout << "Not enough money! Sorry..." << endl;
+                twosecsleep();
+                return;
+            }
+        }
+        else {
+            cout << "You already bought this. Get a new friend instead!" << endl;
+            twosecsleep();
+            return;
+        }
+    }
+    else if (tempkey == "8") {
+        if (x.info.amountoffurniture == 2) {
+            if (x.stats.mymoney >= 10000) {
+                x.stats.mymoney -= 10000;
+                x.info.amountoffurniture += 1;
+                x.info.boughtcatcafe = true;
+                cout << "Woah, you have bought a store in Central!" << endl;
+                twosecsleep();
+                cout << endl << "The queue waiting to go inside your cafe is already quite long" << endl;
+                twosecsleep();
+                cout << "Your current money is: " << x.stats.mymoney << endl;
+                twosecsleep();
+                return;
+            }
+            else {
+                cout << "Not enough money! Sorry..." << endl;
+                twosecsleep();
+                return;
+            }
+        }
+        else {
+            cout << "You have already bought this, or you should buy other products before!" << endl;
+            twosecsleep();
+            return;
+        }
+    }
+    else if (tempkey == "b") {
+        return;
+    }
+
+    else {
+        cout << "That key does nothing. Please try again" << endl;
+        return;
+    }
+}
+
+void visitCafe(Player x) {
+    if (x.info.boughtcatcafe == true) {
+        cout << "Welcome to " << x.info.myname << "'s amazing cat paradise!";
+        onesecsleep();
+        cout << R"(
+                                                                                   #                                                           
+                                                        *@@@@@@@.                                                       
+                                                     %@@@@@@@@@@@@@*                                                    
+                       (((((((((((                @@@@@@@@@@@@@@@@@@@@%                                                 
+                       @@@@@@@@@@@            ,@@@@@@@@@@@@@@@@@@@@@@@@@@@                                              
+                       @@@@@@@@@@@         #@@@@@@@@@@@@@%     @@@@@@@@@@@@@@*                                          
+                       @@@@@@@@@@@      @@@@@@@@@@@@@@,           #@@@@@@@@@@@@@%                                       
+                       @@@@@@@@@@@  .@@@@@@@@@@@@@@                  ,@@@@@@@@@@@@@@                                    
+                       @@@@@@@@@@@@@@@@@@@@@@@@&                         @@@@@@@@@@@@@@,                                
+                       @@@@@@@@@@@@@@@@@@@@@/                               %@@@@@@@@@@@@@(                             
+                       @@@@@@@@@@@@@@@@@@.                                     *@@@@@@@@@@@@@&                          
+                       @@@@@@@@@@@@@@&                                             @@@@@@@@@@@@@@.                      
+                    @@@@@@@@@@@@@@(                                                   @@@@@@@@@@@@@@/                   
+                 @@@@@@@@@@@@@@.                                                         /@@@@@@@@@@@@@&                
+             *@@@@@@@@@@@@@@                                                                .@@@@@@@@@@@@@@.            
+          #@@@@@@@@@@@@@#                                                                       &@@@@@@@@@@@@@/         
+       @@@@@@@@@@@@@@,                                                                             (@@@@@@@@@@@@@%      
+   ,@@@@@@@@@@@@@@                                                                                    ,@@@@@@@@@@@@@@   
 #@@@@@@@@@@@@@&                                                                                           @@@@@@@@@@@@@@
-   @@@@@@@@*                                                                                                 #@@@@@@@@
+   @@@@@@@@*                                                                                                 #@@@@@@@@  
      (@@                                                                                                        ,@@,
+        --------------------------------------------------------------------------------------------------------    
                      )";
-                        twosecsleep();
-                        //check first if they don;t own any cats
-                        if (x.info.catnumber[1] == false and x.info.catnumber[2] == false and x.info.catnumber[3] == false
-                            and x.info.catnumber[4] == false and x.info.catnumber[4] == false) {
-
-                            cout << "Your cafe is empty and lonely :C. Get some friends to keep you company!";
-                            //return to menu
-                        }
-                        //they own at least one cat. Display cat(s)
-                        else {
-                            if (x.info.catnumber[1] == true) {
-                                cout << R"(
-                                                            .. ../(**.                     .,,..
-                           ......**#(###(*.%%##/.           ., .,,,.
-                        .......,/(%*%(#(#/,,/&&&&&%&%/,.,****. .,,..
-                        ...... *%%(/**##%#%%&&&&&&&&(,*((#(#*,...,..
-                        .. .  */%###%%%%%&&&&&&&&&&&&%%%#/,(**...,..             ........
-                    ..,*,*,*/*/%&&&&&&&&&%%%%#%%&%%%%%%#(**..   ....    ..         ......
-                   .,*/(#%%&%%%&&&&&&&%#((  *//%@#/###%%#(,     ,,,.                ....
-                .,,/#%%%&&&&%&&&&@&&&&%#((##(%&&&,,/###(/,.  .....
-               .,(#%%&&&&&&&&&&@@&@@@&&&&&@@@&@&%&@##(((*    ....
-            ..*##%%%%&&&&&&&&&&@@@@@@@@&&%&&&&#/&&&#%##*                                 ..
-           ..*(##%%%%&&&&&&&&&&&&@&&@@@&&&&%%%#####&%(,...                    ...   ..   ........
-           .*#%%%%%%&&%%&&&%&&&&@&@&&&&&@@@&&&&&&%%(,*/,/,,..        ..,,.    .,,.  ..   ........
-          .*(#%%%&&%&&%%%&&&@@@@@@@&@&&&&&&&&&&&&%(*,*.,,....        ....       ......
-          .,(%%%&&&&&&&%&&&&@@@@@&@@&&&&&&&&&&%%**.. ..                         ....
-          .*#%%&&&&&&&@&&&&@@@@@@@@&&&&&&&&%%%#(.,           ................  ......   ...
+        twosecsleep();
+        //check first if they don;t own any cats
+        if (x.info.catnumber[1] == false and x.info.catnumber[2] == false and x.info.catnumber[3] == false
+            and x.info.catnumber[4] == false and x.info.catnumber[4] == false) {
+            cout << "Your cafe is empty and lonely :C. Get some friends to keep you company!";
+            twosecsleep();
+        }
+        //they own at least one cat. Display cat(s)
+        else {
+            if (x.info.catnumber[1] == true) {
+                cout << R"(
+                                                            .. ../(**.                     .,,..                                
+                           ......**#(###(*.%%##/.           ., .,,,.                                
+                        .......,/(%*%(#(#/,,/&&&&&%&%/,.,****. .,,..                                
+                        ...... *%%(/**##%#%%&&&&&&&&(,*((#(#*,...,..                                
+                        .. .  */%###%%%%%&&&&&&&&&&&&%%%#/,(**...,..             ........           
+                    ..,*,*,*/*/%&&&&&&&&&%%%%#%%&%%%%%%#(**..   ....    ..         ......           
+                   .,*/(#%%&%%%&&&&&&&%#((  *//%@#/###%%#(,     ,,,.                ....            
+                .,,/#%%%&&&&%&&&&@&&&&%#((##(%&&&,,/###(/,.  .....                                  
+               .,(#%%&&&&&&&&&&@@&@@@&&&&&@@@&@&%&@##(((*    ....                                   
+            ..*##%%%%&&&&&&&&&&@@@@@@@@&&%&&&&#/&&&#%##*                                 ..         
+           ..*(##%%%%&&&&&&&&&&&&@&&@@@&&&&%%%#####&%(,...                    ...   ..   ........   
+           .*#%%%%%%&&%%&&&%&&&&@&@&&&&&@@@&&&&&&%%(,*/,/,,..        ..,,.    .,,.  ..   ........   
+          .*(#%%%&&%&&%%%&&&@@@@@@@&@&&&&&&&&&&&&%(*,*.,,....        ....       ......              
+          .,(%%%&&&&&&&%&&&&@@@@@&@@&&&&&&&&&&%%**.. ..                         ....                
+          .*#%%&&&&&&&@&&&&@@@@@@@@&&&&&&&&%%%#(.,           ................  ......   ...         
         ..*#%%%&&&&&&&&&&%&&@@@@@@@&&&&&&&&&&##..   .....,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.........
 .......,,,(#%%%%&&&&&&@&&&%%&&@@@@@@&&&&&&@@&%/,,,*////(((((((##########%%%%%%##########(((((////**,
 .....,,,,,*(#%%%%&&&&&&&&&&%%&@@@@@&&%&&&@@@@&******///**///**/*///*/**/**//(////////********,,,,,,,
@@ -330,248 +382,250 @@ void catcafe(Player& x) {
 .,,,,,****////((((((####((###%#%%%%%%#%#######################(##**/####((**((((((//////******,,,,,,
 
                          )";
-                                onesecsleep();
-                                cout << "Pineapple wants pets!! Pets please!!!";
-                                onesecsleep();
-                            }
-                            if (x.info.catnumber[2] == true) {
-                                cout << R"(
-
-
-
-                   .....
-
-
-             . . .,#%&@&&#*..
-             ../&@@@@@@@@@@&/
-            .(@@@@@@@/..,#@&&(..
-         . .%@@@@@%
-          .%@@@@@#
-          ,%@@@@@*
-          .#@@@@@( .
-          .#@@@@@@
-           ,%@@@@@%.                                                                    ,
-            ,&@@@@@%                                                                  /&&&.
-             ,&@@@@@%.                                                             ,%@@@@%.
-              .#@@@@@@@*                                                      .(@@@@@@@@@@@@@/
-                *&@@@@@@@@@@@&@@&@@@@@@@@@@@@&&@&&@&%#*,.                  ,%@@@@@@@@@@@@@@@@@@
-                 .#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&%&@@@@@@@@@@@@@@@@@@@@@@@@&@&.
-                  .%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
-                  ,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
-                 .%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%*
-                .%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/
-                *&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,
-                *&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*
-               *%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,
-             .(@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*
-           *&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
-          &@@@@@@@@@@@@@%&@@@@@@@@@@@(...,.              #@@@@@@@@@&&%%((&@@@@@@@@@@@%
-         &@@@@@&%(,     ,%@@@@@@@@@@/                    &@@@@@@/          ,&@@@@@@@@@#
-        %@@@&           ,&@@@@@@@@(                     *@@@@@&              /&@@@@@@@@@.
-       %@@@#            (@@@@@@@%                       %@@@@#                  /@@@@@@@@%
-      ,@@&&              &@@@@@.                       #@@@@(                      ,&@@@@@@&.
-      &&@@,               (@@@@&                       &@@@*                           #@@@@&&,
+                onesecsleep();
+                cout << "Pineapple wants pets!! Pets please!!!";
+                twosecsleep();
+            }
+            if (x.info.catnumber[2] == true) {
+                cout << R"(
+                                                                                                    
+                                                                                                    
+                                                                                                                                                                                                       
+                   .....                                                                            
+                                                                                                    
+                                                                                                    
+             . . .,#%&@&&#*..                                                                       
+             ../&@@@@@@@@@@&/                                                                       
+            .(@@@@@@@/..,#@&&(..                                                                    
+         . .%@@@@@%                                                                                 
+          .%@@@@@#                                                                                  
+          ,%@@@@@*                                                                                  
+          .#@@@@@( .                                                                                
+          .#@@@@@@                                                                                  
+           ,%@@@@@%.                                                                    ,           
+            ,&@@@@@%                                                                  /&&&.         
+             ,&@@@@@%.                                                             ,%@@@@%.         
+              .#@@@@@@@*                                                      .(@@@@@@@@@@@@@/      
+                *&@@@@@@@@@@@&@@&@@@@@@@@@@@@&&@&&@&%#*,.                  ,%@@@@@@@@@@@@@@@@@@     
+                 .#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&%&@@@@@@@@@@@@@@@@@@@@@@@@&@&.  
+                  .%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.  
+                  ,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#    
+                 .%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%*           
+                .%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/             
+                *&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,              
+                *&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*              
+               *%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,              
+             .(@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*              
+           *&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#              
+          &@@@@@@@@@@@@@%&@@@@@@@@@@@(...,.              #@@@@@@@@@&&%%((&@@@@@@@@@@@%              
+         &@@@@@&%(,     ,%@@@@@@@@@@/                    &@@@@@@/          ,&@@@@@@@@@#             
+        %@@@&           ,&@@@@@@@@(                     *@@@@@&              /&@@@@@@@@@.           
+       %@@@#            (@@@@@@@%                       %@@@@#                  /@@@@@@@@%          
+      ,@@&&              &@@@@@.                       #@@@@(                      ,&@@@@@@&.       
+      &&@@,               (@@@@&                       &@@@*                           #@@@@&&,     
       ,&@#                  (@&@@@,                   .&@@@(.                            .&@@@@@@(%*
      ...,.....................(@@@@@@@%...............,%@@@@&*.........................,.,,,,/@@@@@@
-                  ............,,,*///*,,..............,,,,,,............................
-
+                  ............,,,*///*,,..............,,,,,,............................            
+                                                                                                    
+                                                                                                    
+)";
+                onesecsleep();
+                cout << "Chocolate cookie is very hungry...what do you mean I just ate?";
+                twosecsleep();
+            }
+            if (x.info.catnumber[3] == true) {
+                cout << R"(
+                                                                                                                                                                                                        
+                                                                                                    
+                                                          ,@&.                                      
+                                                         @@@@@            %@@/                      
+                                                       .@@&&@@#          &@@@@&                     
+                           .#@@@@@@@@@@@@@@@@#,.      .@@&%&&@@.        %@@%%@@(                    
+                       *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@%%%%@@@       #@@%&&&@@                    
+                     &@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&%&&@@*                   
+                   #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%.                 
+                 .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%      %@@@@@@@@@@@@@@@@@@@@@@@               
+                /@@@@@@@@@@@@@@@@@@@@@@@@//%@@@@@@@@&   *#(   .@@@@@@@&.    .#@@@@@@@@@,            
+               *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,  ,@&&%   @@@@@@*   (@*   &@@@@@@@@(           
+               &@@@@@@@@@@@@@@@@@@@@@@@@@@@@&#*&@@@@@         #@@/&@@   (@@@,  *@@@@@@@@@,.*((      
+              .@@@@@@@@@@@@@@@@@@@@@@@@@@&@@@@@@@@@@@@@@&&&@@@@@%@(@@@        .@@@@@@@@@@/          
+              /@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&@@@@@@@@@@@@@/          
+           ,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,          
+         .@@@@@.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&           
+        ,@@@@&   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,           
+        %@@@@(    /@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/            
+        %@@@@&      .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*             
+        *@@@@@@         /@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%               
+         *@@@@@@%            *&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/                 
+           &@@@@@@@&,                ./#&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,                     
+             /@@@@@@@@@@@@@&%#/*.                 (@@@@@@@@,          *@@@@@@@@.                    
+                *@@@@@@@@@@@@@@@@@@@@@.             %@@@@@@@,           .@@@@@@,                    
+                    (@@@@@@@@@@@@@@@@@@/              ,&@@@@                ,.                      
+                         (@@@@@@@@@@@%                                                              
+                                                                                                    
+                                                                                                    
+                                                                                                                                                                                                    
+                                                                                                    
 
 )";
-                                onesecsleep();
-                                cout << "Chocolate cookie is very hungry...what do you mean I just ate?";
-                                onesecsleep();
-                            }
-                            if (x.info.catnumber[3] == true) {
-                                cout << R"(
+                onesecsleep();
+                cout << "MISCHIEF?! MAYHEM??!! Egg tart would NEVER!!";
+                twosecsleep();
+            }
+            if (x.info.catnumber[4] == true) {
+                cout << R"(
 
 
-                                                          ,@&.
-                                                         @@@@@            %@@/
-                                                       .@@&&@@#          &@@@@&
-                           .#@@@@@@@@@@@@@@@@#,.      .@@&%&&@@.        %@@%%@@(
-                       *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@%%%%@@@       #@@%&&&@@
-                     &@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&%&&@@*
-                   #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%.
-                 .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%      %@@@@@@@@@@@@@@@@@@@@@@@
-                /@@@@@@@@@@@@@@@@@@@@@@@@//%@@@@@@@@&   *#(   .@@@@@@@&.    .#@@@@@@@@@,
-               *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,  ,@&&%   @@@@@@*   (@*   &@@@@@@@@(
-               &@@@@@@@@@@@@@@@@@@@@@@@@@@@@&#*&@@@@@         #@@/&@@   (@@@,  *@@@@@@@@@,.*((
-              .@@@@@@@@@@@@@@@@@@@@@@@@@@&@@@@@@@@@@@@@@&&&@@@@@%@(@@@        .@@@@@@@@@@/
-              /@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&@@@@@@@@@@@@@/
-           ,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,
-         .@@@@@.@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&
-        ,@@@@&   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,
-        %@@@@(    /@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/
-        %@@@@&      .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*
-        *@@@@@@         /@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%
-         *@@@@@@%            *&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/
-           &@@@@@@@&,                ./#&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@,
-             /@@@@@@@@@@@@@&%#/*.                 (@@@@@@@@,          *@@@@@@@@.
-                *@@@@@@@@@@@@@@@@@@@@@.             %@@@@@@@,           .@@@@@@,
-                    (@@@@@@@@@@@@@@@@@@/              ,&@@@@                ,.
-                         (@@@@@@@@@@@%
-
-
-
-
-
-)";
-                                onesecsleep();
-                                cout << "MISCHIEF? Egg tart would NEVER!!";
-                                onesecsleep();
-                            }
-                            if (x.info.catnumber[4] == true) {
-                                cout << R"(
-
-
-                                ,(
-       /#%%*                 .%%(*(*
-        #(/(%%#            .&&%(/#(.
-        .#(##%%%&&&%%#%%&&&&&%(####
-          #%#%%%%&&&&&&&&%&%%&%%##%
-          (%#%%%&&&&@&&&&&&&&&&&&@%
-          %%&%%/(%&&&&&&&&/*(%&&&&&                                    ,,*,   ..*.,
-          %%&%(,**&&&&&&&(,*%&&@&&&@%
-          .%%%&&&&&@&&&&&&&&@&@&&&&&&&&&.
-            %%%%%&&&&&@&&&&%&%&&&&&&&&&&&&&&.
-             (((#%%&%@&&%%%%%&%%&&%%&&&&&&&&&&&%%&%*
-               %#%&%%%&%&&&%%%&&&&&&&&&&&&&&&&&&&&&&%%&&&%%&%(.
-                .&&&&&&&&&&&&&&&&&&&&&&&&&&&&%&&&&&&&&&&&%%%%%%%%%%&%.
-                 %%%%%%%%&&&&&&&&&&&&&&&&&&&&%&&&&&&&&&&&&&&%%%%%%%%%%%%#
-                 ##%%%%%%%%&&&&&&&&&&&&&&&&&&%&&&&&&&&&&&&&&&&&&&%%%%%%%%%&.
-                 /##%%%%%%%%%&&&&&&&&&&&&&&&%%&&&@@&&&&&&&&&&&&&&&&%&&%%%%%&&(
-                  *#%%%%%%%%%%%&&&&&&&&&&&&%&&&&&&&&&&&&&&&&&&&&&&&&&&%&&%%%%%&/
-                   .%%%%&&&&%%%%&&&&&&&&&%&%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%&&
-                     .%%%#%&&&&%%%&&&&&&&%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%&%%%%&&
-                        #%%%%&&&&%%%&&&&&%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%&,
-                          /%&%&&&&&%%&&&%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%&&
-                            /%&&&&&&%%&&%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@&&&&&&&&&&&&
-                             #%&&&&&%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-                             %%&&&&&%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&,
-                             %%%&&&&%%%&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-                             %%%&&&&%%%&&&&&&&&&%%&&%%&&&&&&&&&&&&&&&%%&&&&&&&&&&&&&&&&&&&.
-                             %%&&&&&%%%&&&&@(&&&%%%&%%&%&&&&&&&&&%%&%%%%%%%&&&&&&&&&&&&&&&@.
-                             %%&&&&,%%&&&&@(  .%&&%&&%&&&&&&&&&%%%%%%%%&%%%%&&&&&&&&&&&&&&&@
-                            %&&&@@&*%%&&&&&      #&&&%&&&&&&%%%&%%%&&&&&&%&&&&&&&&&@@&&&%&&&(
-                      ,&%%&@@@@@@* %&&&&&@#        *&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@&%%%%&&@@*
-                     (@&@&&@@@@&@&@@@@&@&,   ,(&&@&&&&&&&&&&&&&&%&%%%%%%%%%%%%%%%%%%&&&&&@@&.
-                       ..,,,,*&&&@&@@@@&#%%%%%%%%%%%%&%%&&%%%%&%%%%&&&&&&&%%&&%%&&&&&@&@@@&/,
-                              .*//*,,,.../&&&@@@@@@@@&@@@&&&&&@&@@@@@@@&@&@&&&@@&@@@@@@@%/,.
-                                                        .......,,**/#%&&&&&&&&&&%#/*,.
+                                ,(                                                                  
+       /#%%*                 .%%(*(*                                                                
+        #(/(%%#            .&&%(/#(.                                                                
+        .#(##%%%&&&%%#%%&&&&&%(####                                                                 
+          #%#%%%%&&&&&&&&%&%%&%%##%                                                                 
+          (%#%%%&&&&@&&&&&&&&&&&&@%                                                                 
+          %%&%%/(%&&&&&&&&/*(%&&&&&                                    ,,*,   ..*.,                 
+          %%&%(,**&&&&&&&(,*%&&@&&&@%                                                               
+          .%%%&&&&&@&&&&&&&&@&@&&&&&&&&&.                                                           
+            %%%%%&&&&&@&&&&%&%&&&&&&&&&&&&&&.                                                       
+             (((#%%&%@&&%%%%%&%%&&%%&&&&&&&&&&&%%&%*                                                
+               %#%&%%%&%&&&%%%&&&&&&&&&&&&&&&&&&&&&&%%&&&%%&%(.                                     
+                .&&&&&&&&&&&&&&&&&&&&&&&&&&&&%&&&&&&&&&&&%%%%%%%%%%&%.                              
+                 %%%%%%%%&&&&&&&&&&&&&&&&&&&&%&&&&&&&&&&&&&&%%%%%%%%%%%%#                           
+                 ##%%%%%%%%&&&&&&&&&&&&&&&&&&%&&&&&&&&&&&&&&&&&&&%%%%%%%%%&.                        
+                 /##%%%%%%%%%&&&&&&&&&&&&&&&%%&&&@@&&&&&&&&&&&&&&&&%&&%%%%%&&(                      
+                  *#%%%%%%%%%%%&&&&&&&&&&&&%&&&&&&&&&&&&&&&&&&&&&&&&&&%&&%%%%%&/                    
+                   .%%%%&&&&%%%%&&&&&&&&&%&%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%&&                   
+                     .%%%#%&&&&%%%&&&&&&&%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%&%%%%&&                 
+                        #%%%%&&&&%%%&&&&&%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%&,               
+                          /%&%&&&&&%%&&&%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%&&              
+                            /%&&&&&&%%&&%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@&&&&&&&&&&&&             
+                             #%&&&&&%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&            
+                             %%&&&&&%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&,           
+                             %%%&&&&%%%&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&           
+                             %%%&&&&%%%&&&&&&&&&%%&&%%&&&&&&&&&&&&&&&%%&&&&&&&&&&&&&&&&&&&.         
+                             %%&&&&&%%%&&&&@(&&&%%%&%%&%&&&&&&&&&%%&%%%%%%%&&&&&&&&&&&&&&&@.        
+                             %%&&&&,%%&&&&@(  .%&&%&&%&&&&&&&&&%%%%%%%%&%%%%&&&&&&&&&&&&&&&@        
+                            %&&&@@&*%%&&&&&      #&&&%&&&&&&%%%&%%%&&&&&&%&&&&&&&&&@@&&&%&&&(       
+                      ,&%%&@@@@@@* %&&&&&@#        *&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@&%%%%&&@@*       
+                     (@&@&&@@@@&@&@@@@&@&,   ,(&&@&&&&&&&&&&&&&&%&%%%%%%%%%%%%%%%%%%&&&&&@@&.       
+                       ..,,,,*&&&@&@@@@&#%%%%%%%%%%%%&%%&&%%%%&%%%%&&&&&&&%%&&%%&&&&&@&@@@&/,       
+                              .*//*,,,.../&&&@@@@@@@@&@@@&&&&&@&@@@@@@@&@&@&&&@@&@@@@@@@%/,.        
+                                                        .......,,**/#%&&&&&&&&&&%#/*,.              
 
 )";
-                                onesecsleep();
-                                cout << "Fish? Fish? Human, do you have any fish?";
-                                onesecsleep();
-                            }
-                            if (x.info.catnumber[5] == true) {
-                                cout << R"(
-
-
-
-          .(%&&%*                          (&%%%%%
-          #(####%%&&#                  ,&&%##(**(#
-           %(/////#%%&&@%.     .  .,(@&&&%%(***#%
-            %#((/***#%%&&&%%%%&&&&&&&&&&&%#//((#
-             (#((%##%&&&%&&&%%&&&&@&%%&&&@%(##%
-               ####%&&&&..,/&&%&@&&/../&&&&%##
-                 &&&&&%#%&&%&@&%&&@&&&&%&@&@
-                   ,%%&&@&&@&%%##%@&&@&&&#
-                     (&&&%##%&&&&&&&&&&&%
-                     .&&&%&&&&&@&@&%%&&&,
-                     %%&&@@@&&%%%%&@@@@@&
-                    *&&&@@&&&@@@@@@@@@@@@%
-                    &&@&&&&&&&@@@@@@@&&&&@@
-                   %%&&@@&&&&&&@@@@@@&&&&&@@
-                  .&&&&@@&&&&&&&@&@@@@&&&&@&&
-                  ,&%%&&@@@&&&&&&&&&&&&&&@@@@
-                  ,%%%&&&@@@&&&&&@@&&&&&&@@@@*
-                  /&%%&&&&&&&&&&&@@&&&&&@@@@@/
-                  *&%%%%&&@&&&&&&&&&&&&&&@@@@/
-                  .&%%%%&%&%%%&&&&&&&&&&&@@&&,
-                   @&&&@@@&&%%%&&&&@@@@@&&@@@.
-                  (&%&&@@@@@@&%&&@@@@@@@&&&@@
-                 .&%%&&@@@@@@@&&&@@@@@@@&&@@&&
-                 &%%%%&@@@@@@@@@@@@@@@@@&&&&@&(
-                 @%&&&&&@@@@@@@@@@@@@@@@&&@&@&&
-                (@&#&&&@&@@@&&@&@@@&@@&&&&@@@&&
-              ,&&&&%%&&&&@@&&&&@&&&@@&&&&&&&@@@&*
-             %%&&&&@%&&&&@@&&&&&&&&@@&&&&@&&@@@@&/
-            *&&&&&&&%&&&&&@@&&&&&&&&&&&&@@&@@@@&&%
-            %&&&&&&&%&%%&&&&@&&&%&&@&%&&@&@@@@@@&&
-            %%&&&&&&&#&%&@@&&@&&&&@&%&&@@&@@@@@@@&
-           .%%%%&&@@&%%&&&@&@@&&&&@%&&&@@&&&@@@&&%
-           .&%%%%&&&&%&%&@@&@@&&@&@#&&&@&@@@@@@@&(
-           .&&%%%&&&&&%&&&@&@@@&&&@#&&&@&@@@@&&@@@@@&&&&%%%####/*,
-            .&%%%&&&&@#%%@@&@&&&@&@%&&&@&@@@&&@@@@@@@@@@&&@@&&&&&&&&&&%%%##%%.
-              ,%&&&&&&%%&&&&@@&@&&&%&&&@&@@&&&@&%(,.                 ...*#&&&&%%#%*
-                (%%&&&%&&&@&@@&&&@%%&&@@&@&&(.                                .*%@%#%(
-                   /&@%&&&@&&@&&&@#&&&@@&/                                         ,%&%#(
-                   #&&&%&&@@&@&&@&%&&&@@/                                              ,&%%
-                  .%&@&@&&@@@/,..(&&&&&@@#
-                    ,%%&&&&@@&.  .%%#&&%&@&*
-                    .&&%&%@@%.    (&%%@&%@%.
+                onesecsleep();
+                cout << "Fish? Fish? Human, do you have any fish?";
+                twosecsleep();
+            }
+            if (x.info.catnumber[5] == true) {
+                cout << R"(
+                                                                                                    
+                                                                                                    
+                                                                                                    
+          .(%&&%*                          (&%%%%%                                                  
+          #(####%%&&#                  ,&&%##(**(#                                                  
+           %(/////#%%&&@%.     .  .,(@&&&%%(***#%                                                   
+            %#((/***#%%&&&%%%%&&&&&&&&&&&%#//((#                                                    
+             (#((%##%&&&%&&&%%&&&&@&%%&&&@%(##%                                                     
+               ####%&&&&..,/&&%&@&&/../&&&&%##                                                      
+                 &&&&&%#%&&%&@&%&&@&&&&%&@&@                                                   
+                   ,%%&&@&&@&%%##%@&&@&&&#                                                          
+                     (&&&%##%&&&&&&&&&&&%                                                           
+                     .&&&%&&&&&@&@&%%&&&,                                                           
+                     %%&&@@@&&%%%%&@@@@@&                                                           
+                    *&&&@@&&&@@@@@@@@@@@@%                                                          
+                    &&@&&&&&&&@@@@@@@&&&&@@                                                         
+                   %%&&@@&&&&&&@@@@@@&&&&&@@                                                        
+                  .&&&&@@&&&&&&&@&@@@@&&&&@&&                                                       
+                  ,&%%&&@@@&&&&&&&&&&&&&&@@@@                                                       
+                  ,%%%&&&@@@&&&&&@@&&&&&&@@@@*                                                      
+                  /&%%&&&&&&&&&&&@@&&&&&@@@@@/                                                      
+                  *&%%%%&&@&&&&&&&&&&&&&&@@@@/                                                      
+                  .&%%%%&%&%%%&&&&&&&&&&&@@&&,                                                      
+                   @&&&@@@&&%%%&&&&@@@@@&&@@@.                                                      
+                  (&%&&@@@@@@&%&&@@@@@@@&&&@@                                                       
+                 .&%%&&@@@@@@@&&&@@@@@@@&&@@&&                                                      
+                 &%%%%&@@@@@@@@@@@@@@@@@&&&&@&(                                                     
+                 @%&&&&&@@@@@@@@@@@@@@@@&&@&@&&                                                     
+                (@&#&&&@&@@@&&@&@@@&@@&&&&@@@&&                                                     
+              ,&&&&%%&&&&@@&&&&@&&&@@&&&&&&&@@@&*                                                   
+             %%&&&&@%&&&&@@&&&&&&&&@@&&&&@&&@@@@&/                                                  
+            *&&&&&&&%&&&&&@@&&&&&&&&&&&&@@&@@@@&&%                                                  
+            %&&&&&&&%&%%&&&&@&&&%&&@&%&&@&@@@@@@&&                                                  
+            %%&&&&&&&#&%&@@&&@&&&&@&%&&@@&@@@@@@@&                                                  
+           .%%%%&&@@&%%&&&@&@@&&&&@%&&&@@&&&@@@&&%                                                  
+           .&%%%%&&&&%&%&@@&@@&&@&@#&&&@&@@@@@@@&(                                                  
+           .&&%%%&&&&&%&&&@&@@@&&&@#&&&@&@@@@&&@@@@@&&&&%%%####/*,                                  
+            .&%%%&&&&@#%%@@&@&&&@&@%&&&@&@@@&&@@@@@@@@@@&&@@&&&&&&&&&&%%%##%%.                      
+              ,%&&&&&&%%&&&&@@&@&&&%&&&@&@@&&&@&%(,.                 ...*#&&&&%%#%*                 
+                (%%&&&%&&&@&@@&&&@%%&&@@&@&&(.                                .*%@%#%(              
+                   /&@%&&&@&&@&&&@#&&&@@&/                                         ,%&%#(           
+                   #&&&%&&@@&@&&@&%&&&@@/                                              ,&%%         
+                  .%&@&@&&@@@/,..(&&&&&@@#                                                          
+                    ,%%&&&&@@&.  .%%#&&%&@&*                                                        
+                    .&&%&%@@%.    (&%%@&%@%.                                                        
+                                                                                                    
+)";
+                onesecsleep();
+                cout << "I truly can't believe you left me with these hooligans. Such a place does not befit a feline of my stat- ooooooooh is that catnip?";
+                twosecsleep();
+            }
+            if (x.info.catnumber[0] == true) {
+                cout << R"(
+                                                                                                    
+                                                                                                    
+                                                                                                                                                                     ..                                 
+                                                                (/%#,*,.                            
+                                                             ((%/&&#&#%%                            
+                                                              #@@@@@&&(                             
+                                          #(#*/*,/             ,&&@&#,                              
+                          .%%(*          &&&&&&&&%(.            &@@.                                
+                        .**(###%%%#&/*##@@@&%&#/*               &&                                  
+                           .%@&%*#&&&@@%(&&*           (*#&%&&%&&@(%((                              
+                            /&#&%%@&%&(#@/%#%&%%.  ,,&/*#(%%/##&@@@(%#%%&/                          
+                        ,((*/(%&&&%(/&#/%/(#/&%%%&#/.,%/*#((&%&@@@@%*#%&%%&%%.                      
+                     ,///(%(/#%%&@*(/(@(%@/((#(@##%@(%,/#/,,(&&@@&%@%/%&&&(&@&&@                    
+                  .,*/#**//(%%&&@&//(#%%%##%###(%&%#%@&(%/,*&%%%&###&.%#&%###&&&%#                  
+                  ,((,,*//%%&@@@@#/(/(&/*&%#%##((#&%%#%&%%(%%&&&&%/&%*%@#%%%#%%&&%&#                
+                 ,,,.***%&@&#@&@@&(/#*&/.%&(###&&&##@#%#%%%&&&&(%&#@&%%%%%%%%%%#%#%#%(              
+                 /(%#/(%((##(%&&@//%(.%#.(%*%%%%%%%#%&%%#%%#&&&(#&%@&%&&%(%%%%%##%###(,             
+                *((###/%(#(%&&#%@*%%,.*#*##%*%%%#%%&#%&&%##(&@@&@&&&@&&&%%%%%%%#######(             
+               */(###%%%#%(#((/%&(%#%&%%%&%##%%%%%&%&%%%&##%%&@@@@%&&&&%%%&%%%%%########            
+              ((////#((///##&##&%#%((#%%%%%%%%%%%%%&%&%%%%#&%%@@@@&&&&%%&%%%%%%%%########           
+             /%(%////*//(%(/#%%&/&&%%%&%%%%%%%%%%%%%%%%%%%%#&%@@@@@&&%&%%&%%%%%&%#######%           
+             *##%%%#(//((##((/&%%%%%%###%%%%%%%%%%%%%%%%%#%%(%@@@&&&&&&&&&&%%%%%&%####(#(.          
+             (/(%*(%###(/(((%%#(&&&&%%&%%&&%%%%%%%%%%%%%%%%##%&@@@&%%&&&&&&%%%%%%&%####(#.          
+            /%##*#%(%#%%/#((((#(#%#&&&&%&&&&&&&&%%%%%%%%%%%%#%#&@@@@&&&&&&&%%&&&%%%####(#           
+           .(((#/(###(((#((((%(#(#(##%&%&&&&&%%%%%%%%%%%%%%%%%##@@@@@@&&&&&&&&&&&&&%#%%##           
+           /#(*/%/#(#%%%##((%(#(#%#(#&&##%%&%&%%%%%%%%%%%%%%%%#%#@@@@@@&&&&&&&&&&@&%#&#%@           
+           *(#(((#(#######((####((###&%#&&%%%%%%%%%%%%%%%%%&%%%%%@@@@@&&&&&&&@@@&&%@@&&(.           
+            ####((/((##############(########%%%%%%%%%%%%&%%%##%%%##%%&@@@&@@@@@@&&@&&#,..           
+             ###%((((########################%%%&&%%%%%%%%%%%%#%%#********,***,**,,,,....           
+             .#(((####(#######################%%%%%%%%%%%%%%%##%%(,,,,,,,,,.............            
+                 ,(%&&&&&&@@@&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%&%,,,,,.................             
+                          ..,/(###%%%%%&&&&&&@@@@@@&&%%%%%%&@@&/*,,,.................               
+                                      ...,*//((####%%%&&&&%(**,.,.................                  
+                                                        ........                                    
+                                                                                                    
+                                                                                                    
 
 )";
-                                onesecsleep();
-                                cout << "I truly can't believe you left me with these hooligans. Such a place does not befit a feline of my stat- ooooooooh is that catnip?";
-                                onesecsleep();
-                            }
-                            if (x.info.catnumber[0] == true) {
-                                cout << R"(
-
-
-                                                                                                                                                                     ..
-                                                                (/%#,*,.
-                                                             ((%/&&#&#%%
-                                                              #@@@@@&&(
-                                          #(#*/*,/             ,&&@&#,
-                          .%%(*          &&&&&&&&%(.            &@@.
-                        .**(###%%%#&/*##@@@&%&#/*               &&
-                           .%@&%*#&&&@@%(&&*           (*#&%&&%&&@(%((
-                            /&#&%%@&%&(#@/%#%&%%.  ,,&/*#(%%/##&@@@(%#%%&/
-                        ,((*/(%&&&%(/&#/%/(#/&%%%&#/.,%/*#((&%&@@@@%*#%&%%&%%.
-                     ,///(%(/#%%&@*(/(@(%@/((#(@##%@(%,/#/,,(&&@@&%@%/%&&&(&@&&@
-                  .,*/#**//(%%&&@&//(#%%%##%###(%&%#%@&(%/,*&%%%&###&.%#&%###&&&%#
-                  ,((,,*//%%&@@@@#/(/(&/*&%#%##((#&%%#%&%%(%%&&&&%/&%*%@#%%%#%%&&%&#
-                 ,,,.***%&@&#@&@@&(/#*&/.%&(###&&&##@#%#%%%&&&&(%&#@&%%%%%%%%%%#%#%#%(
-                 /(%#/(%((##(%&&@//%(.%#.(%*%%%%%%%#%&%%#%%#&&&(#&%@&%&&%(%%%%%##%###(,
-                *((###/%(#(%&&#%@*%%,.*#*##%*%%%#%%&#%&&%##(&@@&@&&&@&&&%%%%%%%#######(
-               */(###%%%#%(#((/%&(%#%&%%%&%##%%%%%&%&%%%&##%%&@@@@%&&&&%%%&%%%%%########
-              ((////#((///##&##&%#%((#%%%%%%%%%%%%%&%&%%%%#&%%@@@@&&&&%%&%%%%%%%%########
-             /%(%////*//(%(/#%%&/&&%%%&%%%%%%%%%%%%%%%%%%%%#&%@@@@@&&%&%%&%%%%%&%#######%
-             *##%%%#(//((##((/&%%%%%%###%%%%%%%%%%%%%%%%%#%%(%@@@&&&&&&&&&&%%%%%&%####(#(.
-             (/(%*(%###(/(((%%#(&&&&%%&%%&&%%%%%%%%%%%%%%%%##%&@@@&%%&&&&&&%%%%%%&%####(#.
-            /%##*#%(%#%%/#((((#(#%#&&&&%&&&&&&&&%%%%%%%%%%%%#%#&@@@@&&&&&&&%%&&&%%%####(#
-           .(((#/(###(((#((((%(#(#(##%&%&&&&&%%%%%%%%%%%%%%%%%##@@@@@@&&&&&&&&&&&&&%#%%##
-           /#(*/%/#(#%%%##((%(#(#%#(#&&##%%&%&%%%%%%%%%%%%%%%%#%#@@@@@@&&&&&&&&&&@&%#&#%@
-           *(#(((#(#######((####((###&%#&&%%%%%%%%%%%%%%%%%&%%%%%@@@@@&&&&&&&@@@&&%@@&&(.
-            ####((/((##############(########%%%%%%%%%%%%&%%%##%%%##%%&@@@&@@@@@@&&@&&#,..
-             ###%((((########################%%%&&%%%%%%%%%%%%#%%#********,***,**,,,,....
-             .#(((####(#######################%%%%%%%%%%%%%%%##%%(,,,,,,,,,.............
-                 ,(%&&&&&&@@@&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%&%,,,,,.................
-                          ..,/(###%%%%%&&&&&&@@@@@@&&%%%%%%&@@&/*,,,.................
-                                      ...,*//((####%%%&&&&%(**,.,.................
-                                                        ........
-
-
-
-)";
-                                onesecsleep();
-                            }
-                        }
-                    }
-                    //they don't own a cat cafe yet
-                    else {
-                        cout << "You don't own anything yet :C" << endl;
-                    }
-                }
-
-                else {
-                    cout << "This key does nothing... Please try again " << endl;
-                    getline(cin, tempkey);
-                }
+                onesecsleep();
+                cout << "***  Food noises   ***";
+                twosecsleep();
             }
         }
+        cout << R"(
+        --------------------------------------------------------------------------------------------------------
+        --------------------------------------------------------------------------------------------------------
+)";
+        cout << "Goodbye~";
+        twosecsleep();
+        return;
+    }
+    //they don't own a cat cafe yet
+    else {
+        cout << "You don't own a cafe yet :C" << endl;
+        twosecsleep();
+        return;
     }
 }
