@@ -21,7 +21,10 @@ struct GhostData{
   bool imdefending;
 };
 
-void catcafe(Player &);
+void catcafeMenu(Player &);
+void showCatalogue(Player x);
+void purchase(Player& x);
+void visitCafe(Player x);
 void printstats(Player);
 void MonsterAttack (GhostData &, Player &,int &hexed);
 void MonsterDefend(GhostData &, Player &, int &hexed);

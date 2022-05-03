@@ -14,7 +14,6 @@ struct PlayerStats {
     std::string attackone;
     std::string attacktwo;
     std::string attackthree;
-    Point position;
 };
 struct PlayerInfo {
     std::string myname;
@@ -42,4 +41,5 @@ void fivesecsleep();
 void tensecsleep();
 void ClearScreen();
 void loadvalues(Player &);
+void saveValues(Player x);
 #endif
