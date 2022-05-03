@@ -10,8 +10,6 @@ using namespace std;
 
 
 
-//Quest menu functions
-//Lets user pick a Quest
 
 //printstats Function
 //takes in a struct of type Player where it can read the player's stats.
@@ -69,22 +67,22 @@ void LevelUp(Player &z){
     twosecsleep();
   }
   srand(time(NULL)*876);
-  int whatshouldIdo = rand()% 100;
-  if (whatshouldIdo >= 50){
+  int whatshouldIdo1 = rand()% 100;
+  if (whatshouldIdo1 >= 50){
     z.stats.mydefense +=1;
     cout << z.info.myname<<"\'s defense has increased by one point!"<<endl;
     twosecsleep();
   }
   srand(time(NULL)*405);
-  int whatshouldIdo = rand()% 100;
-  if (whatshouldIdo >= 50){
+  int whatshouldIdo2 = rand()% 100;
+  if (whatshouldIdo2 >= 50){
     z.stats.myspeed +=1;
     cout << z.info.myname<<"\'s speed has increased by one point!"<<endl;
     twosecsleep();
   }
   srand(time(NULL)*9182);
-  int whatshouldIdo = rand()% 100;
-  if (whatshouldIdo >= 50){
+  int whatshouldIdo3 = rand()% 100;
+  if (whatshouldIdo3 >= 50){
     z.stats.maxhealth +=5;
     cout << z.info.myname<<"\'s maximum health points have increased by five points!"<<endl;
     twosecsleep();
@@ -125,7 +123,7 @@ void ExperienceGain(Player &x, GhostData g){
     x.stats.experiencepoints -= experienceneeded;
     LevelUp(x);
   }
-  cout << "You have just gained "<<experiencegained << " experience points!"endl;
+  cout << "You have just gained "<< experiencegained << " experience points!" << endl;
   onesecsleep();
   cout << "Current level is: "<< x.stats.level<<endl;
   onesecsleep();
@@ -784,4 +782,95 @@ char battlephase(Player &x, char initial){
     //if yes, level up.
     return 'W';
   }
+}
+
+
+
+//Quest menu functions
+//Lets user pick a Quest
+void Questmenu(Player &x){
+  string tempkey;
+  cout<<R"(
++==============================+===========+======================================+==============+
+|******************************************JOB REQUESTS******************************************|
++==============================+===========+======================================+==============+
+| Case Number                  | Location  | Details                              | Reward       |
++------------------------------+-----------+--------------------------------------+--------------+
+| 001                          | The Peak  | Please help me! The Dragon Lodge     | HKD999999999 |
++------------------------------+-----------+                                      +--------------+
+|                              |           | is prime real estate location,       |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | but its filled with undead and       |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | whatnot. No one wants to buy         |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | hoong zak, even when it's on the     |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | most exclusive area of HK. Please!   |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | come kill all the monsters!          |              |
++------------------------------+-----------+--------------------------------------+--------------+
+| 002                          | Wan Chai  | Nam Koo Terrace supposedly is        | HKD99999999  |
++------------------------------+-----------+                                      +--------------+
+|                              |           | filled with spirits of women         |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | want revenge from the evils of       |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | the Japanese invaders. I don't       |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | know about that, I just know         |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | the Terrace is filled with treasure! |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | Please go and retrive all the loot.  |              |
++------------------------------+-----------+--------------------------------------+--------------+
+| 003                          | Yuen Long | Tak Tak School was closed decades    | HKD999999999 |
++------------------------------+-----------+                                      +--------------+
+|                              |           | ago, now it's one of the most haun-  |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | ted places in the entire City.       |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | Don't ask me how I know this, but    |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | apparently all those ghosts are      |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | guarding the most heavenly can of    |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | Abalone your eyes will ever see. I   |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | would go fetch it myself, but the    |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | place is like a maze, and those      |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | ghosts are not about to surrender    |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | some godly Abalone easily.           |              |
++------------------------------+-----------+                                      +--------------+
+|                              |           | Help me out and I'll pay generously! |              |
++------------------------------+-----------+--------------------------------------+--------------+
+  )";
+  twosecsleep();
+  cout<< "Choose a quest! Please input the case number you want to tackle, or press b to go back."<<endl;
+  while (true){
+    getline(cin,tempkey);
+    if (tempkey == "001"){
+      //go to 001
+    }else if (tempkey == "002"){
+      //go to 002
+    }else if (tempkey == "003"){
+      //go to 003
+    }else if (tempkey == "b"){
+      return;
+    }else if (tempkey == "test"){
+      battlephase(x, 'J'); //testing purposes
+      x.stats.mycurrenthealth = x.stats.maxhealth;
+      twosecsleep();
+      cout << "prepare for round 2 ";
+      twosecsleep();
+      battlephase(x, 'L');
+    }else{
+      cout<< "Not a valid input. Try again!"<<endl;
+    }
+  }
+
 }

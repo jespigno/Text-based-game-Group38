@@ -26,13 +26,15 @@ void showCatalogue(Player &);
 void purchase(Player&);
 void visitCafe(Player&);
 void printstats(Player);
+void LevelUp(Player &);
+void ExperienceGain(Player &, GhostData );
 void MonsterAttack (GhostData &, Player &,int &hexed);
 void MonsterDefend(GhostData &, Player &, int &hexed);
 void banner(char o);
 bool usermoves(Player &, GhostData &);
 void enemymoves(Player &, GhostData &, int &hex);
-
 char battlephase(Player &, char x);
+void Questmenu(Player &);
 
 
 
