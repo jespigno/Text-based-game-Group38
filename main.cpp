@@ -9,7 +9,7 @@ using namespace std;
 void mainmenu(Player x);
 
 int main(){
-    Player defaultval = { 1, 10, 10, 3 ,3, 3, 0, 0.0 ,"xxxxxxxxxxxxxxx","xxxxxxxxxxxxxxx","xxxxxxxxxxxxxxx","Joe", 0, 0,false, false, false, false, false, false, true};
+    Player defaultval = { 1, 10, 10, 3 ,3, 3, 0, 0.0 ,"xxxxxxxxxxxxxxx","xxxxxxxxxxxxxxx","xxxxxxxxxxxxxxx","Joe", false, false, false, false, false, false, 0,false, false, false, false, false, false, true};
     string saveornot;
     while (saveornot != "L" && saveornot != "N"){
       cout<< "Load game (L) or New game (N)?"<<endl;
@@ -22,7 +22,7 @@ int main(){
         getline(cin, defaultval.info.myname);
         cout<< "Welcome, "<< defaultval.info.myname << endl;
       }else{
-        cout << "That's not an option :( try again)"<<endl;
+        cout << "That's not an option :( try again!"<<endl;
       }
     }
     if (defaultval.info.firsttime == true){
@@ -182,7 +182,8 @@ int main(){
 
 void mainmenu(Player x){
   string mycurrentchoice;
-  cout<< R"(
+  while (true) {
+      cout << R"(
                                                    .-') _            .-')                  ('-.   .-')   .-') _   ,------.
                                               ( OO ) )         .(  OO)               _(  OO) ( OO ).(  OO) ) '  .--.  '
   ,----.    .-'),-----.        .-'),-----.,--./ ,--,'         (_)---\_)  ,--. ,--.  (,------(_)---\_/     '._|  |  |  |
@@ -203,25 +204,29 @@ void mainmenu(Player x){
     \   /  (_|  |  \       (_|  |     |  |         (_'  '--'\ |  | |  | \|  |_)  |  `---.  .---.
      `-'     `--'   `-----'  `--'     `--'            `-----' `--' `--'  `--'    `------'  '---'
                                     Press                         C
-  )"<< endl;
-  while (mycurrentchoice != "Q" && mycurrentchoice != "C"){
-    getline(cin, mycurrentchoice);
-    if (mycurrentchoice == "Q"){
-      //Quest(); CODE THIS
-      cout<<"this loop works!"<<endl;
-      printstats(x); //testing purposes
-      battlephase(x, 'J'); //testing purposes
-      x.stats.mycurrenthealth = x.stats.maxhealth;
-      twosecsleep();
-      cout << "prepare for round 2 ";
-      twosecsleep();
-      battlephase(x, 'L');
-    }else if (mycurrentchoice == "C"){
-      //VisitCafe(); CODETHIS
-      catcafe(x);
-      mainmenu(x);
-    }else{
-      cout << "That's not an option :( try again)"<<endl;
-    }
+  )" << endl;
+      while (mycurrentchoice != "Q" && mycurrentchoice != "C") {
+          getline(cin, mycurrentchoice);
+          if (mycurrentchoice == "Q") {
+              //Quest(); CODE THIS
+              cout << "this loop works!" << endl;
+              printstats(x); //testing purposes
+              battlephase(x, 'J'); //testing purposes
+              x.stats.mycurrenthealth = x.stats.maxhealth;
+              twosecsleep();
+              cout << "prepare for round 2 ";
+              twosecsleep();
+              battlephase(x, 'L');
+              break;
+          }
+          else if (mycurrentchoice == "C") {
+              //VisitCafe(); CODETHIS
+              catcafeMenu(x);
+              break;
+          }
+          else {
+              cout << "That's not an option :( try again)" << endl;
+          }
+      }
   }
 }

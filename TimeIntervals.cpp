@@ -73,7 +73,24 @@ void loadvalues(Player &x){
  	}
   loadfromfile >> x.stats.level >> x.stats.maxhealth >> x.stats.mycurrenthealth >> x.stats.mydefense >> x.stats.myattack >> x.stats.myspeed >> x.stats.mymoney >> x.stats.experiencepoints;
   loadfromfile >> x.stats.attackone >> x.stats.attacktwo >> x.stats.attackthree;
-  loadfromfile >> x.info.myname >> x.info.catnumber >> x.info.amountoffurniture >> x.info.boughtcatcafe >> x.info.level1complete >> x.info.level2complete >> x.info.level3complete >> x.info.level4complete >> x.info.level5complete;
+  loadfromfile >> x.info.myname >> x.info.catnumber[0] >> x.info.catnumber[1] >> x.info.catnumber[2] >> x.info.catnumber[3] >> x.info.catnumber[4]
+      >> x.info.catnumber[5] >> x.info.amountoffurniture >> x.info.boughtcatcafe >> x.info.level1complete >> x.info.level2complete >> x.info.level3complete >> x.info.level4complete >> x.info.level5complete;
   x.info.firsttime = 0;
   loadfromfile.close();
+}
+
+//function input is Player struct, no output
+//function outputs values in the player struct to a save file, which can be loaded in the next game
+void saveValues(Player x) {
+    ofstream loadtofile;
+    loadtofile.open("Savefile.txt");
+    if (loadtofile.fail()) {
+        cout << "Save unsuccessful. Please try again." << endl;
+        exit(1);
+    }
+    loadtofile >> x.stats.level >> x.stats.maxhealth >> x.stats.mycurrenthealth >> x.stats.mydefense >> x.stats.myattack >> x.stats.myspeed >> x.stats.mymoney >> x.stats.experiencepoints;
+    loadtofile >> x.stats.attackone >> x.stats.attacktwo >> x.stats.attackthree;
+    loadtofile >> x.info.myname >> x.info.catnumber[0] >> x.info.catnumber[1] >> x.info.catnumber[2] >> x.info.catnumber[3] >> x.info.catnumber[4]
+        >> x.info.catnumber[5] >> x.info.amountoffurniture >> x.info.boughtcatcafe >> x.info.level1complete >> x.info.level2complete >> x.info.level3complete >> x.info.level4complete >> x.info.level5complete;
+    loadtofile.close();
 }
