@@ -125,6 +125,12 @@ void ExperienceGain(Player &x, GhostData g){
     bonus = 5 + x.stats.level;
   } else if (g.name == "Vengeful Spirit"){
     bonus = x.stats.level * 1.5;
+  } else if (g.name == "Hungry Ghost"){
+    bonus = (x.stats.level/5)*(x.stats.level/5) + x.stats.level * 4 + (44/x.stats.level) * 4;
+  }else if (g.name == "Possessed Medium"){
+    bonus = ((x.stats.level + x.stats.maxhealth) * 44)/4 + (x.stats.level * x.stats.maxhealth)/8;
+  }else if (g.name == "Water Ghost"){
+    bonus = 88 * x.stats.myattack + 4 * x.stats.myspeed + 4*x.stats.defense + x.stats.maxhealth *4;
   }
   float experiencegained = (bonus * 20)/5 + (x.stats.level *20 / 7);
   x.stats.experiencepoints += experiencegained;
@@ -149,6 +155,12 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
     secretnumber = ghast.attack + ghast.defense;
   }else if (ghast.name == "Vengeful Spirit"){
     secretnumber = ghast.defense * 2;
+  }else if (ghast.name == "Hungry Ghost"){
+    secretnumber = ghast.speed * ghast.defense;
+  }else if (ghast.name == "Possessed Medium"){
+    secretnumber = ghast.speed + ghast.maxhealth + ghast.defense;
+  }else if (ghast.name == "Water Ghost"){
+    secretnumber = ghast.speed * ghast.defense * 4;
   }
   halfasecsleep();
   onesecsleep();
@@ -216,6 +228,28 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
       }
       twosecsleep();
     }
+  }else if (currentattack == "Eternal Despair"){
+    cout << ghast.name << " tries to swallow "<< pleya.info.myname << " into darkness" << endl;
+      damage = ((((((2*secretnumber)/5)+2) * (ghast.attack/pleya.stats.mydefense))/ 45)+ 2) * 1.3;
+  }else if (currentattack == "Sharp Knife"){
+    cout << ghast.name << " attacks "<< pleya.info.myname << " with a sharp knife!" << endl;
+        damage = ((((((2*secretnumber)/5)+2) * (ghast.attack/pleya.stats.mydefense))/ 35)+ 2) * 1.4;
+  }else if (currentattack == "Tidal Wave"){
+    cout << ghast.name << " brings forth a Tidal Wave of putrid water!" << endl;
+    halfasecsleep();
+    srand(time(NULL)+28);
+    int * randomnumber = new int (rand()%10);
+    if (*randomnumber >= 6){
+      cout << pleya.info.myname << "\'s defense was pierced! Extra damage!"<<endl;
+      damage = ((((((2*secretnumber)/5)+2) * (ghast.attack))/ 35)+ 2) * 1.4;
+    }else {
+      damage = ((((((2*secretnumber)/5)+2) * (ghast.attack/pleya.stats.mydefense))/ 35)+ 2) * 1.2;
+    }
+    delete randomnumber;
+
+  }else if (currentattack == "Underwater Chains"){
+    cout << ghast.name << " pulls " << pleya.info.myname << " underwater with heavy chains."<< endl;
+    damage = ((((((2*secretnumber)/5)+2) * (ghast.attack/pleya.stats.mydefense))/ 35)+ 2) * 1.5;
   }
   if (ghast.momentarychange != 0){
     damage -= ghast.momentarychange;
@@ -1135,6 +1169,10 @@ bool usermoves(Player &p, GhostData &g){
     }else{
       cout << "Invalid move!"<< g.name << " will take advantage of this slip-up..."<<endl;
     }
+    srand(time(NULL)*88);
+    int * rnumber = new int (rand()%7);
+    damage += *rnumber;
+    delete rnumber;
     if (g.imdefending == true){
       damage -= (g.defense - (whatshouldIdo % 3));
       g.imdefending = false;
@@ -1236,7 +1274,7 @@ void enemymoves (Player &p, GhostData &g, int &hex){
     onesecsleep();
     cout << "."<<endl;
     halfasecsleep();
-    if (rand ()% 100 >= 20){
+    if ((rand ()% 100) >= 40){
       cout << "Enough of that, I will attack!"<<endl;
       g.repentingturns +=1;
     }
@@ -1254,11 +1292,29 @@ void enemymoves (Player &p, GhostData &g, int &hex){
       MonsterAttack (g, p, hex);
   }
   }else if (g.name == "Vengeful Spirit"){
-    if (whatshouldIdo > 50){
+    if (whatshouldIdo > 35){
       MonsterDefend (g, p, hex);
     }else{
       MonsterAttack (g, p, hex);
     }
+  }else if (g.name == "Hungry Ghost"){
+    if (whatshouldIdo >= 20){
+      MonsterAttack (g, p, hex);
+    }else{
+      MonsterDefend (g, p, hex);
+  }
+  }else if (g.name == "Possessed Medium"){
+    if (whatshouldIdo >= 50){
+      MonsterAttack (g, p, hex);
+    }else{
+      MonsterDefend (g, p, hex);
+  }
+  }else if (g.name == "Water Ghost"){
+    if (whatshouldIdo >= 30){
+      MonsterAttack (g, p, hex);
+    }else{
+      MonsterDefend (g, p, hex);
+  }
   }
 }
 
@@ -1325,13 +1381,13 @@ char battlephase(Player &x, char initial){
   }else if (initial == 'P'){
         //Possessed Medium information
     banner('P');
-    ghost.maxhealth = 10;
+    ghost.maxhealth = 14;
     ghost.currenthealth = ghost.maxhealth;
-    ghost.attack = 5 + (rand() % 10);
-    ghost.defense = 5 + (rand() % 3);
-    ghost.speed = 5 + (rand() % 10 );
-    ghost.attackone = "Soul Eater"; //
-    ghost.attacktwo = "Rotten Fangs";
+    ghost.attack = 7 + (rand() % 13);
+    ghost.defense = 2 + (rand() % 13);
+    ghost.speed = 6 + (rand() % 13 );
+    ghost.attackone = "Eternal Despair"; //
+    ghost.attacktwo = "Sharp Knife";
     ghost.name = "Possessed Medium";
     ghost.momentarychange = 0;
     ghost.inrepentance = false;
@@ -1342,11 +1398,11 @@ char battlephase(Player &x, char initial){
     banner('W');
     ghost.maxhealth = 10;
     ghost.currenthealth = ghost.maxhealth;
-    ghost.attack = 5 + (rand() % 10);
-    ghost.defense = 5 + (rand() % 3);
-    ghost.speed = 5 + (rand() % 10 );
-    ghost.attackone = "Soul Eater"; //
-    ghost.attacktwo = "Rotten Fangs";
+    ghost.attack = x.stats.myattack + (rand() % 10);
+    ghost.defense = x.stats.mydefense - (rand() % 3);
+    ghost.speed = 6 + (rand() % 10 );
+    ghost.attackone = "Underwater Chains"; //
+    ghost.attacktwo = "Tidal Wave";
     ghost.name = "Water Ghost";
     ghost.momentarychange = 0;
     ghost.inrepentance = false;
