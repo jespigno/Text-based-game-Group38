@@ -352,8 +352,17 @@ bool loadlevel(Map m, Player& x) {
 	int val= 1;
 	while (val == 1) {
 		getline(cin, move);
-		val = makeMove(map,x,position,move)
-	
+		val = makeMove(map, x, position, move);
+	}
+	if (val == 2) {
+		cout << "You have lost this round. What a pity :C. Better luck next time!" << endl;
+		twosecsleep();
+		return false;
+	}
+	else if (val == 3) {
+		cout << "You have completed the level. Congratulations!" << endl;
+		twosecsleep();
+		return true;
 	}
 
 }
