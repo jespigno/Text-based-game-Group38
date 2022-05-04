@@ -55,7 +55,7 @@ struct Map {
     void create_map(Point &);
     void print_map();
 };
-void makeMove(Map, Player&, Point&, char);
+void makeMove(Map&, Player&, Point&, char);
 void takeLoot(int, int&);
 bool loadlevel(Map , Player&);
 char randomise_enemy(Map);

@@ -236,7 +236,7 @@ map3.enemy = {};
 //move user icon on the map
 //only allows player to move in free space i.e. no walls
 //input: map, player's current coordinates and move they're making
-int makeMove(Map m, Player &p, Point &position, char move) {
+int makeMove(Map &m, Player &p, Point &position, char move) {
 	//valid input
 	int x = position.x;
 	int y = position.y;
@@ -373,12 +373,12 @@ bool loadlevel(Map m, Player& x) {
 		getline(cin, move);
 		val = makeMove(map, x, position, move);
 	}
-	if (val == 2) {
+	if (val == 3) {
 		cout << "You have lost this round. What a pity :C. Better luck next time!" << endl;
 		twosecsleep();
 		return false;
 	}
-	else if (val == 3) {
+	else if (val == 2) {
 		cout << "You have completed the level. Congratulations!" << endl;
 		twosecsleep();
 		return true;
