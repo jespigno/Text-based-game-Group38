@@ -130,7 +130,7 @@ void ExperienceGain(Player &x, GhostData g){
   }else if (g.name == "Possessed Medium"){
     bonus = ((x.stats.level + x.stats.maxhealth) * 44)/4 + (x.stats.level * x.stats.maxhealth)/8;
   }else if (g.name == "Water Ghost"){
-    bonus = 88 * x.stats.myattack + 4 * x.stats.myspeed + 4*x.stats.defense + x.stats.maxhealth *4;
+    bonus = 88 * x.stats.myattack + 4 * x.stats.myspeed + 4*x.stats.mydefense + x.stats.maxhealth *4;
   }
   float experiencegained = (bonus * 20)/5 + (x.stats.level *20 / 7);
   x.stats.experiencepoints += experiencegained;
@@ -210,7 +210,7 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
     onesecsleep();
     damage += ((((((2*secretnumber)/5)+2) * (ghast.defense/pleya.stats.myattack))/ 50)+ 2);
     if (damage >= 0){
-      ghast.currenthealth += damage - secretnumber;
+      ghast.currenthealth += damage%10;
       cout << "The " << ghast.name << " has absorbed " << damage << " health points from " << pleya.info.myname << endl;
       if (ghast.currenthealth == (ghast.maxhealth * 2)){
         cout << "Huh?"<<endl;
@@ -721,8 +721,7 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXklcc;.       .',.            .......,dxxc...
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWOl,.      ....:ddc'.            .....................  .......   ...             .lKWMMMWMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNOc;;,,,;lOKKKOd,.    ..        .....................  .......   .         ..     'OWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWNNNNNNWWWXx;.    .;c;.       ......................  ......            .ol.    .:OWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMMWKd;.    .ck0c         .......................  ......            'cc.     cKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-      )";
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMMWKd;.    .ck0c         .......................  ......            'cc.     cKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM)";
       halfasecsleep();
       cout<< R"(
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKd;.    .cONWXc           .....................   .....             :Oo.    .:0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -744,8 +743,7 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXd'':cc;,,:;,,::,,:llc:;'..';,.  ......
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk'.,cc:;:c:;:cc:;:clc,..        ..........   ...      'kWMWKo. .lXMMWWMMMWXl:OWMWWMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk.  .,:cccccccccccc;...         .........    ...      .dXWMWXl..lXMMMMMMMMWK0XMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk.    .............   .         ........    ....       .oXMMWXd,lXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk'          ..        ..         .......   ......       :KMMMMKdkNMWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-      )";
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWk'          ..        ..         .......   ......       :KMMMMKdkNMWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM)";
       halfasecsleep();
       cout<< R"(
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXd'         ....      .            .....   ......  .;'  .c0WMMWWWMMMWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -782,8 +780,7 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWX0kl,''..    ............
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNXKK0o:;;'.         .      .';;;;:d0XXXNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWNNN0dlllllllllllllllld0NNNNNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWWWWWWWWWWWWWWWMWMMMMMMMMMWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMWMMMMMMMMWMMMMMMMMMMMMMMWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-      )";
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMWMMMMMMMMWMMMMMMMMMMMMMMWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM)";
       onesecsleep();
       cout << R"(
 MMMMMMMMMMMMMMMMMMMMMMMMMNKkdoxKNMMMMMMMMMMMMMMMMWKkddkKNMMMMMMMMMMMMMMMMMMMMMMM
@@ -1217,7 +1214,7 @@ bool usermoves(Player &p, GhostData &g){
     cout << "Let this decree from Tai Shang Lao Jun be executed quickly" << endl; //chant from https://en.wikipedia.org/wiki/Lei_Ting_curse_charm
     onesecsleep();
     onesecsleep();
-    if (p.stats.myspeed % 10 > whatshouldIdo % 10 - 2){
+    if (((p.stats.myspeed + g.speed) *88) % 10 > whatshouldIdo % 10 - 2){
       cout<<"Healing Successful!"<<endl;
       onesecsleep();
       if ((p.stats.mycurrenthealth + (whatshouldIdo % 10) + 1) <= p.stats.maxhealth){
@@ -1431,11 +1428,17 @@ char battlephase(Player &x, char initial){
       if (checkme == false){
         return 'F';
       }
+      if (x.stats.mycurrenthealth < 0 || ghost.currenthealth < 0){
+        break;
+      }
       enemymoves(x,ghost, isplayerhexed);
     }
 
     else {
       enemymoves(x,ghost, isplayerhexed);
+      if (x.stats.mycurrenthealth < 0 || ghost.currenthealth < 0){
+        break;
+      }
         if (primeraqueataco == true){
          cout<<R"(
           ('-. .-.                         .-')     ('-.           ('-.        .-') _          ('-.             .-') _                         .-') _,---.
@@ -1457,10 +1460,31 @@ char battlephase(Player &x, char initial){
     }
   }
   if (ghost.currenthealth > 0){
-    //user lost
+    cout << R"(
+                                                                  .-')   .-') _                    ,-.
+                                                                ( OO ).(  OO) )                  /  |
+  ,--.   ,--.-'),-----. ,--. ,--.          ,--.     .-'),-----.(_)---\_/     '._       .-.      '  .'
+   \  `.'  ( OO'  .-.  '|  | |  |          |  |.-')( OO'  .-.  /    _ ||'--...__)      `-'      |  |
+ .-')     //   |  | |  ||  | | .-')        |  | OO /   |  | |  \  :` `.'--.  .--'               |  |
+(OO  \   / \_) |  |\|  ||  |_|( OO )       |  |`-' \_) |  |\|  |'..`''.)  |  |         .-.      |  |
+ |   /  /\_  \ |  | |  ||  | | `-' /      (|  '---.' \ |  | |  .-._)   \  |  |         `-'      '  '.
+ `-./  /.__)  `'  '-'  ('  '-'(_.-'        |      |   `'  '-'  \       /  |  |                   \  |
+   `--'         `-----'  `-----'           `------'     `-----' `-----'   `--'                    `-'
+    )";
     return 'L';
   }
   else{
+    cout << R"(
+                                            (`\ .-') /`                .-') _,---.
+                                             `.( OO ),'               ( OO ) |   |
+  ,--.   ,--.-'),-----. ,--. ,--.         ,--./  .--.  .-'),-----.,--./ ,--,'|   |
+   \  `.'  ( OO'  .-.  '|  | |  |         |      |  | ( OO'  .-.  |   \ |  |\|   |
+ .-')     //   |  | |  ||  | | .-')       |  |   |  |,/   |  | |  |    \|  | |   |
+(OO  \   / \_) |  |\|  ||  |_|( OO )      |  |.'.|  |_\_) |  |\|  |  .     |/|  .'
+ |   /  /\_  \ |  | |  ||  | | `-' /      |         |   \ |  | |  |  |\    | `--'
+ `-./  /.__)  `'  '-'  ('  '-'(_.-'       |   ,'.   |    `'  '-'  |  | \   | .--.
+   `--'         `-----'  `-----'          '--'   '--'      `-----'`--'  `--' '--'
+    )";
     //user won!
     //Gain experience experience
     ExperienceGain(x,ghost);

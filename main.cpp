@@ -206,13 +206,11 @@ void mainmenu(Player x){
      `-'     `--'   `-----'  `--'     `--'            `-----' `--' `--'  `--'    `------'  '---'
                                     Press                         C
   )" << endl;
-      while (mycurrentchoice != "Q" && mycurrentchoice != "C") {
           getline(cin, mycurrentchoice);
           if (mycurrentchoice == "Q") {
               //Quest(); CODE THIS
               printstats(x); //testing purposes
               Questmenu(x);
-              break;
           }
           else if (mycurrentchoice == "C") {
               //VisitCafe(); CODETHIS
@@ -221,6 +219,5 @@ void mainmenu(Player x){
           else {
               cout << "That's not an option :( try again)" << endl;
           }
-      }
   }
 }
