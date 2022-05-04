@@ -12,7 +12,7 @@ Point position;
 
 
 //checks if player has met the winning condition of their specific level
-bool Map::check_win() {
+bool Map::check_win() const {
 	//level 1 objective is to defeat all the monsters
 	if (level = 1) {
 		for (int i = 0; i < 30; i++) {
@@ -85,7 +85,7 @@ void Map::create_map(Point &position) {
 }
 
 //prints current map with players's position, loot and enemies
-void Map::print_map() {
+void Map::print_map() const {
 	for (int i = 0; i < 30; i++) {
 		cout << "                    ";
 		for (int j = 0; j < 45; j++) {
@@ -100,6 +100,9 @@ void Map::print_map() {
 			}
 			else if (map[i][j] == -1) {
 				cout << '~' << ' ';//treasure
+			}
+			else {
+				cout << ' ' << ' ';
 			}
 		}
 		cout << endl;

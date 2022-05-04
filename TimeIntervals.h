@@ -49,11 +49,11 @@ struct Map {
     std::vector<Point> loot;
     std::vector<Point> enemy;
 
-    bool check_win();
+    bool check_win() const;
     void spawn_enemies();
     void spawn_loot();
     void create_map(Point &);
-    void print_map();
+    void print_map() const;
 };
 void makeMove(Map&, Player&, Point&, char);
 void takeLoot(int, int&);
