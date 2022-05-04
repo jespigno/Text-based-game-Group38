@@ -59,6 +59,23 @@ void makeMove(Map&, Player&, Point&, char);
 void takeLoot(int, int&);
 bool loadlevel(Map , Player&);
 char randomise_enemy(Map);
+//flee functions
+bool checkfree1(Map, int, int, Point&);
+bool checkfree2(Map, int, int, Point&);
+bool checkfree3(Map, int, int, Point&);
+bool checkfree4(Map, int, int, Point&);
+bool checkfree5(Map, int, int, Point&);
+bool checkfree6(Map, int, int, Point&);
+bool checkfree7(Map, int, int, Point&);
+bool checkfree8(Map, int, int, Point&);
+bool checkfree9(Map, int, int, Point&);
+bool checkfree10(Map, int, int, Point&);
+bool checkfree11(Map, int, int, Point&);
+bool checkfree12(Map, int, int, Point&);
+bool checkfree13(Map, int, int, Point&);
+bool checkfree14(Map, int, int, Point&);
+bool checkfree15(Map, int, int, Point&);
+bool checkfree16(Map, int, int, Point&);
 
 //function prototypes
 void twosecsleep();

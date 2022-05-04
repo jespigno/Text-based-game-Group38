@@ -376,11 +376,13 @@ bool loadlevel(Map m, Player& x) {
 	if (val == 3) {
 		cout << "You have lost this round. What a pity :C. Better luck next time!" << endl;
 		twosecsleep();
+		delete map;
 		return false;
 	}
 	else if (val == 2) {
 		cout << "You have completed the level. Congratulations!" << endl;
 		twosecsleep();
+		delete map;
 		return true;
 	}
 }
@@ -399,3 +401,98 @@ char randomise_enemy(Map m) {
 	}
 	return enemy;
 }
+
+bool checkfree1(Map m, int x, int y,Point &p) { // top left corner
+	if (m.map[x - 2][y - 2] < 2) {
+		p.x = x - 2;
+		p.y = y - 2;
+		return true;
+	}
+	return false;
+}
+
+bool checkfree2(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x - 2][y - 1] < 2) {
+		p.x = x - 2;
+		p.y = y - 1;
+		return true;
+	}
+	return false;
+}
+bool checkfree3(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x - 2][y] < 2) {
+		p.x = x - 2;
+		p.y = y;
+		return true;
+	}
+	return false;
+}
+bool checkfree4(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x - 2][y+ 1] < 2) {
+		p.x = x - 2;
+		p.y = y + 1;
+		return true;
+	}
+	return false;
+}
+
+bool checkfree5(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x - 2][y + 2] < 2) {
+		p.x = x - 2;
+		p.y = y + 2;
+		return true;
+	}
+	return false;
+}
+bool checkfree6(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x - 1][y - 2] < 2) {
+		p.x = x - 1;
+		p.y = y - 2;
+		return true;
+	}
+	return false;
+}
+bool checkfree7(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x - 1][y + 2] < 2) {
+		p.x = x - 1;
+		p.y = y + 2;
+		return true;
+	}
+	return false;
+}
+bool checkfree8(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x][y - 2] < 2) {
+		p.x = x;
+		p.y = y - 2;
+		return true;
+	}
+	return false;
+}
+bool checkfree9(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x][y + 2] < 2) {
+		p.x = x;
+		p.y = y + 2;
+		return true;
+	}
+	return false;
+}
+bool checkfree10(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x + 1][y - 2] < 2) {
+		p.x = x + 1;
+		p.y = y - 2;
+		return true;
+	}
+	return false;
+}
+bool checkfree11(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x + 1][y + 2] < 2) {
+		p.x = x;
+		p.y = y - 2;
+		return true;
+	}
+	return false;
+}
+
+
+
+
