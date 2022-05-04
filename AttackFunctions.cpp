@@ -60,34 +60,43 @@ void LevelUp(Player &z){
  `------' `------'    `-'     `------`------'         `-----'   `--'    '--'
   )";
   srand(time(NULL)*123);
-  int whatshouldIdo = rand()% 100;
-  if (whatshouldIdo >= 50){
+  int * whatshouldIdo = new int (rand()% 100);
+  if (*whatshouldIdo >= 50){
     z.stats.myattack +=1;
     cout << z.info.myname<<"\'s attack has increased by one point!"<<endl;
     twosecsleep();
   }
+  delete whatshouldIdo;
+
   srand(time(NULL)*876);
-  int whatshouldIdo1 = rand()% 100;
-  if (whatshouldIdo1 >= 50){
+  int * whatshouldIdo1 = new int (rand()% 100);
+  if (*whatshouldIdo1 >= 50){
     z.stats.mydefense +=1;
     cout << z.info.myname<<"\'s defense has increased by one point!"<<endl;
     twosecsleep();
   }
+  delete whatshouldIdo1;
   srand(time(NULL)*405);
-  int whatshouldIdo2 = rand()% 100;
-  if (whatshouldIdo2 >= 50){
+  int * whatshouldIdo2 = new int (rand()% 100);
+  if (*whatshouldIdo2 >= 50){
     z.stats.myspeed +=1;
     cout << z.info.myname<<"\'s speed has increased by one point!"<<endl;
     twosecsleep();
   }
+  delete whatshouldIdo2;
   srand(time(NULL)*9182);
-  int whatshouldIdo3 = rand()% 100;
-  if (whatshouldIdo3 >= 50){
+  int * whatshouldIdo3 = new int (rand()% 100);
+  if (*whatshouldIdo3 >= 50){
     z.stats.maxhealth +=5;
     cout << z.info.myname<<"\'s maximum health points have increased by five points!"<<endl;
     twosecsleep();
   }
+  delete whatshouldIdo3;
   z.stats.mycurrenthealth = z.stats.maxhealth;
+  whatshouldIdo = 0;
+  whatshouldIdo1 = 0;
+  whatshouldIdo2 = 0;
+  whatshouldIdo3 = 0;
   if (z.stats.level >= 5 && z.stats.attackone == "xxxxxxxxxxxxxxx"){
     z.stats.attackone = "SunSingZiFo-HolyFire";
     cout << z.info.myname<<" has unlocked the Holy Fire! It will burn down undead corpses to ashes"<<endl;
@@ -113,11 +122,11 @@ void ExperienceGain(Player &x, GhostData g){
   float experienceneeded = (x.stats.level)*(x.stats.level)*(x.stats.level);
   int bonus;
   if (g.name == "Zombie"){
-    bonus = 2.5 * x.stats.level;
+    bonus = 5 + x.stats.level;
   } else if (g.name == "Vengeful Spirit"){
-    bonus = x.stats.level + 5;
+    bonus = x.stats.level * 1.5;
   }
-  float experiencegained = (bonus * 10)/5;
+  float experiencegained = (bonus * 20)/5 + (x.stats.level *20 / 7);
   x.stats.experiencepoints += experiencegained;
   if (x.stats.experiencepoints >= experienceneeded){
     x.stats.experiencepoints -= experienceneeded;
@@ -595,7 +604,7 @@ bool usermoves(Player &p, GhostData &g){
     cout << "Let this decree from Tai Shang Lao Jun be executed quickly" << endl; //chant from https://en.wikipedia.org/wiki/Lei_Ting_curse_charm
     onesecsleep();
     onesecsleep();
-    if (p.stats.myspeed % 10 > whatshouldIdo % 10){
+    if (p.stats.myspeed % 10 > whatshouldIdo % 10 - 2){
       cout<<"Healing Successful!"<<endl;
       onesecsleep();
       if ((p.stats.mycurrenthealth + (whatshouldIdo % 10) + 1) <= p.stats.maxhealth){
@@ -810,6 +819,10 @@ void Questmenu(Player &x){
 +------------------------------+-----------+                                      +--------------+
 |                              |           | come kill all the monsters!          |              |
 +------------------------------+-----------+--------------------------------------+--------------+
+  )";
+  cout << "Press any key to read the next case"<< endl;
+  getline(cin,tempkey);
+  cout << R"(
 | 002                          | Wan Chai  | Nam Koo Terrace supposedly is        | HKD99999999  |
 +------------------------------+-----------+                                      +--------------+
 |                              |           | filled with spirits of women         |              |
@@ -824,6 +837,10 @@ void Questmenu(Player &x){
 +------------------------------+-----------+                                      +--------------+
 |                              |           | Please go and retrive all the loot.  |              |
 +------------------------------+-----------+--------------------------------------+--------------+
+  )";
+  cout << "Press any key to read the next case"<< endl;
+  getline(cin,tempkey);
+  cout << R"(
 | 003                          | Yuen Long | Tak Tak School was closed decades    | HKD999999999 |
 +------------------------------+-----------+                                      +--------------+
 |                              |           | ago, now it's one of the most haun-  |              |
