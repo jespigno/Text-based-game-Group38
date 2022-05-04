@@ -145,11 +145,15 @@ map1.map = {
 };
 map1.entry = { 18, 0 };
 map1.exit = { 6,4 };
+map1.num_enemies = 8;
+map1.num_loot = 4;
 map1.possible_loot = { {2,35},{3,40}, {4, 9}, {4, 29}, {5,18}, {7,11}, {10,8},
 	{10,32}, {13, 37}, {15, 12}, {15, 38}, {17, 28}, {18,41}, {19,18},
 	{19,40}, {22,36}, {23,13}, {25, 25}, {25, 32}, { 26, 41 } };
-map1.possible_enemy = { {2,39}, {3,12}, {3,42} }
-  {18,7}, {6,7}, {10,19}, {25, 30}, {5, 36}, {2,39} };
+
+map1.possible_enemy = { {2, 39 }, { 3,12 }, { 4,23 }, { 5,36 }, { 6,7 },
+	{ 6,40 }, { 9,10 }, { 9,29 }, { 10,19 }, { 12,34 }, { 15,18 }, { 16,40 }, { 18,7 },
+	{ 20,15 }, { 24,15 }, { 25,6 }, { 25,30 } };
 map1.loot = { {11, 24}, {27,3} };//some positions already predetermined
 map1.enemy = { {20,21}, {24, 42}, {3, 42} };
 
@@ -177,7 +181,7 @@ map2.map = {
 		{1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,1,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,1,1,1,0,1,1},
-		{1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,2,0,1,1,1,0,1,1,1,0,0,0,0,0,1,1,1,0,1,1},
+		{1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,1,1,1,0,1,1,1,0,0,0,0,0,1,1,1,0,1,1},
 		{1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1},
 		{1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,1,1,1,0,1,1},
 		{1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,1,1},
@@ -188,9 +192,11 @@ map2.map = {
 };
 map2.entry = { 22,2 };
 map2.exit = { 1,0};
+map2.num_enemies = 5;
+map2.num_loot = 6;
 map2.possible_loot = {};
 map2.possible_enemy = {};
-map2.loot = {};
+map2.loot = { {5,38 }, {18,4 }, {26,42 }};
 map2.enemy = {};
 
 map3.level = 3;
@@ -228,6 +234,8 @@ map3.map = {
 };
 map3.entry = { 15,0 };
 map3.exit = { 29,44 };
+map3.num_enemies = 6;
+map3.num_loot = 6;
 map3.possible_loot = {};
 map3.possible_enemy = {};
 map3.loot = {};
@@ -256,7 +264,6 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			m.map[x - 1][y] = 2;
 			m.map[x][y] = 0;
 			x = x - 1; //update coordinates
-			return 1;
 		}
 		else if (move == 'a' and m.map[x][y - 1] < 1) {
 			if (m.map[x][y - 1] == -1) {
@@ -265,7 +272,6 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			m.map[x][y - 1] = 2;
 			m.map[x][y] = 0;
 			y = y - 1;
-			return 1;
 		}
 		else if (move == 's' and m.map[x][y + 1] < 1) {
 			if (m.map[x][y+1] == -1) {
@@ -274,7 +280,6 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			m.map[x][y + 1] = 2;
 			m.map[x][y] = 0;
 			y = y + 1;
-			return 1;
 		}
 		else if (move == 'd' and map[x + 1][y] < 1) {
 			if (m.map[x + 1][y] == -1) {
@@ -283,12 +288,7 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			m.map[x + 1][y] = 2;
 			m.map[x][y] = 0;
 			x = x + 1;
-			return 1;
-		}
-		else {
-			cout << "There is an obstacle. Try another direction";
-			onesecsleep();
-			return 1;
+
 		}
 	}
 	else {
