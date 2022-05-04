@@ -322,6 +322,9 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			//checkfree functions are ordered such that best case scenario is player gets teleported ahead in
 			//the direction they were originally headed
 			//worst case scenario is the player gets teleported backwards by one step
+
+			m.map[position.x][position.y] = 0;  //remove player from current spot on the map
+			//update position to most convenient free spot on the map
 			if (checkfree1(m, e.x, e.y, position)) {}
 			else if (checkfree2(m, e.x, e.y, position)) {}
 			else if (checkfree6(m, e.x, e.y, position)) {}
@@ -341,8 +344,7 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
-			//update coordinates after fleeing
-			m.map[x][y] = 0;
+			//drop player in new spot on the map
 			m.map[position.x][position.y] = 2;
 			return 1;
 		}
@@ -366,6 +368,7 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			return 3;
 		}
 		else if (win == 'F') {
+			m.map[position.x][position.y] = 0;
 			if (checkfree3(m, e.x, e.y, position)) {}
 			else if (checkfree2(m, e.x, e.y, position)) {}
 			else if (checkfree4(m, e.x, e.y, position)) {}
@@ -385,7 +388,6 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
-			m.map[x][y] = 0;
 			m.map[position.x][position.y] = 2;
 			return 1;
 		}
@@ -409,6 +411,7 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			return 3;
 		}
 		else if (win == 'F') {
+			m.map[position.x][position.y] = 0;
 			if (checkfree5(m, e.x, e.y, position)) {}
 			else if (checkfree4(m, e.x, e.y, position)) {}
 			else if (checkfree7(m, e.x, e.y, position)) {}
@@ -428,7 +431,6 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
-			m.map[x][y] = 0;
 			m.map[position.x][position.y] = 2;
 			return 1;
 		}
@@ -453,6 +455,7 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			return 3;
 		}
 		else if (win == 'F') {
+			m.map[position.x][position.y] = 0;
 			if (checkfree8(m, e.x, e.y, position)) {}
 			else if (checkfree6(m, e.x, e.y, position)) {}
 			else if (checkfree10(m, e.x, e.y, position)) {}
@@ -472,7 +475,6 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
-			m.map[x][y] = 0;
 			m.map[position.x][position.y] = 2;
 			return 1;
 		}
@@ -497,6 +499,7 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			return 3;
 		}
 		else if (win == 'F') {
+			m.map[position.x][position.y] = 0;
 			if (checkfree8(m, e.x, e.y, position)) {}
 			else if (checkfree6(m, e.x, e.y, position)) {}
 			else if (checkfree10(m, e.x, e.y, position)) {}
@@ -516,7 +519,6 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
-			m.map[x][y] = 0;
 			m.map[position.x][position.y] = 2;
 			return 1;
 		}
@@ -541,6 +543,7 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			return 3;
 		}
 		else if (win == 'F') {
+			m.map[position.x][position.y] = 0;
 			if (checkfree12(m, e.x, e.y, position)) {}
 			else if (checkfree10(m, e.x, e.y, position)) {}
 			else if (checkfree13(m, e.x, e.y, position)) {}
@@ -560,7 +563,6 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
-			m.map[x][y] = 0;
 			m.map[position.x][position.y] = 2;
 			return 1;
 		}
@@ -585,6 +587,7 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			return 3;
 		}
 		else if (win == 'F') {
+			m.map[position.x][position.y] = 0;
 			if (checkfree14(m, e.x, e.y, position)) {}
 			else if (checkfree13(m, e.x, e.y, position)) {}
 			else if (checkfree15(m, e.x, e.y, position)) {}
@@ -604,7 +607,6 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
-			m.map[x][y] = 0;
 			m.map[position.x][position.y] = 2;
 			return 1;
 		}
@@ -629,6 +631,7 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			return 3;
 		}
 		else if (win == 'F') {
+			m.map[position.x][position.y] = 0;
 			if (checkfree16(m, e.x, e.y, position)) {}
 			else if (checkfree15(m, e.x, e.y, position)) {}
 			else if (checkfree11(m, e.x, e.y, position)) {}
@@ -648,7 +651,6 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
-			m.map[x][y] = 0;
 			m.map[position.x][position.y] = 2;
 			return 1;
 		}
