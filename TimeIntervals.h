@@ -57,6 +57,7 @@ struct Map {
 };
 void makeMove(Map, Player&, Point&, char);
 void takeLoot(int, int&);
+bool loadlevel(Map , Player&);
 
 //function prototypes
 void twosecsleep();

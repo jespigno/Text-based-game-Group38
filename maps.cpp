@@ -72,6 +72,8 @@ void Map::spawn_loot() {
 
 //adds enemies, loot and the player to the map
 void Map::create_map(Point &position) {
+	spawn_loot();
+	spawn_enemies();
 	position = entry;
 	map[entry.x][entry.y] == 2; //places player at start position
 	for (int i = 0; i < loot.size(); i++) {
@@ -234,7 +236,7 @@ map3.enemy = {};
 //move user icon on the map
 //only allows player to move in free space i.e. no walls
 //input: map, player's current coordinates and move they're making
-void makeMove(Map m, Player &p, Point &position, char move) {
+int makeMove(Map m, Player &p, Point &position, char move) {
 	//valid input
 	int x = position.x;
 	int y = position.y;
@@ -246,7 +248,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 			m.map[x - 1][y] = 2;
 			m.map[x][y] = 0;
 			x = x - 1; //update coordinates
-			m.print_map();
+			return 1;
 		}
 		else if (move == 'a' and m.map[x][y - 1] < 1) {
 			if (m.map[x][y - 1] == -1) {
@@ -255,7 +257,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 			m.map[x][y - 1] = 2;
 			m.map[x][y] = 0;
 			y = y - 1;
-			m.print_map();
+			return 1;
 		}
 		else if (move == 's' and m.map[x][y + 1] < 1) {
 			if (m.map[x][y+1] == -1) {
@@ -264,7 +266,7 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 			m.map[x][y + 1] = 2;
 			m.map[x][y] = 0;
 			y = y + 1;
-			m.print_map();
+			return 1;
 		}
 		else if (move == 'd' and map[x + 1][y] < 1) {
 			if (m.map[x - 1][y] == -1) {
@@ -273,14 +275,18 @@ void makeMove(Map m, Player &p, Point &position, char move) {
 			m.map[x + 1][y] = 2;
 			m.map[x][y] = 0;
 			x = x + 1;
-			m.print_map();
+			return 1;
 		}
 		else {
 			cout << "There is an obstacle. Try another direction";
+			onesecsleep();
+			return 1;
 		}
 	}
 	else {
 		cout < "That's not a valid move. Try again." << endl;
+		onesecsleep();
+		return 1;
 	}
 
 	//check if player is within sensing distance of an enemy
@@ -334,4 +340,20 @@ void takeLoot(int level, int& money) {
 	}
 	cout << "You picked up a treasure worth " << loot << "dollars!";
 	money += loot;
+}
+
+bool loadlevel(Map m, Player& x) {
+	Map* map;
+	Point position;
+	map = new Map;
+	*map = m;
+	map->create_map(position);
+	char move;
+	int val= 1;
+	while (val == 1) {
+		getline(cin, move);
+		val = makeMove(map,x,position,move)
+	
+	}
+
 }
