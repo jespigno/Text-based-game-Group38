@@ -364,5 +364,19 @@ bool loadlevel(Map m, Player& x) {
 		twosecsleep();
 		return true;
 	}
+}
 
+char randomise_enemy(Map m) {
+	char enemy;
+	char possible[] = { 'J','L', 'H', 'P', 'W' };
+	if (m.level == 1) {
+		enemy = possible[rand() % 2];
+	}
+	else if (m.level == 2) {
+		enemy = possible[rand() % 3];
+	}
+	else if (m.level == 3) {
+		enemy = possible[2 + rand() % 3];
+	}
+	return enemy;
 }

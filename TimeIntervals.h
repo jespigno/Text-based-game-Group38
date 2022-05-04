@@ -58,6 +58,7 @@ struct Map {
 void makeMove(Map, Player&, Point&, char);
 void takeLoot(int, int&);
 bool loadlevel(Map , Player&);
+char randomise_enemy(Map);
 
 //function prototypes
 void twosecsleep();
