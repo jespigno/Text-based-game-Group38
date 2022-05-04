@@ -1498,105 +1498,126 @@ char battlephase(Player &x, char initial){
 //Quest menu functions
 //Lets user pick a Quest
 void Questmenu(Player &x){
-  string tempkey;
-  cout<<R"(
-+==============================+===========+======================================+==============+
-|******************************************JOB REQUESTS******************************************|
-+==============================+===========+======================================+==============+
-| Case Number                  | Location  | Details                              | Reward       |
-+------------------------------+-----------+--------------------------------------+--------------+
-| 001                          | The Peak  | Please help me! The Dragon Lodge     | HKD999999999 |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | is prime real estate location,       |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | but its filled with undead and       |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | whatnot. No one wants to buy         |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | hoong zak, even when it's on the     |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | most exclusive area of HK. Please!   |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | come kill all the monsters!          |              |
-+------------------------------+-----------+--------------------------------------+--------------+
-  )";
-  cout << "Press any key to read the next case"<< endl;
-  getline(cin,tempkey);
-  cout << R"(
-| 002                          | Wan Chai  | Nam Koo Terrace supposedly is        | HKD99999999  |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | filled with spirits of women         |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | want revenge from the evils of       |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | the Japanese invaders. I don't       |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | know about that, I just know         |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | the Terrace is filled with treasure! |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | Please go and retrive all the loot.  |              |
-+------------------------------+-----------+--------------------------------------+--------------+
-  )";
-  cout << "Press any key to read the next case"<< endl;
-  getline(cin,tempkey);
-  cout << R"(
-| 003                          | Yuen Long | Tak Tak School was closed decades    | HKD999999999 |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | ago, now it's one of the most haun-  |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | ted places in the entire City.       |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | Don't ask me how I know this, but    |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | apparently all those ghosts are      |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | guarding the most heavenly can of    |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | Abalone your eyes will ever see. I   |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | would go fetch it myself, but the    |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | place is like a maze, and those      |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | ghosts are not about to surrender    |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | some godly Abalone easily.           |              |
-+------------------------------+-----------+                                      +--------------+
-|                              |           | Help me out and I'll pay generously! |              |
-+------------------------------+-----------+--------------------------------------+--------------+
-  )";
-  twosecsleep();
-  cout<< "Choose a quest! Please input the case number you want to tackle, or press b to go back."<<endl;
-  while (true){
-    getline(cin,tempkey);
-    if (tempkey == "001"){
-      //go to 001
-    }else if (tempkey == "002"){
-      //go to 002
-    }else if (tempkey == "003"){
-      //go to 003
-    }else if (tempkey == "b"){
-      return;
-    }else if (tempkey == "test"){
-      battlephase(x, 'J'); //testing purposes
-      x.stats.mycurrenthealth = x.stats.maxhealth;
-      twosecsleep();
-      cout << "prepare for round 2 ";
-      twosecsleep();
-      battlephase(x, 'L');
-      cout << "prepare for round 3 ";
-      twosecsleep();
-      battlephase(x, 'H');
-      cout << "prepare for round 4 ";
-      twosecsleep();
-      battlephase(x, 'P');
-      cout << "prepare for round 5 ";
-      twosecsleep();
-      battlephase(x, 'W');
-    }else{
-      cout<< "Not a valid input. Try again!"<<endl;
+    string tempkey;
+    bool levelwon;  
+    while (true){
+        
+        cout<<R"(
+    +==============================+===========+======================================+==============+
+    |******************************************JOB REQUESTS******************************************|
+    +==============================+===========+======================================+==============+
+    | Case Number                  | Location  | Details                              | Reward       |
+    +------------------------------+-----------+--------------------------------------+--------------+
+    | 001                          | The Peak  | Please help me! The Dragon Lodge     | HKD1000      |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | is prime real estate location,       |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | but its filled with undead and       |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | whatnot. No one wants to buy         |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | hoong zak, even when it's on the     |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | most exclusive area of HK. Please!   |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | come kill all the monsters!          |              |
+    +------------------------------+-----------+--------------------------------------+--------------+
+      )";
+        cout << "Press any key to read the next case"<< endl;
+        getline(cin,tempkey);
+        cout << R"(
+    | 002                          | Wan Chai  | Nam Koo Terrace supposedly is        | HKD2000      |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | filled with spirits of women         |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | want revenge from the evils of       |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | the Japanese invaders. I don't       |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | know about that, I just know         |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | the Terrace is filled with treasure! |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | Please go and retrive all the loot.  |              |
+    +------------------------------+-----------+--------------------------------------+--------------+
+      )";
+
+        cout << "Press any key to read the next case"<< endl;
+        getline(cin,tempkey);
+        cout << R"(
+    | 003                          | Yuen Long | Tak Tak School was closed decades    | HKD3000      |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | ago, now it's one of the most haun-  |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | ted places in the entire City.       |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | Don't ask me how I know this, but    |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | apparently all those ghosts are      |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | guarding the most heavenly can of    |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | Abalone your eyes will ever see. I   |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | would go fetch it myself, but the    |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | place is like a maze, and those      |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | ghosts are not about to surrender    |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | some godly Abalone easily.           |              |
+    +------------------------------+-----------+                                      +--------------+
+    |                              |           | Help me out and I'll pay generously! |              |
+    +------------------------------+-----------+--------------------------------------+--------------+
+      )";
+        twosecsleep();
+        cout<< "Choose a quest! Please input the case number you want to tackle, or press b to go back."<<endl;
+
+        getline(cin,tempkey);
+        if (tempkey == "001"){
+            levelwon = loadlevel(map1, x);
+            if (levelwon == true and x.info.level1complete == false) {
+                x.info.level1complete = true;
+                x.stats.mymoney += 1000; //reward, can discuss later
+            }
+        }
+        else if (tempkey == "002"){
+            levelwon = loadlevel(map2, x);
+            if (levelwon == true and x.info.level2complete == false) {
+                x.info.level2complete = true;
+                x.stats.mymoney += 3000; //reward, can discuss later
+            }
+        }
+        else if (tempkey == "003"){
+            levelwon = loadlevel(map3, x);
+            if (levelwon == true and x.info.level3complete == false) {
+                x.info.level3complete = true;
+                x.stats.mymoney += 5000; //reward, can discuss later
+            }
+        }
+        else if (tempkey == "b"){
+            return;
+        }
+        else if (tempkey == "test"){
+            battlephase(x, 'J'); //testing purposes
+            x.stats.mycurrenthealth = x.stats.maxhealth;
+            twosecsleep();
+            cout << "prepare for round 2 ";
+            twosecsleep();
+            battlephase(x, 'L');
+            cout << "prepare for round 3 ";
+            twosecsleep();
+            battlephase(x, 'H');
+            cout << "prepare for round 4 ";
+            twosecsleep();
+            battlephase(x, 'P');
+            cout << "prepare for round 5 ";
+            twosecsleep();
+            battlephase(x, 'W');
+        }
+        else{
+            cout << "Not a valid input. Try again!"<<endl;
+        }
     }
-  }
 
 }
