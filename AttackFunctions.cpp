@@ -526,7 +526,9 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNxdk:',,,,,..';,';d:.',...,,,'''
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKKXo',,,,,,.'c;;lxl',,'',,,,.. ..,,,,,'''......'',,,,,,,'....,,,,'...',oKWMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWk,',,,,,''::;dx;,,,'',,,,'.  ...',,,,,,,''...''''''......',,,,'....,,cOWMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMWWWWWMMMMMMMMMWNNNWMWMMMMMMWMMMMMMMMMMMMMMMNc..,,,,,'':oOk;',,...'',,'.   ....'''',,,,,''........,..',,,,.....,,,;xXWMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMNKXWWMWWWNKOxolc::lxxdxkO0XWMMMMMMMMMMMMMMMM0,..',,,''xNWO,.'........''....    ...''',,,,,,'''''.....',,'.....',,,,c0WMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMNKXWWMWWWNKOxolc::lxxdxkO0XWMMMMMMMMMMMMMMMM0,..',,,''xNWO,.'........''....    ...''',,,,,,'''''.....',,'.....',,,,c0WMMMMMMMMMMMMMMMMMMMMMMM      )";
+      halfasecsleep();
+      cout << R"(
 MMMMMMMMMXdcldxxdoc;,''..''  ..',,;coxk0XWMWWMMMMMMMMNo..,,,,';OWNd. . ..:ol' 'kX0kOxc,..  .....',,,,,,,,'''........'..',,,,';xNMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMW0dc:::,.......',...','...',;;:ld0WMMMMMMMWMk'',,,,':kkl,.   ..dOd;.oNMMMMWWKc.       ....',,,,,,,,,'.   .'. .,,,''.'dWMMMMMMMMMMMMMMMMMMMMM
 MWKkOO0KNWNKOdll:..'.....,':x0KXKx:...',,,';lkKNMMWMMMO;''.....'';;.....'kx;,lXMMWWWMWKl.           ...',,,,,,..  .... .','..'.,OMWWMMMMMMMMMMMMMMMMMM
@@ -568,6 +570,7 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWk:,.....co:lkxddoccccl
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWNk;.'''',,,...'..:c;::cllll:lkOkkkkkxolldkkOkxo:;,,:oxxxdlc:lkkkkkkkkkkkkOOOxollollcl0WWMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMW0o,',''',,,,,,'.  .:cdOdclclodkOkdxkdlc,:xkkxl'.... .oxc;,....lkkkOOkxxOkkkOkdllONKdl:xWMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWKo;'',,,,,,'''....,oONWWWOc:dKXxddddoll:. 'dkl,.      .''..  ..:odkkkOdldkkkOOxooOWWWWXO0WWMMMMMM
+
       )";
       onesecsleep();
       cout << R"(
@@ -781,7 +784,9 @@ MMMMMMMMMMMMMMMMMMMWXx;.'ckKNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNXkc'':kXWMMMMMMMMMMMMW
 MMMMMMMMMMMMMMMMMMMWXx;.',;:ccccccccccccccccccccccccccccccc:,''ckXWMMMMMMMMMWNKO
 MMMMMMMMMMMMMMMMMMMWXx;..',,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,'.'ckXWMMMMMMMMN0dc;
 MMMMMMMMMMMMMMMMMMMWXx:',cx0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKK0kc,,ckXWMMMMMMMMWKxc,
-MMMMMMMMMMMMMMMMMMMWNKkdxOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOxxkKNMMMMMMMMMMWN0x
+MMMMMMMMMMMMMMMMMMMWNKkdxOXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXOxxkKNMMMMMMMMMMWN0x      )";
+      halfasecsleep();
+      cout << R"(
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNXXNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOc,;cokKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXo.  .;dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -819,6 +824,7 @@ MMMWNK0kdc'.    .,lOXWMMMMMMMMMMMMMMMWO;..  'cxkOOOO00KK00KK000OOkxo;.  .,xXWMMM
 MWNOl,.      .;lkXWWMMMMMMMMMMMMMMMMMMXdc,         .............       'lONMMMMM
 MMNKd;.  .':dOXWMMMMMMMMMMMMMMMMMMMMMMMNX0dc,...              ....',:lx0NWMMMMMM
 MMMMWKdlokKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXK0OOOOOOOOOOOOOOOO00KKXNWWMMMMMMMMM
+
       )";
       onesecsleep();
       cout << R"(
@@ -859,7 +865,9 @@ MMMMMMMMMNKx:.  .;o0NWMMMMMMN0o,..'oKWKl;. .l0X0l'  .:kXWMMMMMMWXx:..'lONMMMMMMM
 MMMMMMWWWWN0xc:lkKWMMMMMMMMMMMN0xdOXWWKl;. .l0NNKxookXWMMMMMMMMMMWXOk0XWMMMWWWMM
 MMMMMN0kxkkkkxdxkkkkkkkkkkkkkkkkkkkkkko;.. .,okkkkxxkkkkkkkkkkkkkkkkkkkkkkxxkKWM
 MMMMMXo'.                                                                  .,xXM
-MMMMMNOdlllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllox0WM
+MMMMMNOdlllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllox0WM )";
+      halfasecsleep();
+      cout << R"(
 MMMMMMMMMMMMMMMWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXXXNWMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMXdclxKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNd;',oXMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMXo....':oOXWMMMMMMMMMMMMMMMMMMMMMMMMMXo...cXMMMMMMMMMMMMMMMMMMMMMMM
@@ -894,7 +902,7 @@ MMMMMMMMMMWNNNXXXKK0Okddolc;,'.........,;:ox0KKOxdl:,'.........',;codk0XNMMMMMMM
 MMMMMMMMMWOc;,''''..............';codOKXNWMMMMMMMMMWXK0kdl:,'..........:OWMMMMMM
 MMMMMMMMMMKc.........'',;:lodxOKXNWMMMMMMMMMMMMMMMMMMMMMMWWNX0xdl:,'..'dNMMMMMMM
 MMMMMMMMMMWKxoddxxkO0KXNNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNNKOkONMMMMMMMM
-      )";
+)";
       halfasecsleep();
       ClearScreen();
       //Image source https://www.sgss8.com/tpdq/1089436/
@@ -940,7 +948,9 @@ c:col:,'...                                  .....';;,...                    ...
 ;:,''.....                   .....               ..;ok0K0O00KKKK00000OO0XNNNNNXK0O0KNWMMMMMMWWWMMMWMMMMMMMMMMMMMMMMMMWWWNXK0xo:'',''''.....',,'.. ....
 ,,'.....                     ...                  .':dO00KXX0KKKKK00000KNNNXX0xodkOXWMMMMMMMMWWMMWWMMMMMMMMMMMMMMMMMMMWNNNXKko;,;,'.......''..... ....
 '......                                            .,lxkOKNWNNNNNNNXXXNNWWNXKxlcok0XWMMMMMMMWWWMMWWWMMMMMMMMMMMMMMMMMMWWNXX0xl;::,............... ....
-,.'..    ...                   ...                  .;oxOXNWWWWNNWWNWWWWWWNX0dldk0KNWWMMMMMWWWWMMWWWWWMMMMMMMMMMMMMMMMWWXKKOd::oc'........  . ........
+,.'..    ...                   ...                  .;oxOXNWWWWNNWWNWWWWWWNX0dldk0KNWWMMMMMWWWWMMWWWWWMMMMMMMMMMMMMMMMWWXKKOd::oc'........  . ........)";
+      halfasecsleep();
+      cout << R"(
 ......    .                                          .:dOKXNWWWNNNNWWWWWWWNNXOxkOOO0KXXXXKK0000KXXKKXWMMMMMMMMMMMMMMWWWNXK0xc:lo:'......    .........
 .......                                              .,lx0KXNWWWWNNNNWWMMWWWWX0kxdolodxdddoollllddddONWMMMMMMMMMMMWWWWNXK0kocldl;'.....      ........
 ... ...                                              ..;ox0KNWWMWWWXXNWWWWWMWWNOdll::clolllll:;;:::lkXWMMMMMMMMMMWWWWNXK0kolodl:,'....        ...
@@ -968,24 +978,7 @@ c:col:,'...                                  .....';;,...                    ...
                            ...........'''',;:cool:;,;:::::::;:clcc:;;;:::ccclc;:loddl:,,;,;cc:;;::c::ccc:;:;,;:::coxxxxxxxxxxxxxxk0XNXK000Oxoollcc:cll
                               ...........',,;:ldol:;;;::;;:cccccoolcccccclllll::codoc;,,;;:cc:;;::c:;:cc:::::;:::loxxxkxxxxkkkO0KNWWN0kxxxkxoooollc:;;
                              ...... ......'''',;::;;;;:;;;:ccllllolccccccllloollcllc;,,;::clllllcc:;;:lolc:;;;::cldkkkkkkkk0KXNWWWWX0xolloxxddolccc:::
-                             ..  ............',,,;,,;;;;;;:cclolc::::;;;;:llooooool:;;;;;,;coddocccccldxdoc:;;:cldxkkOO00KXNWWWWWXKOxollloddlc::;:::::
-        ..                   ................'''',,,,',,,;;:cllolc;;;;;;,;;:cldddoc:;;,,;;:loollclodlclool::;;:coxOO0KXNWWWWWWWNKOxddollllll:;;::;,,''
-                             ................'......'''''',;cclool:;,;;;;;,,;lxkdl::;;;;:clddlllccllc::ccc:::;;coOKXNNXKKXNNNXXKOxoollcllc::;;;cc:;,,'
-  ...                  ..    ..'''...................',,'',;:cc::::ccc::ccccloodoolc:::::lodolclccloolccc::ccclooxOOkdolllooolooolcccccccc:;,,,,,;;,,,
- ....                  ...  ..',;,',,'................''''',;:c:;;;cllllodddoodddolc::lollooolcclloxddolc;:clokkdoolooolllllc:;,,,,,;clc::,''',,,''',:
-                 ..............',,;::,'....................,;::;,,,:clccloolloddlcll::oddxkkO0Okxoodddolc:cllccllldxkkxooolccc;,''''';,'';,'',,''''',;
-                 ......','.....';;::;,''''.................',,,''',;::;::cllllllccoo:;coOK0OKNX0Oxddollcc::c:;:ok0K0kollllc:;;;,,''..'...''..'''.',;;;
-                   ...';;,'...',;;;;;;,,,'''...................''',;;;;;::::::;::;::::lkXNXOkkOOkxdlc:::;;;clokOK0koc::::::;,,,;:;''''............,;;;
-                .....',;;,'....''',,,,,'''',''...................''',,;;;;;,,;;;;::cloodk00kkkkxdddl::::clooldkxdl:;;,',;;,'',,;c:,''....''....''''',;
-   .         ....................'',,,,,'',,,,'.....................'',,;,....',;::clllccccokOxl::;;:c:;;;;;;:lc;,;;;,,;;;,',;;;c:,'.....',...,;,,;:cc
-            .....................',;;,,'''.................''....................',;:cc::;,,:c;,,,''',''......'''''',;,;;,,,;::;,;,'.....',,'',;cll::;
- .    ...   .....................',;;,''''...................'.....................',,'''........'..................,::c:'.',;;'';;;;....''''',lol:,..
- ..   ...   ....'.........',,,'..;ccc::;;,'...''''...........''''..................................................',,,;;''.',:,',;::,'..',,'':oc'....
-  .         ....''.....',;:;,''.';clcc:;:::;,,'''''''''.''''',,,,,'...................................................''''''.,;,';cc:;'.';c:,:l:......
-           .....'......,;;,,'''',;::::;,,;;;,,,,'','',,'',,,,,,,,,'..........................'''..'''......................'.';;,:llc:,';cl;;lo:......
-             ..........',,''....'',,,,,'',,,,,,,,,,,,,,;;;;,;;;,,''..........................'''.',,,,,........................;;;:c:cc:cooccodc'.....
-     ...      ..................'''''''',,;,,,,,,,;;;;;:::;;;;,,,,,'........................',,'',;;:;,...........................',;;:cldolldd;......
-      ..        .''...'..........'.',,,,,,,,;;;,,,;;;;;;:::;;,;;;;,'................ .....',,;'',;;:::'',,'''........................'';clloddc'.'''..
+
       )";
       onesecsleep();
       cout << R"(
