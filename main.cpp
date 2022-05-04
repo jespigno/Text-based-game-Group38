@@ -208,17 +208,27 @@ void mainmenu(Player x){
   )" << endl;
           getline(cin, mycurrentchoice);
           if (mycurrentchoice == "Q") {
-              //Quest(); CODE THIS
-              printstats(x); //testing purposes
               Questmenu(x);
-              saveValues(x);
-              cout << "Values have been saved!"<< endl;
           }
           else if (mycurrentchoice == "C") {
               //VisitCafe(); CODETHIS
               catcafeMenu(x);
-          }
-          else {
+          }else if (mycurrentchoice == "T"){
+            printstats(x); //testing purposes
+          }else if (mycurrentchoice == "S"){
+            cout << "Are you sure you want to save the game?"<<endl;
+            cout << "This will overwrite your previous savefile"<< endl;
+            cout << "Press 'Y' if you are sure"<<endl;
+            string tempkey;
+            getline(cin,tempkey);
+            if (tempkey == "Y"){
+              cout << "Your data has been saved!" << endl;
+              saveValues(x);
+              break;
+            }else{
+              cout << "Allright. Won't save anything."<<endl;
+            }
+          }else {
               cout << "That's not an option :( try again)" << endl;
           }
   }
