@@ -89,9 +89,9 @@ void saveValues(Player x) {
         cout << "Save unsuccessful. Please try again." << endl;
         exit(1);
     }
-    loadtofile << x.stats.level << x.stats.maxhealth << x.stats.mycurrenthealth << x.stats.mydefense << x.stats.myattack << x.stats.myspeed << x.stats.mymoney << x.stats.experiencepoints;
-    loadtofile << x.stats.attackone << x.stats.attacktwo << x.stats.attackthree;
-    loadtofile << x.info.myname << x.info.catnumber[0] << x.info.catnumber[1] << x.info.catnumber[2] << x.info.catnumber[3] << x.info.catnumber[4];
-    loadtofile << x.info.catnumber[5] << x.info.amountoffurniture << x.info.boughtcatcafe << x.info.level1complete << x.info.level2complete << x.info.level3complete << x.info.level4complete << x.info.level5complete;
+    loadtofile << x.stats.level << endl<< x.stats.maxhealth << endl<< x.stats.mycurrenthealth <<endl<< x.stats.mydefense <<endl<< x.stats.myattack <<endl<< x.stats.myspeed <<endl<< x.stats.mymoney <<endl<< x.stats.experiencepoints<<endl;
+    loadtofile << x.stats.attackone <<endl<<  x.stats.attacktwo <<endl<< x.stats.attackthree << endl;
+    loadtofile << x.info.myname <<endl<< x.info.catnumber[0] <<endl<< x.info.catnumber[1] <<endl<< x.info.catnumber[2] <<endl<< x.info.catnumber[3] <<endl<< x.info.catnumber[4] <<endl;
+    loadtofile << x.info.catnumber[5] << endl<< x.info.amountoffurniture << endl<< x.info.boughtcatcafe << endl<< x.info.level1complete << endl<< x.info.level2complete << endl<< x.info.level3complete << endl<< x.info.level4complete <<endl<< x.info.level5complete;
     loadtofile.close();
 }

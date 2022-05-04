@@ -211,6 +211,8 @@ void mainmenu(Player x){
               //Quest(); CODE THIS
               printstats(x); //testing purposes
               Questmenu(x);
+              saveValues(x);
+              cout << "Values have been saved!"<< endl;
           }
           else if (mycurrentchoice == "C") {
               //VisitCafe(); CODETHIS
