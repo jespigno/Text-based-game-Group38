@@ -651,6 +651,7 @@ MMMMWKdlokKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXK0OOOOOOOOOOOOOOOO00KKXNWWMMMMMMMMM
       )";
       halfasecsleep();
       ClearScreen();
+      //credit https://www.deviantart.com/kostk2boss
     }else if (o == 'P'){
       cout << R"(
 
@@ -896,6 +897,7 @@ MMMMMMMMMMWKxoddxxkO0KXNNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNNKOkONMMMMMMMM
       )";
       halfasecsleep();
       ClearScreen();
+      //Image source https://www.sgss8.com/tpdq/1089436/
     }else if (o == 'W'){
       cout << R"(
 llclooolccloolcloddlcoddolcloc'';;,.....  ...',;'..','.......        ......................';;'............',,;;,;c:,,,'..............            ....
