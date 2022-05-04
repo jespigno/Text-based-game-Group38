@@ -402,7 +402,7 @@ char randomise_enemy(Map m) {
 	return enemy;
 }
 
-bool checkfree1(Map m, int x, int y,Point &p) { // top left corner
+bool checkfree1(Map m, int x, int y,Point &p) {
 	if (m.map[x - 2][y - 2] < 2) {
 		p.x = x - 2;
 		p.y = y - 2;
@@ -410,8 +410,7 @@ bool checkfree1(Map m, int x, int y,Point &p) { // top left corner
 	}
 	return false;
 }
-
-bool checkfree2(Map m, int x, int y, Point& p) { // top left corner
+bool checkfree2(Map m, int x, int y, Point& p) {
 	if (m.map[x - 2][y - 1] < 2) {
 		p.x = x - 2;
 		p.y = y - 1;
@@ -435,7 +434,6 @@ bool checkfree4(Map m, int x, int y, Point& p) { // top left corner
 	}
 	return false;
 }
-
 bool checkfree5(Map m, int x, int y, Point& p) { // top left corner
 	if (m.map[x - 2][y + 2] < 2) {
 		p.x = x - 2;
@@ -486,12 +484,53 @@ bool checkfree10(Map m, int x, int y, Point& p) { // top left corner
 }
 bool checkfree11(Map m, int x, int y, Point& p) { // top left corner
 	if (m.map[x + 1][y + 2] < 2) {
-		p.x = x;
+		p.x = x + 1;
+		p.y = y + 2;
+		return true;
+	}
+	return false;
+}
+bool checkfree12(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x + 2][y - 2] < 2) {
+		p.x = x + 2;
 		p.y = y - 2;
 		return true;
 	}
 	return false;
 }
+bool checkfree13(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x + 2][y - 1] < 2) {
+		p.x = x + 2;
+		p.y = y - 1;
+		return true;
+	}
+	return false;
+}
+bool checkfree14(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x + 2][y] < 2) {
+		p.x = x + 2;
+		p.y = y;
+		return true;
+	}
+	return false;
+}
+bool checkfree15(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x + 2][y + 1] < 2) {
+		p.x = x + 2;
+		p.y = y + 1;
+		return true;
+	}
+	return false;
+}
+bool checkfree16(Map m, int x, int y, Point& p) { // top left corner
+	if (m.map[x + 2][y + 2] < 2) {
+		p.x = x + 2;
+		p.y = y + 2;
+		return true;
+	}
+	return false;
+}
+
 
 
 
