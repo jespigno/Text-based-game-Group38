@@ -239,6 +239,10 @@ map3.enemy = {};
 //move user icon on the map
 //only allows player to move in free space i.e. no walls
 //input: map, player's current coordinates and move they're making
+//output: integer indicating whether player has lost to a monster, completed the level, or is continuing
+//1: no monster encountered, or monster defeated or fled from. No further action required
+//2: level completed, end level
+//3: player defeated, end level
 int makeMove(Map &m, Player &p, Point &position, char move) {
 	//valid input
 	int x = position.x;
@@ -273,7 +277,7 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			return 1;
 		}
 		else if (move == 'd' and map[x + 1][y] < 1) {
-			if (m.map[x - 1][y] == -1) {
+			if (m.map[x + 1][y] == -1) {
 				takeLoot(m.level, p.stats.mymoney);
 			}
 			m.map[x + 1][y] = 2;
@@ -300,13 +304,13 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 		e.y = y - 1;
 		enemy = randomise_enemy(m);
 		win = battlephase(p, enemy);
-		if (win == 'W') {
+		if (win == 'W') { //player won, continue on map
 			cout << "You defeated the monster!";
 			m.map[e.x][e.y] = 0;
 			onesecsleep();
 			return 1;
 		}
-		else if (win == 'L') {
+		else if (win == 'L') { //player lost, level is ended
 			cout << "You lost to the monster!";
 			onesecsleep();
 			cout << "You have been thrown from the battle ground. Better luck next time!";
@@ -314,6 +318,10 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			return 3;
 		}
 		else if (win == 'F') {
+			//player is teleported outside of the area where the enemy can detect them
+			//checkfree functions are ordered such that best case scenario is player gets teleported ahead in
+			//the direction they were originally headed
+			//worst case scenario is the player gets teleported backwards by one step
 			if (checkfree1(m, e.x, e.y, position)) {}
 			else if (checkfree2(m, e.x, e.y, position)) {}
 			else if (checkfree6(m, e.x, e.y, position)) {}
@@ -333,6 +341,9 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
+			//update coordinates after fleeing
+			m.map[x][y] = 0;
+			m.map[position.x][position.y] = 2;
 			return 1;
 		}
 	}
@@ -374,6 +385,8 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
+			m.map[x][y] = 0;
+			m.map[position.x][position.y] = 2;
 			return 1;
 		}
 	}
@@ -415,6 +428,8 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
+			m.map[x][y] = 0;
+			m.map[position.x][position.y] = 2;
 			return 1;
 		}
 	}
@@ -457,6 +472,8 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
+			m.map[x][y] = 0;
+			m.map[position.x][position.y] = 2;
 			return 1;
 		}
 	}
@@ -499,6 +516,8 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
+			m.map[x][y] = 0;
+			m.map[position.x][position.y] = 2;
 			return 1;
 		}
 	}
@@ -541,6 +560,8 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
+			m.map[x][y] = 0;
+			m.map[position.x][position.y] = 2;
 			return 1;
 		}
 	}
@@ -583,6 +604,8 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
+			m.map[x][y] = 0;
+			m.map[position.x][position.y] = 2;
 			return 1;
 		}
 	}
@@ -625,6 +648,8 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 			else {
 				cout << "Flee failed";
 			}
+			m.map[x][y] = 0;
+			m.map[position.x][position.y] = 2;
 			return 1;
 		}
 	}
@@ -633,12 +658,20 @@ int makeMove(Map &m, Player &p, Point &position, char move) {
 	if (position == m.exit) {
 		if (m.check_win() == true) {
 			return 2;
-			//display win message
-			//maybe display stats as well?
+		}
+		else {
+			cout << "You have not yet completed this level's objective. Please return quickly!" << endl;
+			onesecsleep();
+			return 1;
 		}
 	}
+	return 1;
 }
 
+
+//called when player encounters loot
+//randomises earnings gained based on level
+//input: map level, player's current earnings
 void takeLoot(int level, int& money) {
 	//player finds treasure
 	int loot;
@@ -656,12 +689,16 @@ void takeLoot(int level, int& money) {
 	money += loot;
 }
 
+//loads an entire level of the game depending on level of map loaded
+//links all attack functions and map functions
+//input: map struct, player struct
+//output: bool indicating whether player has completed the level successfully
 bool loadlevel(Map m, Player& x) {
 	Map* map;
 	Point position;
 	map = new Map;
 	*map = m;
-	map->create_map(position);
+	map.create_map(position);
 	char move;
 	int val= 1;
 	while (val == 1) {
@@ -671,17 +708,24 @@ bool loadlevel(Map m, Player& x) {
 	if (val == 3) {
 		cout << "You have lost this round. What a pity :C. Better luck next time!" << endl;
 		twosecsleep();
+		ClearScreen();
 		delete map;
 		return false;
 	}
 	else if (val == 2) {
 		cout << "You have completed the level. Congratulations!" << endl;
 		twosecsleep();
+		ClearScreen();
 		delete map;
 		return true;
 	}
 }
 
+
+//randomises enemy from an array with enemies sorted from weakest to strongest
+//only parts of the array are avilable to choose from depending on the level
+//input:map
+//output: a character symbolising what type of enemy the user has encountered
 char randomise_enemy(Map m) {
 	char enemy;
 	char possible[] = { 'J','L', 'H', 'P', 'W' };
@@ -697,6 +741,10 @@ char randomise_enemy(Map m) {
 	return enemy;
 }
 
+
+//these functions check for points on the map that are a safe distance from the monster and teleport the user to them
+//input: map struct, enemy coordinates, user position
+//output: boolean. True if spot is empty and player teleported there. False otherwise
 bool checkfree1(Map m, int x, int y,Point &p) {
 	if (m.map[x - 2][y - 2] < 2) {
 		p.x = x - 2;
