@@ -289,9 +289,28 @@ int makeMove(Map m, Player &p, Point &position, char move) {
 		return 1;
 	}
 
+	char enemy, win;
 	//check if player is within sensing distance of an enemy
 	if (m.map[x - 1][y - 1] == 3) {
-		//enemy senses player. insert battle functions here
+		enemy = randomise_enemy(m);
+		win = battlephase(p, enemy);
+		if (win == 'W') {
+			cout << "You defeated the monster!";
+			m.map[x - 1][y - 1] = 0;
+			onesecsleep();
+			return 2;
+		}
+		else if (win == 'L') {
+			cout << "You lost to the monster!";
+			onesecsleep();
+			cout << "You have been thrown from the battle ground. Better luck next time!";
+			onesecsleep();
+			return 3;
+		}
+		else if (win == 'F') {
+			//teleport player away
+		
+		}
 	}
 	else if (m.map[x - 1][y] == 3) {
 		//enemy senses player. insert battle functions here
