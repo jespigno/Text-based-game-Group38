@@ -48,19 +48,20 @@ struct Map {
     std::vector<Point> possible_enemy;
     std::vector<Point> loot;
     std::vector<Point> enemy;
-
+    Point create_map();
     bool check_win() const;
     void spawn_enemies();
     void spawn_loot();
-    void create_map(Point &);
     void print_map() const;
 };
-
+//map functions
 Map choose(int);
-int makeMove(Map&, Player&, Point&, string);
+void makeMove(Map&, Player&, Point&, string);
 void takeLoot(int, int&);
 bool loadlevel(int, Player&);
 char randomise_enemy(Map);
+inline bool operator==(const Point& a, const Point& b);
+int sense_enemy(Map& m, Player& p, Point& position);
 //flee functions
 bool checkfree1(Map, int, int, Point&);
 bool checkfree2(Map, int, int, Point&);
