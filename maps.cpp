@@ -20,6 +20,7 @@ inline bool operator==(const Point& a, const Point& b)
 
 
 //checks if player has met the winning condition of their specific level
+//works
 bool Map::check_win() const {
 	//level 1 objective is to defeat all the monsters
 	if (level == 1) {
@@ -233,7 +234,7 @@ Map choose(int x) {
 			}
 		}
 		m.entry = { 18, 0 };
-		m.exit = { 6,4 };
+		m.exit = { 6, 4 };
 		m.num_enemies = 8;
 		m.num_loot = 4;
 		m.possible_loot = { {2,35},{3,40}, {4, 9}, {4, 29}, {5,18}, {7,11}, {10,8},
@@ -350,11 +351,10 @@ void makeMove(Map& m, Player& p, Point& position, string move) {
 	}
 	return;
 }
-int sense_enemy(Map& m, Player& p, Point& position) {
+
+int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 	char enemy, win;
 	Point e;
-	//check if player is within sensing distance of an enemy
-	/*
 	if (m.map[position.x - 1][position.y - 1] == 3) {
 		e.x = position.x - 1;
 		e.y = position.y - 1;
@@ -405,51 +405,6 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 			return 1;
 		}
 	}
-	*/
-	if (m.map[position.x - 1][position.y] == 3) {
-		e.x = position.x - 1;
-		e.y = position.y;
-		enemy = randomise_enemy(m);
-		win = battlephase(p, enemy);
-		if (win == 'W') {
-			cout << "You defeated the monster!";
-			m.map[e.x][e.x] = 0;
-			onesecsleep();
-			return 1;
-		}
-		else if (win == 'L') {
-			cout << "You lost to the monster!";
-			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
-			onesecsleep();
-			return 3;
-		}
-		else if (win == 'F') {
-			m.map[position.x][position.y] = 0;
-			if (checkfree3(m, e.x, e.y, position)) {}
-			else if (checkfree2(m, e.x, e.y, position)) {}
-			else if (checkfree4(m, e.x, e.y, position)) {}
-			else if (checkfree5(m, e.x, e.y, position)) {}
-			else if (checkfree1(m, e.x, e.y, position)) {}
-			else if (checkfree6(m, e.x, e.y, position)) {}
-			else if (checkfree7(m, e.x, e.y, position)) {}
-			else if (checkfree9(m, e.x, e.y, position)) {}
-			else if (checkfree8(m, e.x, e.y, position)) {}
-			else if (checkfree10(m, e.x, e.y, position)) {}
-			else if (checkfree11(m, e.x, e.y, position)) {}
-			else if (checkfree12(m, e.x, e.y, position)) {}
-			else if (checkfree16(m, e.x, e.y, position)) {}
-			else if (checkfree15(m, e.x, e.y, position)) {}
-			else if (checkfree13(m, e.x, e.y, position)) {}
-			else if (checkfree14(m, e.x, e.y, position)) {}
-			else {
-				cout << "Flee failed";
-			}
-			m.map[position.x][position.y] = 2;
-			return 1;
-		}
-	}
-	/*
 	else if (m.map[position.x - 1][position.y + 1] == 3) {
 		e.x = position.x - 1;
 		e.y = position.y + 1;
@@ -493,7 +448,145 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 			return 1;
 		}
 	}
-	*/
+	else if (m.map[position.x + 1][position.y - 1] == 3) {
+		//enemy senses player. insert battle functions here
+		e.x = position.x + 1;
+		e.y = position.y - 1;
+		enemy = randomise_enemy(m);
+		win = battlephase(p, enemy);
+		if (win == 'W') {
+			cout << "You defeated the monster!";
+			m.map[e.x][e.y] = 0;
+			onesecsleep();
+			return 1;
+		}
+		else if (win == 'L') {
+			cout << "You lost to the monster!";
+			onesecsleep();
+			cout << "You have been thrown from the battle ground. Better luck next time!";
+			onesecsleep();
+			return 3;
+		}
+		else if (win == 'F') {
+			m.map[position.x][position.y] = 0;
+			if (checkfree12(m, e.x, e.y, position)) {}
+			else if (checkfree10(m, e.x, e.y, position)) {}
+			else if (checkfree13(m, e.x, e.y, position)) {}
+			else if (checkfree14(m, e.x, e.y, position)) {}
+			else if (checkfree8(m, e.x, e.y, position)) {}
+			else if (checkfree6(m, e.x, e.y, position)) {}
+			else if (checkfree15(m, e.x, e.y, position)) {}
+			else if (checkfree1(m, e.x, e.y, position)) {}
+			else if (checkfree16(m, e.x, e.y, position)) {}
+			else if (checkfree11(m, e.x, e.y, position)) {}
+			else if (checkfree2(m, e.x, e.y, position)) {}
+			else if (checkfree3(m, e.x, e.y, position)) {}
+			else if (checkfree9(m, e.x, e.y, position)) {}
+			else if (checkfree7(m, e.x, e.y, position)) {}
+			else if (checkfree4(m, e.x, e.y, position)) {}
+			else if (checkfree5(m, e.x, e.y, position)) {}
+			else {
+				cout << "Flee failed";
+			}
+			m.map[position.x][position.y] = 2;
+			return 1;
+		}
+	}
+	else if (m.map[position.x + 1][position.y + 1] == 3) {
+		//enemy senses player. insert battle functions here
+		e.x = position.x + 1;
+		e.y = position.y + 1;
+		enemy = randomise_enemy(m);
+		win = battlephase(p, enemy);
+		if (win == 'W') {
+			cout << "You defeated the monster!";
+			m.map[e.x][e.y] = 0;
+			onesecsleep();
+			return 1;
+		}
+		else if (win == 'L') {
+			cout << "You lost to the monster!";
+			onesecsleep();
+			cout << "You have been thrown from the battle ground. Better luck next time!";
+			onesecsleep();
+			return 3;
+		}
+		else if (win == 'F') {
+			m.map[position.x][position.y] = 0;
+			if (checkfree16(m, e.x, e.y, position)) {}
+			else if (checkfree15(m, e.x, e.y, position)) {}
+			else if (checkfree11(m, e.x, e.y, position)) {}
+			else if (checkfree14(m, e.x, e.y, position)) {}
+			else if (checkfree9(m, e.x, e.y, position)) {}
+			else if (checkfree13(m, e.x, e.y, position)) {}
+			else if (checkfree7(m, e.x, e.y, position)) {}
+			else if (checkfree5(m, e.x, e.y, position)) {}
+			else if (checkfree12(m, e.x, e.y, position)) {}
+			else if (checkfree10(m, e.x, e.y, position)) {}
+			else if (checkfree4(m, e.x, e.y, position)) {}
+			else if (checkfree3(m, e.x, e.y, position)) {}
+			else if (checkfree8(m, e.x, e.y, position)) {}
+			else if (checkfree2(m, e.x, e.y, position)) {}
+			else if (checkfree6(m, e.x, e.y, position)) {}
+			else if (checkfree1(m, e.x, e.y, position)) {}
+			else {
+				cout << "Flee failed";
+			}
+			m.map[position.x][position.y] = 2;
+			return 1;
+		}
+	}
+	return 1;
+}
+//check if player is within sensing distance of an enemy
+//sensing distance is within one square of the enemy
+//enemies cannot sense diagonally because stack overflow :C
+int sense_enemy(Map& m, Player& p, Point& position) {
+	char enemy, win;
+	Point e;
+	if (m.map[position.x - 1][position.y] == 3) {
+		e.x = position.x - 1;
+		e.y = position.y;
+		enemy = randomise_enemy(m);
+		win = battlephase(p, enemy);
+		if (win == 'W') {
+			cout << "You defeated the monster!";
+			m.map[e.x][e.x] = 0;
+			onesecsleep();
+			return 1;
+		}
+		else if (win == 'L') {
+			cout << "You lost to the monster!";
+			onesecsleep();
+			cout << "You have been thrown from the battle ground. Better luck next time!";
+			onesecsleep();
+			return 3;
+		}
+		else if (win == 'F') {
+			m.map[position.x][position.y] = 0;
+			if (checkfree3(m, e.x, e.y, position)) {}
+			else if (checkfree2(m, e.x, e.y, position)) {}
+			else if (checkfree4(m, e.x, e.y, position)) {}
+			else if (checkfree5(m, e.x, e.y, position)) {}
+			else if (checkfree1(m, e.x, e.y, position)) {}
+			else if (checkfree6(m, e.x, e.y, position)) {}
+			else if (checkfree7(m, e.x, e.y, position)) {}
+			else if (checkfree9(m, e.x, e.y, position)) {}
+			else if (checkfree8(m, e.x, e.y, position)) {}
+			else if (checkfree10(m, e.x, e.y, position)) {}
+			else if (checkfree11(m, e.x, e.y, position)) {}
+			else if (checkfree12(m, e.x, e.y, position)) {}
+			else if (checkfree16(m, e.x, e.y, position)) {}
+			else if (checkfree15(m, e.x, e.y, position)) {}
+			else if (checkfree13(m, e.x, e.y, position)) {}
+			else if (checkfree14(m, e.x, e.y, position)) {}
+			else {
+				cout << "Flee failed";
+			}
+			m.map[position.x][position.y] = 2;
+			return 1;
+		}
+	}
 	else if (m.map[position.x][position.y - 1] == 3) {
 		//enemy senses player. insert battle functions here
 		e.x = position.x;
@@ -582,52 +675,6 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 			return 1;
 		}
 	}
-	/*
-	else if (m.map[position.x + 1][position.y - 1] == 3) {
-		//enemy senses player. insert battle functions here
-		e.x = position.x + 1;
-		e.y = position.y - 1;
-		enemy = randomise_enemy(m);
-		win = battlephase(p, enemy);
-		if (win == 'W') {
-			cout << "You defeated the monster!";
-			m.map[e.x][e.y] = 0;
-			onesecsleep();
-			return 1;
-		}
-		else if (win == 'L') {
-			cout << "You lost to the monster!";
-			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
-			onesecsleep();
-			return 3;
-		}
-		else if (win == 'F') {
-			m.map[position.x][position.y] = 0;
-			if (checkfree12(m, e.x, e.y, position)) {}
-			else if (checkfree10(m, e.x, e.y, position)) {}
-			else if (checkfree13(m, e.x, e.y, position)) {}
-			else if (checkfree14(m, e.x, e.y, position)) {}
-			else if (checkfree8(m, e.x, e.y, position)) {}
-			else if (checkfree6(m, e.x, e.y, position)) {}
-			else if (checkfree15(m, e.x, e.y, position)) {}
-			else if (checkfree1(m, e.x, e.y, position)) {}
-			else if (checkfree16(m, e.x, e.y, position)) {}
-			else if (checkfree11(m, e.x, e.y, position)) {}
-			else if (checkfree2(m, e.x, e.y, position)) {}
-			else if (checkfree3(m, e.x, e.y, position)) {}
-			else if (checkfree9(m, e.x, e.y, position)) {}
-			else if (checkfree7(m, e.x, e.y, position)) {}
-			else if (checkfree4(m, e.x, e.y, position)) {}
-			else if (checkfree5(m, e.x, e.y, position)) {}
-			else {
-				cout << "Flee failed";
-			}
-			m.map[position.x][position.y] = 2;
-			return 1;
-		}
-	}
-	*/
 	else if (m.map[position.x + 1][position.y] == 3) {
 		//enemy senses player. insert battle functions here
 		e.x = position.x + 1;
@@ -672,54 +719,12 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 			return 1;
 		}
 	}
-	/*
-	else if (m.map[position.x + 1][position.y + 1] == 3) {
-		//enemy senses player. insert battle functions here
-		e.x = position.x + 1;
-		e.y = position.y + 1;
-		enemy = randomise_enemy(m);
-		win = battlephase(p, enemy);
-		if (win == 'W') {
-			cout << "You defeated the monster!";
-			m.map[e.x][e.y] = 0;
-			onesecsleep();
-			return 1;
-		}
-		else if (win == 'L') {
-			cout << "You lost to the monster!";
-			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
-			onesecsleep();
-			return 3;
-		}
-		else if (win == 'F') {
-			m.map[position.x][position.y] = 0;
-			if (checkfree16(m, e.x, e.y, position)) {}
-			else if (checkfree15(m, e.x, e.y, position)) {}
-			else if (checkfree11(m, e.x, e.y, position)) {}
-			else if (checkfree14(m, e.x, e.y, position)) {}
-			else if (checkfree9(m, e.x, e.y, position)) {}
-			else if (checkfree13(m, e.x, e.y, position)) {}
-			else if (checkfree7(m, e.x, e.y, position)) {}
-			else if (checkfree5(m, e.x, e.y, position)) {}
-			else if (checkfree12(m, e.x, e.y, position)) {}
-			else if (checkfree10(m, e.x, e.y, position)) {}
-			else if (checkfree4(m, e.x, e.y, position)) {}
-			else if (checkfree3(m, e.x, e.y, position)) {}
-			else if (checkfree8(m, e.x, e.y, position)) {}
-			else if (checkfree2(m, e.x, e.y, position)) {}
-			else if (checkfree6(m, e.x, e.y, position)) {}
-			else if (checkfree1(m, e.x, e.y, position)) {}
-			else {
-				cout << "Flee failed";
-			}
-			m.map[position.x][position.y] = 2;
-			return 1;
-		}
-	}*/
 	return 1;
 }
 
+//checks if player has completed the level. 2 conditions: 1.complete the requirements of the level
+//2. be at the exit point
+//works
 bool level_complete(Map m, Point position) {
 	//checks if player has reached the exit point
 	//if they have, checks if they've won
@@ -780,11 +785,15 @@ bool loadlevel(int level, Player& x) {
 		getline(cin, move);
 		makeMove(m, x, position, move);
 		val = sense_enemy(m, x, position);
+		if (val == 3)
+			break;
+		val = sense_enemy_diagonal(m, x, position);
+		if (val == 3)
+			break;
 		complete = level_complete(m, position);
 	}
 	if (val == 3) {
-		cout << "You have lost this round. What a pity :C. Better luck next time!" << endl;
-		twosecsleep();
+		onesecsleep();
 		ClearScreen();
 		return false;
 	}

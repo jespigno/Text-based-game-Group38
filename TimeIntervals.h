@@ -62,6 +62,9 @@ bool loadlevel(int, Player&);
 char randomise_enemy(Map);
 inline bool operator==(const Point& a, const Point& b);
 int sense_enemy(Map& m, Player& p, Point& position);
+int sense_enemy_diagonal(Map& m, Player& p, Point& position);
+bool level_complete(Map m, Point position);
+
 //flee functions
 bool checkfree1(Map, int, int, Point&);
 bool checkfree2(Map, int, int, Point&);
