@@ -2,7 +2,7 @@
 #ifndef AttackFunctions
 #define AttackFunctions
 
-struct Player;
+struct Player; //why is this here?
 
 
 //struct for possible enemies

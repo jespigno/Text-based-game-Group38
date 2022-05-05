@@ -8,7 +8,6 @@ using namespace std;
 #include "TimeIntervals.h"
 #include "AttackFunctions.h"
 
-Point position;
 
 
 //checks if player has met the winning condition of their specific level

@@ -55,6 +55,8 @@ struct Map {
     void create_map(Point &);
     void print_map() const;
 };
+Map map1, map2, map3;
+
 void makeMove(Map&, Player&, Point&, char);
 void takeLoot(int, int&);
 bool loadlevel(Map , Player&);
