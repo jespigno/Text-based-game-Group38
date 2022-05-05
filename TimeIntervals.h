@@ -55,11 +55,11 @@ struct Map {
     void create_map(Point &);
     void print_map() const;
 };
-Map map1, map2, map3;
 
-void makeMove(Map&, Player&, Point&, char);
+Map choose(int);
+int makeMove(Map&, Player&, Point&, string);
 void takeLoot(int, int&);
-bool loadlevel(Map , Player&);
+bool loadlevel(int, Player&);
 char randomise_enemy(Map);
 //flee functions
 bool checkfree1(Map, int, int, Point&);
