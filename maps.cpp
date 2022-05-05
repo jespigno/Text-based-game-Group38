@@ -354,6 +354,7 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 	char enemy, win;
 	Point e;
 	//check if player is within sensing distance of an enemy
+	/*
 	if (m.map[position.x - 1][position.y - 1] == 3) {
 		e.x = position.x - 1;
 		e.y = position.y - 1;
@@ -404,6 +405,7 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 			return 1;
 		}
 	}
+	*/
 	if (m.map[position.x - 1][position.y] == 3) {
 		e.x = position.x - 1;
 		e.y = position.y;
@@ -717,22 +719,24 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 	}*/
 	return 1;
 }
-/*
+
+bool level_complete(Map m, Point position) {
 	//checks if player has reached the exit point
 	//if they have, checks if they've won
 	if (position == m.exit) {
 		if (m.check_win() == true) {
-			return 2;
+			return true;
 		}
 		else {
 			cout << "You have not yet completed this level's objective. Please return quickly!" << endl;
 			onesecsleep();
-			return 1;
+			return false;
 		}
 	}
-	return 1;
+	return false;
 }
-*/
+
+
 
 
 //called when player encounters loot
@@ -751,8 +755,9 @@ void takeLoot(int level, int& money) {
 	else if (level == 3) {
 		loot = 50 + rand() % 100;
 	}
-	cout << "You picked up a treasure worth " << loot << "dollars!";
+	cout << "You picked up a treasure worth " << loot << "dollars!\n";
 	money += loot;
+	twosecsleep();
 }
 
 //loads an entire level of the game depending on level of map loaded
@@ -769,11 +774,13 @@ bool loadlevel(int level, Player& x) {
 
 	string move;
 	int val = 1;
-	while (val == 1) {
+	bool complete = false;
+	while (val == 1 and complete == false) {
 		m.print_map();
 		getline(cin, move);
 		makeMove(m, x, position, move);
 		val = sense_enemy(m, x, position);
+		complete = level_complete(m, position);
 	}
 	if (val == 3) {
 		cout << "You have lost this round. What a pity :C. Better luck next time!" << endl;
@@ -781,7 +788,7 @@ bool loadlevel(int level, Player& x) {
 		ClearScreen();
 		return false;
 	}
-	else if (val == 2) {
+	else if (complete == true) {
 		cout << "You have completed the level. Congratulations!" << endl;
 		twosecsleep();
 		ClearScreen();
