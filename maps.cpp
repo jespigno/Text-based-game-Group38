@@ -4,6 +4,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <chrono>
+#include <thread>
+using namespace std::this_thread;
+using namespace std::chrono;
 using namespace std;
 #include "TimeIntervals.h"
 #include "AttackFunctions.h"
@@ -377,16 +381,16 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 			m.map[position.x][position.y] = 0;  //remove player from current spot on the map
 			//update position to most convenient free spot on the map
 			if (checkfree1(m, e.x, e.y, position)) {}
-			else if (checkfree2(m, e.x, e.y, position)) {}
 			else if (checkfree6(m, e.x, e.y, position)) {}
-			else if (checkfree3(m, e.x, e.y, position)) {}
+			else if (checkfree2(m, e.x, e.y, position)) {}
 			else if (checkfree8(m, e.x, e.y, position)) {}
-			else if (checkfree4(m, e.x, e.y, position)) {}
+			else if (checkfree3(m, e.x, e.y, position)) {}
 			else if (checkfree10(m, e.x, e.y, position)) {}
-			else if (checkfree5(m, e.x, e.y, position)) {}
+			else if (checkfree4(m, e.x, e.y, position)) {}
 			else if (checkfree12(m, e.x, e.y, position)) {}
-			else if (checkfree7(m, e.x, e.y, position)) {}
+			else if (checkfree5(m, e.x, e.y, position)) {}
 			else if (checkfree13(m, e.x, e.y, position)) {}
+			else if (checkfree7(m, e.x, e.y, position)) {}
 			else if (checkfree9(m, e.x, e.y, position)) {}
 			else if (checkfree14(m, e.x, e.y, position)) {}
 			else if (checkfree11(m, e.x, e.y, position)) {}
@@ -553,22 +557,22 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 		}
 		else if (win == 'F') {
 			m.map[position.x][position.y] = 0;
-			if (checkfree8(m, e.x, e.y, position)) {}
-			else if (checkfree6(m, e.x, e.y, position)) {}
-			else if (checkfree10(m, e.x, e.y, position)) {}
-			else if (checkfree1(m, e.x, e.y, position)) {}
-			else if (checkfree12(m, e.x, e.y, position)) {}
-			else if (checkfree2(m, e.x, e.y, position)) {}
-			else if (checkfree13(m, e.x, e.y, position)) {}
+			if (checkfree9(m, e.x, e.y, position)) {}
+			else if (checkfree7(m, e.x, e.y, position)) {}
+			else if (checkfree11(m, e.x, e.y, position)) {}
+			else if (checkfree5(m, e.x, e.y, position)) {}
+			else if (checkfree16(m, e.x, e.y, position)) {}
+			else if (checkfree4(m, e.x, e.y, position)) {}
+			else if (checkfree15(m, e.x, e.y, position)) {}
 			else if (checkfree3(m, e.x, e.y, position)) {}
 			else if (checkfree14(m, e.x, e.y, position)) {}
 			else if (checkfree4(m, e.x, e.y, position)) {}
-			else if (checkfree15(m, e.x, e.y, position)) {}
-			else if (checkfree5(m, e.x, e.y, position)) {}
-			else if (checkfree16(m, e.x, e.y, position)) {}
-			else if (checkfree7(m, e.x, e.y, position)) {}
-			else if (checkfree11(m, e.x, e.y, position)) {}
-			else if (checkfree9(m, e.x, e.y, position)) {}
+			else if (checkfree13(m, e.x, e.y, position)) {}
+			else if (checkfree2(m, e.x, e.y, position)) {}
+			else if (checkfree12(m, e.x, e.y, position)) {}
+			else if (checkfree6(m, e.x, e.y, position)) {}
+			else if (checkfree10(m, e.x, e.y, position)) {}
+			else if (checkfree8(m, e.x, e.y, position)) {}
 			else {
 				cout << "Flee failed";
 			}
@@ -810,7 +814,7 @@ char randomise_enemy(Map m) {
 //input: map struct, enemy coordinates, user position
 //output: boolean. True if spot is empty and player teleported there. False otherwise
 bool checkfree1(Map m, int x, int y, Point& p) {
-	if (m.map[x - 2][y - 2] < 2) {
+	if (m.map[x - 2][y - 2] < 1) {
 		p.x = x - 2;
 		p.y = y - 2;
 		return true;
@@ -818,7 +822,7 @@ bool checkfree1(Map m, int x, int y, Point& p) {
 	return false;
 }
 bool checkfree2(Map m, int x, int y, Point& p) {
-	if (m.map[x - 2][y - 1] < 2) {
+	if (m.map[x - 2][y - 1] < 1) {
 		p.x = x - 2;
 		p.y = y - 1;
 		return true;
@@ -826,7 +830,7 @@ bool checkfree2(Map m, int x, int y, Point& p) {
 	return false;
 }
 bool checkfree3(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x - 2][y] < 2) {
+	if (m.map[x - 2][y] < 1) {
 		p.x = x - 2;
 		p.y = y;
 		return true;
@@ -834,7 +838,7 @@ bool checkfree3(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree4(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x - 2][y + 1] < 2) {
+	if (m.map[x - 2][y + 1] < 1) {
 		p.x = x - 2;
 		p.y = y + 1;
 		return true;
@@ -842,7 +846,7 @@ bool checkfree4(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree5(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x - 2][y + 2] < 2) {
+	if (m.map[x - 2][y + 2] < 1) {
 		p.x = x - 2;
 		p.y = y + 2;
 		return true;
@@ -850,7 +854,7 @@ bool checkfree5(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree6(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x - 1][y - 2] < 2) {
+	if (m.map[x - 1][y - 2] < 1) {
 		p.x = x - 1;
 		p.y = y - 2;
 		return true;
@@ -858,7 +862,7 @@ bool checkfree6(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree7(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x - 1][y + 2] < 2) {
+	if (m.map[x - 1][y + 2] < 1) {
 		p.x = x - 1;
 		p.y = y + 2;
 		return true;
@@ -866,7 +870,7 @@ bool checkfree7(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree8(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x][y - 2] < 2) {
+	if (m.map[x][y - 2] < 1) {
 		p.x = x;
 		p.y = y - 2;
 		return true;
@@ -874,7 +878,7 @@ bool checkfree8(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree9(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x][y + 2] < 2) {
+	if (m.map[x][y + 2] < 1) {
 		p.x = x;
 		p.y = y + 2;
 		return true;
@@ -882,7 +886,7 @@ bool checkfree9(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree10(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x + 1][y - 2] < 2) {
+	if (m.map[x + 1][y - 2] < 1) {
 		p.x = x + 1;
 		p.y = y - 2;
 		return true;
@@ -890,7 +894,7 @@ bool checkfree10(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree11(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x + 1][y + 2] < 2) {
+	if (m.map[x + 1][y + 2] < 1) {
 		p.x = x + 1;
 		p.y = y + 2;
 		return true;
@@ -898,7 +902,7 @@ bool checkfree11(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree12(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x + 2][y - 2] < 2) {
+	if (m.map[x + 2][y - 2] < 1) {
 		p.x = x + 2;
 		p.y = y - 2;
 		return true;
@@ -906,7 +910,7 @@ bool checkfree12(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree13(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x + 2][y - 1] < 2) {
+	if (m.map[x + 2][y - 1] < 1) {
 		p.x = x + 2;
 		p.y = y - 1;
 		return true;
@@ -914,7 +918,7 @@ bool checkfree13(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree14(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x + 2][y] < 2) {
+	if (m.map[x + 2][y] < 1) {
 		p.x = x + 2;
 		p.y = y;
 		return true;
@@ -922,7 +926,7 @@ bool checkfree14(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree15(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x + 2][y + 1] < 2) {
+	if (m.map[x + 2][y + 1] < 1) {
 		p.x = x + 2;
 		p.y = y + 1;
 		return true;
@@ -930,7 +934,7 @@ bool checkfree15(Map m, int x, int y, Point& p) { // top left corner
 	return false;
 }
 bool checkfree16(Map m, int x, int y, Point& p) { // top left corner
-	if (m.map[x + 2][y + 2] < 2) {
+	if (m.map[x + 2][y + 2] < 1) {
 		p.x = x + 2;
 		p.y = y + 2;
 		return true;
