@@ -13,6 +13,7 @@ using namespace std;
 #include "AttackFunctions.h"
 
 //works
+//compares 2 points. Returns true if they are the same
 inline bool operator==(const Point& a, const Point& b)
 {
 	return (a.x == b.x) && (a.y == b.y);
@@ -127,6 +128,9 @@ void Map::print_map() const {
 }
 
 //works
+//loads map details based on level
+//input: level
+//output: corresponding map struct
 Map choose(int x) {
 	int level1[30][45] = {
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -303,10 +307,7 @@ Map choose(int x) {
 //move user icon on the map
 //only allows player to move in free space i.e. no walls
 //input: map, player's current coordinates and move they're making
-//output: integer indicating whether player has lost to a monster, completed the level, or is continuing
-//1: no monster encountered, or monster defeated or fled from. No further action required
-//2: level completed, end level
-//3: player defeated, end level
+//works
 void makeMove(Map& m, Player& p, Point& position, string move) {
 	//valid input
 	cout << "establishd coordinates";
@@ -352,6 +353,13 @@ void makeMove(Map& m, Player& p, Point& position, string move) {
 	return;
 }
 
+
+//check if player is within sensing distance of an enemy
+// if they are, initiates battle
+//if they choose to flee, chooses a safe place to drop them
+//sensing distance is within one square of the enemy diagonally
+//returns int: 1 for battle won, or fled successfully, 3 for battle lost
+//works
 int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 	char enemy, win;
 	Point e;
@@ -538,9 +546,13 @@ int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 	}
 	return 1;
 }
+
 //check if player is within sensing distance of an enemy
-//sensing distance is within one square of the enemy
-//enemies cannot sense diagonally because stack overflow :C
+//sensing distance is within one square of the enemy top, bottom, left, or right
+// if they are, initiates battle
+//if they choose to flee, chooses a safe place to drop them
+//returns int: 1 for battle won, or fled successfully, 3 for battle lost
+//works
 int sense_enemy(Map& m, Player& p, Point& position) {
 	char enemy, win;
 	Point e;
