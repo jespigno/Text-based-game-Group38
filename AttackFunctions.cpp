@@ -1575,21 +1575,21 @@ void Questmenu(Player &x){
 
         getline(cin,tempkey);
         if (tempkey == "001"){
-            levelwon = loadlevel(map1, x);
+            levelwon = loadlevel(1, x);
             if (levelwon == true and x.info.level1complete == false) {
                 x.info.level1complete = true;
                 x.stats.mymoney += 1000; //reward, can discuss later
             }
         }
         else if (tempkey == "002"){
-            levelwon = loadlevel(map2, x);
+            levelwon = loadlevel(2, x);
             if (levelwon == true and x.info.level2complete == false) {
                 x.info.level2complete = true;
                 x.stats.mymoney += 3000; //reward, can discuss later
             }
         }
         else if (tempkey == "003"){
-            levelwon = loadlevel(map3, x);
+            levelwon = loadlevel(3, x);
             if (levelwon == true and x.info.level3complete == false) {
                 x.info.level3complete = true;
                 x.stats.mymoney += 5000; //reward, can discuss later
