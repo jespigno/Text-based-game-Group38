@@ -265,12 +265,12 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
 }
 
 void MonsterDefend(GhostData &ghast, Player &pleya, int &hexed){
-  cout << ghast.name << " will defend!";
+  cout << ghast.name << " will defend!" << endl;
   halfasecsleep();
   if (hexed > 0){
     pleya.stats.mycurrenthealth -= (ghast.defense % 3 + 1);
     hexed -=1;
-    cout << pleya.info.myname << " is being hurt by the hex.";
+    cout << pleya.info.myname << " is being hurt by the hex." << endl;
     onesecsleep();
   }
   ghast.imdefending = true;
@@ -1190,6 +1190,7 @@ bool usermoves(Player &p, GhostData &g){
     if ((p.stats.myspeed)>(g.speed)){
       if (whatshouldIdo >= 25){
         cout << p.info.myname << " was able to flee"<<endl;
+        onesecsleep();
         return false;
       }
       else{
