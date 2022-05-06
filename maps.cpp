@@ -282,7 +282,7 @@ Map choose(int x) {
 		}
 		m.entry = { 15,0 };
 		m.exit = { 29,44 };
-		m.num_enemies = 6;
+		m.num_enemies = 12;
 		m.num_loot = 6;
 		m.possible_loot = { {1,2 }, {1,16 }, {1,23 }, {1,36 }, {2,19 }, {2,39 }, {2,43 }, {3,16 }, {3,22 }, {3,27 },
 			{3,34 }, {4,5 }, {4,41 }, {6,3 }, {6,39 }, {6,43 }, {7,9 }, {7,14 }, {8,35 }, {8,42 }, {9,1 }, {9,18 }, {10,5 },
@@ -764,17 +764,18 @@ void takeLoot(int level, int& money) {
 	int loot;
 	//increase player money by a random number whose range will depend on what level this is
 	if (level == 1) {
-		loot = 20 + rand() % 30;
+		loot = 50 + rand() % 150;
 	}
 	else if (level == 2) {
-		loot = 30 + rand() % 70;
+		loot = 200 + rand() % 250;
 	}
 	else if (level == 3) {
-		loot = 50 + rand() % 100;
+		loot = 300 + rand() % 1000;
 	}
 	cout << "You picked up a treasure worth " << loot << "dollars!\n";
 	money += loot;
 	twosecsleep();
+	return;
 }
 
 //loads an entire level of the game depending on level of map loaded

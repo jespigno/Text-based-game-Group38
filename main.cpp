@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <ctime>
 using namespace std;
 #include "TimeIntervals.h"
 #include "AttackFunctions.h"
@@ -10,6 +11,7 @@ using namespace std;
 void mainmenu(Player x);
 
 int main(){
+    srand(time(0));
     Player defaultval = { 5, 10, 10, 5 ,6, 5, 0, 0.0 ,"xxxxxxxxxxxxxxx","xxxxxxxxxxxxxxx","xxxxxxxxxxxxxxx","Joe", false, false, false, false, false, false, 0,false, false, false, false, false, false, true};
     string saveornot;
     while (saveornot != "L" && saveornot != "N"){
