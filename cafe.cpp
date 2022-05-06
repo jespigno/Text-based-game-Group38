@@ -35,13 +35,6 @@ void catcafeMenu(Player& x) {
 |  :  ||  |/  \ ||  |  |  |      |___, |     |  :  |    \     /   \_|  _  |   _|   [_   |__|
  \   / |  |\    ||  |  |  |      |     |     |     |  .  \    \     |  |  |  | |     |   __
   \_/ |____|\___|____| |__|      |____/ \___/ \__,_|__|\_|     \____|__|__|__| |_____|  |__|     Press (v)
- ____  _      ____ __ __      __    __ ____ ______ __ __      __ __  ___  __ __ ____          __  ____ ______  __________
-|    \| |    /    |  |  |    |  |__|  |    |      |  |  |    |  |  |/   \|  |  |    \        /  ]/    |      |/ ___/     |
-|  o  | |   |  o  |  |  |    |  |  |  ||  ||      |  |  |    |  |  |     |  |  |  D  )      /  /|  o  |      (   \_|  Y  |
-|   _/| |___|     |  ~  |    |  |  |  ||  ||_|  |_|  _  |    |  ~  |  O  |  |  |    /      /  / |     |_|  |_|\__  |__|  |
-|  |  |     |  _  |___, |    |  `  '  ||  |  |  | |  |  |    |___, |     |  :  |    \     /   \_|  _  | |  |  /  \ |  |__|
-|  |  |     |  |  |     |     \      / |  |  |  | |  |  |    |     |     |     |  .  \    \     |  |  | |  |  \    |   __
-|__|  |_____|__|__|____/       \_/\_/ |____| |__| |__|__|    |____/ \___/ \__,_|__|\_|     \____|__|__| |__|   \___|  |__|   Press (p)
   ____  ___       ____   ____    __ __  _ _____
  /    |/   \     |    \ /    |  /  |  |/ /     |
 |   __|     |    |  o  |  o  | /  /|  ' /|  Y  |
@@ -239,7 +232,7 @@ void purchase(Player& x) {
             if (x.info.boughtcatcafe == true) {
                 if (x.stats.mymoney >= 2000) {
                     x.stats.mymoney -= 2000;
-                    x.info.catnumber[0] == true;
+                    x.info.catnumber[0] = true;
                     cout << "You have bought a large supply of food. Visit your cafe to see it!" << endl;
                     twosecsleep();
                     cout << endl << "With all this food, you won't have to worry about feeding cats or any clients for many years!" << endl;
