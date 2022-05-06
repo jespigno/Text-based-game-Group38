@@ -83,8 +83,8 @@ void Map::spawn_loot() {
 			}
 		}
 		loot.push_back(newloot);
-		cout << "added\n";
-		cout << loot.size();
+		//cout << "added\n";
+		//cout << loot.size();
 	}
 }
 
@@ -92,6 +92,7 @@ void Map::spawn_loot() {
 //works
 Point Map::create_map() {
 	map[entry.x][entry.y] = 2;//places player at start position
+	map[exit.x][exit.y] = -2; //marks position of exit point
 	for (int i = 0; i < loot.size(); i++) {
 		map[loot[i].x][loot[i].y] = -1;
 	}
@@ -104,23 +105,27 @@ Point Map::create_map() {
 //prints current map with players's position, loot and enemies
 //works
 void Map::print_map() const {
+	cout << "\n\n\n\n\n\n\n\n\n\n\n";
 	for (int i = 0; i < 30; i++) {
-		cout << "                    ";
+		cout << "                              ";
 		for (int j = 0; j < 45; j++) {
 			if (map[i][j] == 1) {
-				cout << '+' << ' ';
+				cout << '%' << ' ';
 			}
 			else if (map[i][j] == 2) {
-				cout << '$' << ' ';//whatever icon we have picked to represent the user
+				cout << '#' << ' ';//whatever icon we have picked to represent the user
 			}
 			else if (map[i][j] == 3) {
-				cout << '@' << ' ';//enemies
+				cout << '!' << ' ';//enemies
 			}
 			else if (map[i][j] == -1) {
-				cout << '~' << ' ';//treasure
+				cout << '+' << ' ';//treasure
+			}
+			else if (map[i][j] == -2) {
+				cout << '*' << ' ';//area around exit
 			}
 			else {
-				cout << ' ' << ' ';
+				cout << ' ' << ' ';//empty space
 			}
 		}
 		cout << endl;
@@ -197,37 +202,38 @@ Map choose(int x) {
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
 	int level3[30][45] = {
-			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-			{0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1},
-			{1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1},
-			{1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,0,1,1,1,1,1,0,1,0,0,0,0,0,0,1},
-			{1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1,1,0,1,0,0,0,1,1,0,1},
-			{1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,1,0,1,1,1,1,1,1,0,1,0,0,0,1,1,0,1},
-			{1,1,0,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1},
-			{1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,0,0,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1},
-			{1,1,0,1,1,1,1,1,1,1,0,1,0,0,0,0,1,1,0,1,1,1,1,1,1,0,1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1},
-			{1,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,1},
-			{1,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1},
-			{1,0,0,0,1,1,0,1,1,0,0,0,1,1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,1,1},
-			{1,1,1,1,1,1,0,0,0,0,0,0,1,1,0,1,1,0,0,0,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,1,0,1,1,1,0,0,0,1,1},
-			{1,1,1,1,1,1,1,1,1,0,0,0,1,1,0,1,1,0,0,0,1,1,1,1,1,0,0,0,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0,1,1},
-			{1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1},
-			{1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1},
-			{1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,1,1,0,0,1,0,0,0,1,0,0,0,0,1,1,1,0,1,1,1,0,0,0,1,1,0,1,1},
-			{1,1,1,0,0,0,1,1,1,1,0,1,1,1,0,0,0,1,1,0,1,1,0,0,0,1,0,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,1,1},
-			{1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,1,1},
-			{1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,1},
-			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,1,1,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,1},
-			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,1,1,1,0,1,1},
-			{1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,1,1,1,0,1,1,1,0,0,0,0,0,1,1,1,0,1,1},
-			{1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1},
-			{1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,1,1,1,0,1,1},
-			{1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,1,1},
-			{1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1},
-			{1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1},
-			{1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1},
-			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+		{1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+		{1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,1},
+		{1,0,1,1,1,0,1,0,1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,0,0,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,0,1},
+		{1,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1},
+		{1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,0,0,0,1,1,1},
+		{1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1},
+		{1,0,0,0,1,0,0,0,1,0,1,0,1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1},
+		{1,0,1,0,1,1,1,1,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,1,0,1},
+		{1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1},
+		{1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,1},
+		{1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1},
+		{1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,1,1,1,0,1,0,1,0,1},
+		{1,0,1,0,0,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1},
+		{1,0,1,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1},
+		{1,0,1,0,1,1,1,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1},
+		{0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,1},
+		{1,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1},
+		{1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,1,1,0,1,0,1,1,0,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1},
+		{1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1,1,1,0,1},
+		{1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1},
+		{1,0,1,0,1,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1},
+		{1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1},
+		{1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,1},
+		{1,0,0,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1},
+		{1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,1},
+		{1,0,1,1,1,0,1,0,1,1,0,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1},
+		{1,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,0,1,0,1,0,0,0,1},
+		{1,0,1,0,1,0,1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,1,0,1,0,1,0,1},
+		{1,0,0,1,1,0,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,1,0,1},
+		{1,1,0,0,1,0,1,1,1,0,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,0,1}
 	};
+
 	Map m;
 
 	if (x == 1) {
@@ -239,7 +245,7 @@ Map choose(int x) {
 		}
 		m.entry = { 18, 0 };
 		m.exit = { 6, 4 };
-		m.num_enemies = 8;
+		m.num_enemies = 6;
 		m.num_loot = 4;
 		m.possible_loot = { {2,35},{3,40}, {4, 9}, {4, 29}, {5,18}, {7,11}, {10,8},
 			{10,32}, {13, 37}, {15, 12}, {15, 38}, {17, 28}, {18,41}, {19,18},
@@ -310,7 +316,6 @@ Map choose(int x) {
 //works
 void makeMove(Map& m, Player& p, Point& position, string move) {
 	//valid input
-	cout << "establishd coordinates";
 	if (move == "w" || move == "s" || move == "a" || move == "d") {
 		if (move == "w" and m.map[position.x - 1][position.y] < 1) {
 			if (m.map[position.x - 1][position.y] == -1) {
@@ -369,15 +374,15 @@ int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 		enemy = randomise_enemy(m);
 		win = battlephase(p, enemy);
 		if (win == 'W') { //player won, continue on map
-			cout << "You defeated the monster!";
+			cout << "You defeated the monster!" << endl;
 			m.map[e.x][e.y] = 0;
 			onesecsleep();
 			return 1;
 		}
 		else if (win == 'L') { //player lost, level is ended
-			cout << "You lost to the monster!";
+			cout << "You lost to the monster!" << endl;
 			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
+			cout << "You have been thrown from the battle ground. Better luck next time!" << endl;
 			onesecsleep();
 			return 3;
 		}
@@ -406,7 +411,7 @@ int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 			else if (checkfree15(m, e.x, e.y, position)) {}
 			else if (checkfree16(m, e.x, e.y, position)) {}
 			else {
-				cout << "Flee failed";
+				cout << "Flee failed" << endl;
 			}
 			//drop player in new spot on the map
 			m.map[position.x][position.y] = 2;
@@ -419,15 +424,15 @@ int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 		enemy = randomise_enemy(m);
 		win = battlephase(p, enemy);
 		if (win == 'W') {
-			cout << "You defeated the monster!";
+			cout << "You defeated the monster!" << endl;
 			m.map[e.x][e.y] = 0;
 			onesecsleep();
 			return 1;
 		}
 		else if (win == 'L') {
-			cout << "You lost to the monster!";
+			cout << "You lost to the monster!" << endl;
 			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
+			cout << "You have been thrown from the battle ground. Better luck next time!" << endl;
 			onesecsleep();
 			return 3;
 		}
@@ -450,7 +455,7 @@ int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 			else if (checkfree13(m, e.x, e.y, position)) {}
 			else if (checkfree12(m, e.x, e.y, position)) {}
 			else {
-				cout << "Flee failed";
+				cout << "Flee failed" << endl;
 			}
 			m.map[position.x][position.y] = 2;
 			return 1;
@@ -463,15 +468,15 @@ int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 		enemy = randomise_enemy(m);
 		win = battlephase(p, enemy);
 		if (win == 'W') {
-			cout << "You defeated the monster!";
+			cout << "You defeated the monster!" << endl;
 			m.map[e.x][e.y] = 0;
 			onesecsleep();
 			return 1;
 		}
 		else if (win == 'L') {
-			cout << "You lost to the monster!";
+			cout << "You lost to the monster!" << endl;
 			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
+			cout << "You have been thrown from the battle ground. Better luck next time!" << endl;
 			onesecsleep();
 			return 3;
 		}
@@ -494,7 +499,7 @@ int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 			else if (checkfree4(m, e.x, e.y, position)) {}
 			else if (checkfree5(m, e.x, e.y, position)) {}
 			else {
-				cout << "Flee failed";
+				cout << "Flee failed" << endl;
 			}
 			m.map[position.x][position.y] = 2;
 			return 1;
@@ -507,15 +512,15 @@ int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 		enemy = randomise_enemy(m);
 		win = battlephase(p, enemy);
 		if (win == 'W') {
-			cout << "You defeated the monster!";
+			cout << "You defeated the monster!" << endl;
 			m.map[e.x][e.y] = 0;
 			onesecsleep();
 			return 1;
 		}
 		else if (win == 'L') {
-			cout << "You lost to the monster!";
+			cout << "You lost to the monster!" << endl;
 			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
+			cout << "You have been thrown from the battle ground. Better luck next time!" << endl;
 			onesecsleep();
 			return 3;
 		}
@@ -538,7 +543,7 @@ int sense_enemy_diagonal(Map& m, Player& p, Point& position) {
 			else if (checkfree6(m, e.x, e.y, position)) {}
 			else if (checkfree1(m, e.x, e.y, position)) {}
 			else {
-				cout << "Flee failed";
+				cout << "Flee failed" << endl;
 			}
 			m.map[position.x][position.y] = 2;
 			return 1;
@@ -562,15 +567,15 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 		enemy = randomise_enemy(m);
 		win = battlephase(p, enemy);
 		if (win == 'W') {
-			cout << "You defeated the monster!";
-			m.map[e.x][e.x] = 0;
+			cout << "You defeated the monster!" << endl;
+			m.map[e.x][e.y] = 0;
 			onesecsleep();
 			return 1;
 		}
 		else if (win == 'L') {
-			cout << "You lost to the monster!";
+			cout << "You lost to the monster!" << endl;;
 			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
+			cout << "You have been thrown from the battle ground. Better luck next time!" << endl;
 			onesecsleep();
 			return 3;
 		}
@@ -593,7 +598,7 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 			else if (checkfree13(m, e.x, e.y, position)) {}
 			else if (checkfree14(m, e.x, e.y, position)) {}
 			else {
-				cout << "Flee failed";
+				cout << "Flee failed" << endl;
 			}
 			m.map[position.x][position.y] = 2;
 			return 1;
@@ -606,15 +611,15 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 		enemy = randomise_enemy(m);
 		win = battlephase(p, enemy);
 		if (win == 'W') {
-			cout << "You defeated the monster!";
+			cout << "You defeated the monster!" << endl;
 			m.map[e.x][e.y] = 0;
 			onesecsleep();
 			return 1;
 		}
 		else if (win == 'L') {
-			cout << "You lost to the monster!";
+			cout << "You lost to the monster!" << endl;
 			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
+			cout << "You have been thrown from the battle ground. Better luck next time!" << endl;
 			onesecsleep();
 			return 3;
 		}
@@ -637,7 +642,7 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 			else if (checkfree11(m, e.x, e.y, position)) {}
 			else if (checkfree9(m, e.x, e.y, position)) {}
 			else {
-				cout << "Flee failed";
+				cout << "Flee failed" << endl;
 			}
 			m.map[position.x][position.y] = 2;
 			return 1;
@@ -650,15 +655,15 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 		enemy = randomise_enemy(m);
 		win = battlephase(p, enemy);
 		if (win == 'W') {
-			cout << "You defeated the monster!";
+			cout << "You defeated the monster!" << endl;
 			m.map[e.x][e.y] = 0;
 			onesecsleep();
 			return 1;
 		}
 		else if (win == 'L') {
-			cout << "You lost to the monster!";
+			cout << "You lost to the monster!" << endl;
 			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
+			cout << "You have been thrown from the battle ground. Better luck next time!" << endl;
 			onesecsleep();
 			return 3;
 		}
@@ -681,7 +686,7 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 			else if (checkfree10(m, e.x, e.y, position)) {}
 			else if (checkfree8(m, e.x, e.y, position)) {}
 			else {
-				cout << "Flee failed";
+				cout << "Flee failed" << endl;
 			}
 			m.map[position.x][position.y] = 2;
 			return 1;
@@ -694,15 +699,15 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 		enemy = randomise_enemy(m);
 		win = battlephase(p, enemy);
 		if (win == 'W') {
-			cout << "You defeated the monster!";
+			cout << "You defeated the monster!" << endl;
 			m.map[e.x][e.y] = 0;
 			onesecsleep();
 			return 1;
 		}
 		else if (win == 'L') {
-			cout << "You lost to the monster!";
+			cout << "You lost to the monster!" << endl;
 			onesecsleep();
-			cout << "You have been thrown from the battle ground. Better luck next time!";
+			cout << "You have been thrown from the battle ground. Better luck next time!" << endl;
 			onesecsleep();
 			return 3;
 		}
@@ -725,7 +730,7 @@ int sense_enemy(Map& m, Player& p, Point& position) {
 			else if (checkfree4(m, e.x, e.y, position)) {}
 			else if (checkfree3(m, e.x, e.y, position)) {}
 			else {
-				cout << "Flee failed";
+				cout << "Flee failed" << endl;
 			}
 			m.map[position.x][position.y] = 2;
 			return 1;
