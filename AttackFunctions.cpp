@@ -1517,7 +1517,7 @@ void Questmenu(Player &x){
     +==============================+===========+======================================+==============+
     | Case Number                  | Location  | Details                              | Reward       |
     +------------------------------+-----------+--------------------------------------+--------------+
-    | 001                          | The Peak  | Please help me! The Dragon Lodge     | HKD1000      |
+    | 001                          | The Peak  | Please help me! The Dragon Lodge     | HKD3000      |
     +------------------------------+-----------+                                      +--------------+
     |                              |           | is prime real estate location,       |              |
     +------------------------------+-----------+                                      +--------------+
@@ -1535,7 +1535,7 @@ void Questmenu(Player &x){
         cout << "Press any key to read the next case"<< endl;
         getline(cin,tempkey);
         cout << R"(
-    | 002                          | Wan Chai  | Nam Koo Terrace supposedly is        | HKD2000      |
+    | 002                          | Wan Chai  | Nam Koo Terrace supposedly is        | HKD6500      |
     +------------------------------+-----------+                                      +--------------+
     |                              |           | filled with spirits of women         |              |
     +------------------------------+-----------+                                      +--------------+
@@ -1554,7 +1554,7 @@ void Questmenu(Player &x){
         cout << "Press any key to read the next case"<< endl;
         getline(cin,tempkey);
         cout << R"(
-    | 003                          | Yuen Long | Tak Tak School was closed decades    | HKD3000      |
+    | 003                          | Yuen Long | Tak Tak School was closed decades    | HKD8000      |
     +------------------------------+-----------+                                      +--------------+
     |                              |           | ago, now it's one of the most haun-  |              |
     +------------------------------+-----------+                                      +--------------+
