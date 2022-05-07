@@ -5,6 +5,19 @@ Name: ESPINO PITTI Jose Alberto UID:3035946813
 
 Name: OKPAPI Favour Emoshioriamhe UID:3035919963
 
+# Compilation and execution instructions:
+
+**Compilation**: In the terminal of the directory containing all cpp files, header files and savefile.txt, type: **make main**
+
+**Compilation instruction (if not using Makefile)**: g++ -pedantic-errors -std=c++11 TimeIntervals.cpp maps.cpp AttackFunctions.cpp cafe.cpp main.cpp -o main
+
+**Compilation flags**: g++ -pedantic-errors -std=c++11
+
+**Execution**: type: **./main**, no need to specify standard input file
+
+**Testing**: Program, including Makefile, was tested successfully Academy21 server
+
+
 # Plot:
 You are a trained ghostbuster and monster hunter. After working for some time helping townspeople get rid of their annoying spectral invasors, you have decided to change jobs – and open a cat cafe! However, property prices in Hong Kong aren't precisely cheap... Earn more money to retire and fill your café with feline residents by hunting ghosts around the city!
 
