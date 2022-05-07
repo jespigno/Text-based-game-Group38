@@ -186,7 +186,7 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
   }else if (currentattack == "Scratch"){
     cout << ghast.name << " uses long nails to scratch!" << endl;
     int scratchnumber = 0;
-    int amountofscratch = whatshouldIdo % 3;
+    int amountofscratch = *whatshouldIdo % 3;
     for (int i = scratchnumber; i <= amountofscratch; i++){
       onesecsleep();
       cout << ghast.name << " scratches "<< (i+ 1) << " time."<< endl;
@@ -1336,9 +1336,9 @@ char battlephase(Player &x, char initial){
     //zombie information
     banner('J');
     //dynamic array here maybe?
-    ghost.maxhealth = 8;
+    ghost.maxhealth = 8 + x.stats.level;
     ghost.currenthealth = ghost.maxhealth;
-    ghost.attack = 3 + (rand() % 5);
+    ghost.attack = 3 + (rand() % 5) + (x.stats.mydefense % 6);
     ghost.defense = 8 - (rand() % 5);
     ghost.speed = 2;
     ghost.attackone = "Rotten Fangs";
