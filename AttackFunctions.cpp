@@ -97,17 +97,17 @@ void LevelUp(Player &z){
   whatshouldIdo1 = 0;
   whatshouldIdo2 = 0;
   whatshouldIdo3 = 0;
-  if (z.stats.level >= 5 && z.stats.attackone == "xxxxxxxxxxxxxxx"){
+  if (z.stats.level >= 3 && z.stats.attackone == "xxxxxxxxxxxxxxx"){
     z.stats.attackone = "SunSingZiFo-HolyFire";
     cout << z.info.myname<<" has unlocked the Holy Fire! It will burn down undead corpses to ashes"<<endl;
     twosecsleep();
   }
-  if (z.stats.level >= 10 && z.stats.attacktwo == "xxxxxxxxxxxxxxx"){
+  if (z.stats.level >= 5 && z.stats.attacktwo == "xxxxxxxxxxxxxxx"){
     z.stats.attacktwo = "CalmBell";
     cout << z.info.myname<<" has unlocked the Calm Bell! It may make ghosts not attack in repentance."<<endl;
     twosecsleep();
   }
-  if (z.stats.level >= 15 && z.stats.attackthree == "xxxxxxxxxxxxxxx"){
+  if (z.stats.level >= 10 && z.stats.attackthree == "xxxxxxxxxxxxxxx"){
     z.stats.attacktwo = "PeachTreeSword";
     cout << z.info.myname<<" has unlocked the Peach Tree Sword! Its magic wood makes it effective against all kinds of enemies."<<endl;
     twosecsleep();
@@ -166,7 +166,7 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
   onesecsleep();
   int damage = 0;
   srand(time(NULL)+137);
-  int whatshouldIdo = (rand())% 100;
+  int * whatshouldIdo = new int (rand()% 100);
   string currentattack;
   if (hexed > 0){
     pleya.stats.mycurrenthealth -= (ghast.defense % 3 + 1);
@@ -174,7 +174,7 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
     cout << pleya.info.myname << " is being hurt by the hex." << endl;
     onesecsleep();
   }
-  if (whatshouldIdo > 50){
+  if (*whatshouldIdo > 50){
     currentattack = ghast.attackone;
   }else{
     currentattack = ghast.attacktwo;
@@ -258,6 +258,7 @@ void MonsterAttack (GhostData &ghast, Player &pleya, int &hexed){
   if (damage < 0  ){
     damage = 0;
   }
+  delete whatshouldIdo;
   pleya.stats.mycurrenthealth -= damage;
   cout << pleya.info.myname << " has been dealt " << damage << " damage by the "<<ghast.name<< endl;
   onesecsleep();
@@ -275,6 +276,7 @@ void MonsterDefend(GhostData &ghast, Player &pleya, int &hexed){
   }
   ghast.imdefending = true;
 }
+
 //banner function
 //takes in a char, outputs ASCII art related to the type of monster attacking.
 void banner(char o){
@@ -1498,11 +1500,17 @@ char battlephase(Player &x, char initial){
 
 //Quest menu functions
 //Lets user pick a Quest
+//Input is the player array. It will be edited in other functions, so it is passed by reference here as well.
+//This will also autoheal the user in case they have previously been defeated in a battle.
+//Function is void so produces no output.
 void Questmenu(Player &x){
     string tempkey;
-    bool levelwon;  
+    bool levelwon;
+    if (x.stats.mycurrenthealth <= 0){
+      x.stats.mycurrenthealth = x.stats.maxhealth;
+    }
     while (true){
-        
+
         cout<<R"(
     +==============================+===========+======================================+==============+
     |******************************************JOB REQUESTS******************************************|
@@ -1579,21 +1587,27 @@ void Questmenu(Player &x){
             levelwon = loadlevel(1, x);
             if (levelwon == true and x.info.level1complete == false) {
                 x.info.level1complete = true;
-                x.stats.mymoney += 1000; //reward, can discuss later
+                x.stats.mymoney += 3000; //reward, can discuss later
+                cout << "You have been rewarded "<< "3000"<< " HKD. Thanks for your help!"<< endl;
+                return;
             }
         }
         else if (tempkey == "002"){
             levelwon = loadlevel(2, x);
             if (levelwon == true and x.info.level2complete == false) {
                 x.info.level2complete = true;
-                x.stats.mymoney += 3000; //reward, can discuss later
+                x.stats.mymoney += 6500; //reward, can discuss later
+                cout << "You have been rewarded "<< "6500"<< " HKD. Thanks for your help!"<< endl;
+                return;
             }
         }
         else if (tempkey == "003"){
             levelwon = loadlevel(3, x);
             if (levelwon == true and x.info.level3complete == false) {
                 x.info.level3complete = true;
-                x.stats.mymoney += 5000; //reward, can discuss later
+                x.stats.mymoney += 8000; //reward, can discuss later
+                cout << "You have been rewarded "<< "8000"<< " HKD. Thanks for your help!"<< endl;
+                return;
             }
         }
         else if (tempkey == "b"){
