@@ -17,6 +17,8 @@ Name: OKPAPI Favour Emoshioriamhe UID:3035919963
 
 **Testing**: Program, including Makefile, was tested successfully Academy21 server
 
+**Note**: We recommend this game to be played in FULL SCREEN
+
 
 # Plot:
 You are a trained ghostbuster and monster hunter. After working for some time helping townspeople get rid of their annoying spectral invasors, you have decided to change jobs – and open a cat cafe! However, property prices in Hong Kong aren't precisely cheap... Earn more money to retire and fill your café with feline residents by hunting ghosts around the city!
