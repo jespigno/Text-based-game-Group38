@@ -9,9 +9,12 @@ Name: OKPAPI Favour Emoshioriamhe UID:3035919963
 You are a trained ghostbuster and monster hunter. After working for some time helping townspeople get rid of their annoying spectral invasors, you have decided to change jobs – and open a cat cafe! However, property prices in Hong Kong aren't precisely cheap... Earn more money to retire and fill your café with feline residents by hunting ghosts around the city!
 
 
-#Instructions:
+
+# Instructions:
 -You are able to save your data at any time on the Main Menu. Press 'S' to record your progress.
+
 -You are able to see your stats at any time on the Main Menu. Press 'T' to see your stats.
+
 -Within each dungeon, you move with w(up) s(down) a(left) and d(right). **The user is represented as #**, monsters are represented as !, and loot is represented as +.
 
 
