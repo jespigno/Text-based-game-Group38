@@ -28,7 +28,7 @@ int main(){
         cout << "That's not an option :( try again!"<<endl;
       }
     }
-    if (defaultval.info.firsttime == true){
+    if (defaultval.info.firsttime == true ){
       cout<<R"(
         @@@@@@@@@@@@@@@@&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         @@@@@@@@@@@@@@@#**&@@@@@%(((((((((((((((%@@@@@@@@#*,#&@@%################&@@@@@@
