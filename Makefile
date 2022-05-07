@@ -1,6 +1,6 @@
 FLAGS = -pedantic-errors -std=c++11
 
-maps.o: maps.cpp TimeIntervals.h AttackFunctions.h
+maps.o: maps.cpp TimeIntervals.h AttackFunctions.h 
 	g++ $(FLAGS) -c $<
 
 cafe.o: cafe.cpp TimeIntervals.h AttackFunctions.h
@@ -9,10 +9,13 @@ cafe.o: cafe.cpp TimeIntervals.h AttackFunctions.h
 AttackFunctions.o: AttackFunctions.cpp TimeIntervals.h AttackFunctions.h
 	g++ $(FLAGS) -c $<
 
+TimeIntervals.o: TimeIntervals.cpp TimeIntervals.h AttackFunctions.h
+	g++ $(FLAGS) -c $<
+
 main.o: main.cpp TimeIntervals.h AttackFunctions.h
 	g++ $(FLAGS) -c $<
 
-main: maps.o cafe.o AttackFunctions.o main.o
+main: maps.o cafe.o AttackFunctions.o TimeIntervals.o  main.o
 	g++ $(FLAGS) $^ -o $@
 
 clean:
