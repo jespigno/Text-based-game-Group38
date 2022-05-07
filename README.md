@@ -5,6 +5,21 @@ Name: ESPINO PITTI Jose Alberto UID:3035946813
 
 Name: OKPAPI Favour Emoshioriamhe UID:3035919963
 
+# Compilation and execution instructions:
+
+**Compilation**: In the terminal of the directory containing all cpp files, header files and savefile.txt, type: **make main**
+
+**Compilation instruction (if not using Makefile)**: g++ -pedantic-errors -std=c++11 TimeIntervals.cpp maps.cpp AttackFunctions.cpp cafe.cpp main.cpp -o main
+
+**Compilation flags**: g++ -pedantic-errors -std=c++11
+
+**Execution**: type: **./main**, no need to specify standard input file
+
+**Testing**: Program, including Makefile, was tested successfully Academy21 server
+
+**Note**: We recommend this game to be played in FULL SCREEN
+
+
 # Plot:
 You are a trained ghostbuster and monster hunter. After working for some time helping townspeople get rid of their annoying spectral invasors, you have decided to change jobs – and open a cat cafe! However, property prices in Hong Kong aren't precisely cheap... Earn more money to retire and fill your café with feline residents by hunting ghosts around the city!
 
@@ -54,26 +69,24 @@ The place where enemies spawn on each task, the place where loot spawns, the amo
 When levelling up, stat growth is also random.
 
 2. Data structures for storing game status
--Dungeon maps will be stored in 2d arrays.
+-Dungeon maps each have an individual struct that containts a 2d array reprenseting the map, the entry and exit points, the possible points where enemies and loot can spawn, the integer for the level, and they have some struct functions. 
+
 -Player and Enemy information will be stored in structs. These structs will include things like:
--name (string),
 -HP (int),
 -attack stats (int) ,
 -Defense stats(int),
 -Speed stats(int),
 -etc
-There will be another struc for the general game that will store information like:
--money earnt (int),
--amount of enemies defeated (int), 
+There will be another struc for the general game information that stores information like:
+-things bought (array of bool),
 -player name (string), and
--cat café name (string).
+-levels beaten (array bool).
 
 
 3. Dynamic memory management
-Arrays and pointers used in map generation for every task
-Arrays also contain all the aforementioned data for users, enemies, and the game itself.
+We used vectors for storing the possible loot points and the possible end points/start points.
 In many sections of the game where random numbers need to be generated, these random numbers are stored in dynamic variables that get deleted after use.
-For instance, the LevelUp() function (in AttackFunctions.cpp) uses dynamic variables frequently.
+For instance, the LevelUp() function (in AttackFunctions.cpp) and the MonsterAttack () function (in AttackFunctions.cpp) uses dynamic variables frequently.
 
 
 4. File input/output
@@ -81,8 +94,12 @@ The user can store all the variables in external files to save the game, and the
 
 
 5. Program codes in multiple files
-Structs, functions (like leveling up and attack), dialogue, and all saved information will be stored in files separate from main.cpp.
-Separate .cpp files for functions of the game e.g. printing dungeon map.
+Structs, functions (like leveling up and attack), dialogue, and all saved information is stored in files separate from main.cpp.
+The game consists of 
+  * TimeIntervals.cpp, which contains functions related to pauses, loading, and saving the game.
+  * cafe.cpp, which contains functions related to the cat cafe section of the game.
+  * maps.cpp, which contains functions related to map generation, map movement, etc.
+  * AttackFunctions.cpp, which contains functions related to the battle system, leveling up, displaying stats, enemy attacks, etc.
 
  
 
