@@ -94,10 +94,10 @@ The user can store all the variables in external files to save the game, and the
 5. Program codes in multiple files
 Structs, functions (like leveling up and attack), dialogue, and all saved information is stored in files separate from main.cpp.
 The game consists of 
-1. TimeIntervals.cpp, which contains functions related to pauses, loading, and saving the game.
-2. cafe.cpp, which contains functions related to the cat cafe section of the game.
-3. maps.cpp, which contains functions related to map generation, map movement, etc.
-4. AttackFunctions.cpp, which contains functions related to the battle system, leveling up, displaying stats, enemy attacks, etc.
+ 1.TimeIntervals.cpp, which contains functions related to pauses, loading, and saving the game.
+ 2. cafe.cpp, which contains functions related to the cat cafe section of the game.
+ 3. maps.cpp, which contains functions related to map generation, map movement, etc.
+ 4. AttackFunctions.cpp, which contains functions related to the battle system, leveling up, displaying stats, enemy attacks, etc.
 
  
 
