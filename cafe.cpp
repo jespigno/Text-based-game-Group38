@@ -8,6 +8,9 @@ using namespace std;
 #include "TimeIntervals.h"
 #include "AttackFunctions.h"
 
+//This function shows displays the options the player can take in the Cat Cafe section
+//Input is the player array, which may be modified according to the user input
+//No output, void
 void catcafeMenu(Player& x) {
     string tempkey;
     cout << "press any key to enter your Cafe";
@@ -64,6 +67,10 @@ void catcafeMenu(Player& x) {
     }
 }
 
+//Show catalogue function
+//Shows possible items to buy and edits user array if anything bought
+//No output, void
+}
 void showCatalogue(Player& x) {
     string tempkey;
     while (true) {
@@ -95,6 +102,9 @@ void showCatalogue(Player& x) {
     }
 }
 
+//Purchase function
+//Input is the user array by reference, no output
+//Values are edited according to user interactions.
 void purchase(Player& x) {
     string tempkey;
     cout << "Which product do you wish to purchase?" << endl << "Press b to go back" << endl;
@@ -359,6 +369,10 @@ void purchase(Player& x) {
     }
 }
 
+//visit cafe function
+//This function shows user different ASCII ilustrations depending on what they have already bought
+//Objects bought are stored in the Player array passed as input
+//Function void; no output
 void visitCafe(Player& x) {
     if (x.info.boughtcatcafe == true) {
         cout << "Welcome to " << x.info.myname << "'s amazing cat paradise!";
